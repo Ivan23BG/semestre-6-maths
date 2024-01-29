@@ -1,0 +1,169 @@
+\documentclass[french,a4paper,10pt]{article}
+\input{../../common/header.tex}
+\usepackage[a4paper,hmargin=30mm,vmargin=30mm]{geometry}
+
+\title{\color{astral} \sffamily \bfseries TD 1}
+\author{Ivan Lejeune\thanks{Cours inspiré de M. Charlier et M. De Renzi}}
+\date{\today}
+% pdflatex -output-directory=output chapter1.tex && move /Y output\chapter1.pdf .\
+
+\begin{document}
+	\maketitle
+	\begin{myexample}
+		On considère $G=\glx2(\bb K)$ et son action sur $\bb K^n$. Pour $n=2$, la base standard de $\bb K^2$ est $\{e_1, e_2\}$. Alors, $G\cdot e_1=\bb K^2\setminus\{0\}$ car
+		\[\begin{aligned}
+			\underset{\in G\cdot e_1}{
+			\begin{pmatrix*}
+			x\\
+			y
+			\end{pmatrix*}}
+			=
+			\begin{cases}
+				\begin{pmatrix*}
+					x&0\\
+					y&1
+				\end{pmatrix*}
+				\cdot e_1&\text{si }x\ne 0\\
+				
+				\begin{pmatrix*}
+					x&1\\
+					y&0
+				\end{pmatrix*}
+				\cdot e_1&\text{si }y\ne 0
+			\end{cases}
+		\end{aligned}\]
+		Alors $G\cdot 0=\{0\}$. L'action est donc transitive sur $\bb K^2\setminus\{0\}$ et $0$ est l'unique point fixe. De plus
+			\[\begin{aligned}
+				G_{e_1}= \left\{
+				\begin{pmatrix*}
+					1&b\\0&d
+				\end{pmatrix*}
+				\bigg{\mid}~
+				\begin{matrix}
+				b,d\in \bb K\\
+				d\ne 0
+				\end{matrix}
+				\right\}
+			\end{aligned}\]
+		Cela implique $\bb K^2$ n'est pas homogène (l'action n'est pas transitive) et l'action n'est pas libre.
+			\begin{definition}
+			Soit $\bb P^{n-1}(\bb K)$ l'\defemph{espace projectif de dimension $n-1$}. C'est l'ensemble des droites vectorielles de $\bb K^n$.
+			
+			De manière équivalente, $\bb P^{n-1}(\bb K)$ est le quotient de $\bb K^n\setminus\{0\}$ par la relation d'équivalence
+			\[\begin{aligned}
+				v\sim v'\Longleftrightarrow\exists\lambda\in \bb K\setminus\{0\}\colon v'=\lambda v
+			\end{aligned}\]
+			Si $\sim$ est une relation d'équivalence sur un ensemble $X$, alors $X/\sim$ est l'ensemble dont les éléments sont les classes d'équivalence de $\sim$ dans $X$.
+			
+			Si $x\in X$, sa classe d'équivalence notée $\cequiv{x}\in X/\sim$ correspond à $\{x'\in X\mid x'\sim x\}$
+		\end{definition}\,\\
+		$G$ agit sur $\bb P^{n-1}(\bb K)$ par 
+			\[\begin{aligned}
+				A\cdot\cequiv{v}=\cequiv{Av}\quad\forall A\in G,v\in \bb K^n
+			\end{aligned}\]
+	\end{myexample}
+
+	\medspace
+	\begin{td-exo}
+		Considérer les actions suivantes :
+		\begin{enumerate}[label=$(\roman*)$]
+			\item L'action de $\mathfrak{S}_n$ sur $\{1,\dots,n\}$;
+			\item L'action de $\glx2(\bb K)$ sur $\bb P^1(\bb K)$;
+			\item L'action de $\scr D_n$ sur $\mu_n$;
+			\item L'action de $\mathfrak{S}_n$ par conjugaison sur ses sous-groupes d'ordre 2.
+		\end{enumerate}
+		Ces actions sont-elles libres ? Sont-elles transitives
+	\end{td-exo}
+	\begin{td-sol}
+		\,
+		\begin{enumerate}[label=$(\roman*)$]
+			\item Si $n>2$, l'action n'est pas libre car 
+				\[\begin{aligned}
+					\st(n)=\mathfrak{S}_{n-1}<\mathfrak{S}_n
+				\end{aligned}\]
+				L'action est transitive car on a
+					\[\begin{aligned}
+						i = (i~j)\cdot j\quad\forall 1\le i,j\le n
+					\end{aligned}\]
+				Si $n\le 2$, alors l'action est libre et transitive.
+			\item L'action est transitive car l'action de $G$ sur $\bb K^2\setminus\{0\}$ l'est. Donc 
+				\[\begin{aligned}
+					\forall v\in \bb K^2\setminus\{0\},\exists A\in G\colon Ae_1=v
+				\end{aligned}\]
+			Soit que 
+				\[\begin{aligned}
+					A\cdot\cequiv{e_1} = \cequiv{A\cdot e_1} = \cequiv{v}
+				\end{aligned}\]
+			Il suffit de considérer le même $A$ qu'avant $($pour un choix quelconque d'un représentant $v$ de $\cequiv{v})$.
+			
+			Il vient $G\cdot\cequiv{e_1}=\bb P^1(\bb K)$ et
+				\[\begin{aligned}
+					G_{\cequiv{e_1}}=
+					\begin{cases}
+						\begin{pmatrix*}
+							a&b\\
+							0&d
+						\end{pmatrix*}
+						\bigg \mid~
+						\begin{matrix*}
+							a,b,d\in \bb K\\
+							ad\ne 0
+						\end{matrix*}
+					\end{cases}
+				\end{aligned}\]
+			Donc l'action n'est pas libre
+			
+			\item \,
+				\begin{myrappel}
+					On a
+					\[\begin{aligned}
+						&R\cdot\zeta=e^{\frac{2\pi i}n}\zeta\\
+						&S\cdot\zeta=\ol\zeta
+					\end{aligned}\]
+					Avec
+						\[\begin{aligned}
+							R&=
+								\begin{pmatrix*}
+									\cos\frac{2\pi}n&-\sin\\
+									\sin\frac{2\pi}n&\cos
+								\end{pmatrix*}\\
+							S&=
+								\begin{pmatrix*}
+									1&0\\
+									0&-1
+								\end{pmatrix*}
+						\end{aligned}\]
+				
+					\[\begin{aligned}
+						\scr D_n&\to\mathfrak{S}_{\mu_n}\\
+						R^j&\mapsto\left[\zeta^k\mapsto e^{\frac{2j\pi i}n}\zeta^k\right]\\
+						R^jS&\mapsto\left[\zeta^k\mapsto e^{\frac{2j\pi i}n}\zeta^{-k}\right]
+					\end{aligned}\]
+				\end{myrappel}
+			
+			L'action de $\scr D_n$ sur $\mu_n$ n'est pas libre car $S\in\st(1)$ et donc $S\cdot 1=\ol 1=1$.
+			
+			L'action est transitive car $\zeta^k=R^k\cdot 1\quad\forall \zeta^k\in\mu_n$.
+			
+			\item Si $H<\mathfrak{S}_n$ est un sous-groupe d'ordre 2, c'est que $H=\{\id, \sigma\}$ pour tout $\sigma\in \mathfrak{S}_n$.
+			
+			On a donc $\sigma\in\st(\{1, \sigma\})$ pour $\sigma$ d'ordre 2 car
+				\[\begin{aligned}
+					\left\{\sigma 1\sigma^{-1},\sigma\sigma\sigma^{-1}\right\}=\left\{1, \sigma\right\}
+				\end{aligned}\]
+			Pour $\sigma = (i~j)$ et $\phi\in\mathfrak{S}_n$ quelconque, on a
+				\[\begin{aligned}
+					\phi\circ\sigma\circ\phi^{-1}=\left(\phi(i)~\phi(j)\right)
+				\end{aligned}\]
+			Donc $<(1~2)(3~4)>\notin\orb(<1~2>)$ pour $n\ge 4$.
+			
+			En conclusion l'action n'est jamais libre, et elle n'est pas transitive pour $n\ge 4$.
+		\end{enumerate}
+	\end{td-sol}
+	\medspace
+	\begin{td-exo}
+	Soit $||\_||$ la norme euclidienne usuelle de $\bb R^n$ et soit $0_n$ le sous-groupe de $\glx n(\R)$ dont les éléments sont les matrices $A\in\glx n(\R)$ telles que $||Av||=||v||$ pour tout $v\in\R^n$. On appelle $0_n$ le \defemph{groupe orthogonal de dimension $n$}. Soit $S^{n-1}\coloneq \{v\in \R^n\mid||v||=1\}$ la \defemph{sphère de dimension $n-1$}. Montrer que $O_n$ agit transitivement, mais pas librement sur $S^{n-1}$ pour tout $n>1$.
+	\end{td-exo}
+	
+	
+\end{document}

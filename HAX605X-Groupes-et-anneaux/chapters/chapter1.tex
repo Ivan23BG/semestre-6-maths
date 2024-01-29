@@ -1,0 +1,376 @@
+\documentclass[french,a4paper,10pt]{article}
+\input{../../common/header.tex}
+\usepackage[a4paper,hmargin=30mm,vmargin=30mm]{geometry}
+
+\title{\color{astral} \sffamily \bfseries Groupes et anneaux II}
+\author{Ivan Lejeune\thanks{Cours inspiré de M. Charlier et M. De Renzi}}
+\date{\today}
+% pdflatex -output-directory=output chapter1.tex && move /Y output\chapter1.pdf .\
+
+\begin{document}
+	\maketitle
+	\section{Introduction}
+	\subsection{Informations importantes}
+	\begin{itemize}[$-$]
+		\item CC1 : Début mars
+		\item CC2 : Fin avril
+		\item Examen final : En mai
+	\end{itemize}
+	
+	\[\begin{aligned}
+		\text{Note finale} = \max\left(\text{note finale}, \frac{\text{examen } + \frac{\text{CC1 }\text{CC2}}2}2\right)
+	\end{aligned}\]
+	
+	\subsection{Références}
+	
+	Voir le cours de Joao Pedro dos Santos
+	
+	\section{Exemples importants de groupes}
+	\begin{myexample}
+		Le groupe des inversibles dans $\C$ avec la multiplication entre nombres complexes :
+		
+		\[\begin{aligned}
+			\bb C=\bb C \setminus \{0\}
+		\end{aligned}\]
+		
+		Le sous-groupe des racines $n$-ièmes de l'unité :
+		\[\begin{aligned}
+			\mu_n\coloneq\{z\in\bb C^\times | z^n=1\}
+		\end{aligned}\]
+		
+		\begin{myremark}
+			On obtient $\mu_n \eqsim \bb Z/n\bb Z$ via
+			\[\begin{aligned}
+				\Z/n\Z&\to \mu_n\\
+				[k]&\mapsto e^{\frac{2k\pi i}n}
+			\end{aligned}\]
+		\end{myremark}
+		
+	\end{myexample}
+	\begin{myexample}
+		Le groupe général linéaire des matrices inversibles de taille $n\times n$ à coefficients dans $\bb K$ avec multiplication matricielle :
+		
+		\[\begin{aligned}
+			\gln(\bb K)
+		\end{aligned}\]
+		
+		\begin{myremark}
+			Si $\bb K = \bb F_p$ alors $|\gln(\bb K)|$ est fini.
+		\end{myremark}
+		
+		Pour calculer $|\gln(\bb F_p)|$, considérons $X\in \gln(\bb F_p)$
+		\[\begin{aligned}
+			X &= \left(X_1 | X_2 | \cdots | X_n\right), X_i\in \bb F_p^n\\
+			X_1 &\ne 0\\
+			X_2 &\notin \bb F_p X_1\\
+			X_3 &\notin \vect_{\bb F_p}(X_1, X_2)\\
+			&\vdots
+		\end{aligned}\]
+		
+		On a alors
+		\[\begin{aligned}
+			|\bb F_p^n\setminus\{0\}| &= p^n-1 \text{ choix pour }X_1\\
+			|\bb F_p^n\setminus\bb F_pX_1| &= p^n-p \text{ choix pour }X_2\\
+			|\bb F_p^n\setminus\vect_{F_p}(X_1, X_2)| &= p^n-p^2 \text{ choix pour }X_3\\
+			&\vdots
+		\end{aligned}\]
+		
+		Soit
+		\[\begin{aligned}
+			|\gln(\bb F_p)| = \prod_{i=0}^{n-1}(p^n-p^i)
+		\end{aligned}\]
+		
+		En particulier, pour $p=n=2$, on a
+		\[\begin{aligned}
+			|GL_2(\bb F_2)| = (2^2-1)(2^2-2^1)=6
+		\end{aligned}\]
+	\end{myexample}
+	\begin{myexample}
+		Pour $n>1$, on a
+		\begin{itemize}[]
+			\item 
+			$R\in GL_2(\R)$ la rotation d'angle $\frac{2\pi}n$ dans le sens anti-horlogique
+			
+			\item 
+			$S\in GL_2(\R)$ réflexion par rapport à l'axe des abscisses. 
+		\end{itemize}
+			
+			Si on identifie $\R^2\eqsim\C$, alors
+			
+			\[\begin{aligned}
+				R(z)=e^{\frac{2\pi i}n} z,\quad S(z)=\ol z
+			\end{aligned}\]
+			
+			On a alors 
+			\[\begin{aligned}
+				\forall k\in\Z, SR^kS&=R^{-k}
+			\end{aligned}\]
+			
+			\begin{myproof}
+				\[\begin{aligned}
+					S(R^k(S(z)))&=S(R^k(\ol z))\\
+					&=S(e^{\frac{2k\pi i}n}\ol z)\\
+					&=e^{-\frac{2k\pi i}n}z\\
+					&= R^{-k}(z)
+				\end{aligned}\]
+			\end{myproof}
+			
+			\begin{proposition}
+			On note
+			\[\begin{aligned}
+				\mathfrak{D}_n\coloneq {I_2, R, \cdots, R^{n-1}}\\
+			\end{aligned}\]
+			le groupe diédral, alors
+			\[\begin{aligned}
+				\{S, RS, \cdots, R^{n-1}S\} \subset \mathfrak D_n
+			\end{aligned}\]
+			est un sous-groupe de $GL_2(\R)$ (le groupe diédral à $2n$ éléments)
+			\end{proposition}
+			\begin{myproof}
+			
+			\[\begin{aligned}
+				R^iR^j&=R^{i+j}&\text{(a)}\\
+				R^i(R^jS)&=R^{i+j}S\\
+				(R^iS)R^j&=R^iSR^jSS=R^{i-j}S\\
+				\underset{\substack{\Rightarrow \mathfrak D_n\text{ est clos}\\ \text{par multiplication}}}{(R^iS)(R^jS)}&=R^{i-j}&\text{(b)}\\
+				(R^i)^{-1}&=R^{-i}\text{ grâce à (a)}\\
+				(R^iS)^{-1}&=R^iS\text{ grâce à (b)}
+			\end{aligned}\]
+			\end{myproof}
+			
+			\begin{myremark}
+				Si $n>2$, on a $\mathfrak{D}_n$ non commutatif
+			\end{myremark}
+	\end{myexample}
+	
+	\section{Actions}
+	
+	Soit $X$ un ensemble et $G$ un groupe.
+	
+	
+	
+	\begin{definition}
+		Une \defemph{action} de $G$ sur $X$ est une fonction
+		\[\begin{aligned}
+			G\times X &\to X\\
+			(g,x)&\mapsto g\cdot x
+		\end{aligned}\]
+		telle que 
+		\begin{enumerate}[label=$(\roman*)$]
+			\item $\forall x\in X, e\cdot x = x$
+			
+			\item $\forall g,h\in G, \forall x\in X, (gh)\cdot x=g\cdot(h\cdot x)$
+		\end{enumerate}
+	\end{definition}
+	
+	
+	
+	\begin{myremark}
+		"$G$ agit sur $X$" sera noté $G\act X$.\\
+		Un $G$-ensemble est un ensemble muni d'une action de $G$.
+	\end{myremark}
+	
+	
+	\begin{myexercice}
+		\[\begin{aligned}
+			G\act X\Rightarrow \rho:G\to \bij(X)
+		\end{aligned}\]
+		Avec $\rho$ définie par 
+		\[\begin{aligned}
+			\rho(g)(x)\coloneq g\cdot x,\quad\forall g\in G, x\in X
+		\end{aligned}\]
+		Montrer que $\rho$ est un morphisme de groupes.\\
+		
+		Réciproquement, montrer que si $\rho\colon G\to \bij(X)$ est un morphisme de groupes, alors
+		$g\cdot x\coloneq \rho(g)(x),\quad\forall g\in G, \forall x\in X$ définit une action de G.
+	\end{myexercice}
+	
+	\section{Exemples importants d'Actions}
+	
+	\begin{myexample}
+		$\mathfrak S_n \act\{1, \dots, n\}$ naturellement ($\sigma\cdot k=\sigma(k))$
+	\end{myexample}
+	
+	\begin{myexample}
+		$\gln{\bb K}\act\bb K^n$ par produit matriciel
+		\[\begin{aligned}
+			A\cdot v=Av\quad\forall A\in \gln(\bb K),\forall v\in \bb K^n
+		\end{aligned}\]
+		($v$ vecteurs colonnes)
+	\end{myexample}
+	
+	\begin{myexample}
+		$\mathcal D_n\act\mu_n$ car
+		\[\begin{aligned}
+			\zeta^n=1\Rightarrow g(\zeta)^n=1,\quad\forall g\in\mathcal D_n
+		\end{aligned}\]
+		En effet, il suffit de le vérifier pour les générateurs $R, S\in \mathcal D_n$ :
+		\[\begin{aligned}
+			R(\zeta)^n&=\left(e^{\frac{2\pi i}n}\zeta\right)^n\\
+			&=e^{\frac{2n\pi i}n}\zeta^n\\&=1\\
+			S(\zeta)^n&=\left(\ol\zeta\right)^n=\zeta^{-n}=1
+		\end{aligned}\]
+	\end{myexample}
+	
+	
+	\begin{myexample}
+		$H<G$ (notation pour "$H$ est un sous-groupe de $G$")
+		\begin{enumerate}[(a)]
+			\item 
+			Action par translation à gauche : $H\act G$ par
+			\[\begin{aligned}
+				\rho_L\colon H&\to&&\bij(G)\\
+				\rho_L(h)(g)&\coloneq& &hg&\forall h\in H, \forall g\in G
+			\end{aligned}\]
+			
+			\item 
+			Action par translation à droite : $H\act G$ par
+			\[\begin{aligned}
+				\rho_R\colon H&\to&&\bij(G)\\
+				\rho_RL(h)(g)&\coloneq& &gh^{-1}&\forall h\in H, \forall g\in G
+			\end{aligned}\]
+			
+		\end{enumerate}
+		\begin{myremark}
+			Le réflexe $h\cdot g = gh$ ne définit pas une action en général
+			\begin{myexercice}
+				Vérifier que ce n'est pas le cas uniquement si $H<Z(G)$.
+			\end{myexercice}
+		\end{myremark}
+	\end{myexample}
+	\begin{definition}
+		Soient $X, Y, G$ des ensembles. On a $f\colon X\to Y$ $G$-\defemph{équivariante} (ou une $G$-fonction) si
+			\[\begin{aligned}
+				\forall g\in G,\forall x\in X,\quad f(g\cdot x)=g\cdot f(x)
+			\end{aligned}\]
+	\end{definition}
+	\begin{myexercice}
+		Soit $H<G$ (un sous-groupe) de $G$ et \color{astral}\underline{\color{black}$G_L$}\color{black} (resp. \color{verdant}\underline{\color{black}$G_R$}\color{black}) l'ensemble $G$ munit de l'action de $H$ par \color{astral}\underline{\color{black}translation à gauche}\color{black} (resp. \color{verdant}\underline{\color{black}translation à droite}\color{black}).
+		
+		Montrer que
+			\[\begin{aligned}
+				{\_}^{-1}\colon&G_L&\to G_R\\
+				&g&\mapsto g^{-1}
+			\end{aligned}\]
+		est une bijection $H$-équivalente
+	\end{myexercice}
+	\begin{definition}
+		On pose $G$ un groupe, $\Gamma$ un groupe et $V$ un espace vectoriel sur $\bb K$. Les assertions des points suivants sont équivalentes:
+			\begin{enumerate}[label=$(\roman*)$]
+				\item $G\act \Gamma$ par homomorphismes si 
+					\begin{itemize}
+						\item $\forall g\in G,\gamma,\gamma'\in\Gamma$ on a$ g\cdot(\gamma\gamma')=(g\cdot \gamma)(g\cdot \gamma')$
+						\item $\rho\colon G\to\aut(\Gamma)<\mathfrak S$
+						\item $\rho(g)$ est un morphisme de groupes $\forall g\in G$
+					\end{itemize}
+				
+				\item $G\act V$ de manière linéaire si 
+					\begin{itemize}
+						\item $\forall g\in G,v,v'\in V,\lambda,\lambda'\in\bb K$ on a $g\cdot(\lambda v\lambda'v')=\lambda(g\cdot v)+\lambda'(g\cdot v')$
+						\item $\rho\colon G\to \text{GL}_{\bb K}(V)<\mathfrak{S}_V$
+						\item $\rho(g)$ est une application linéaire $\forall g\in G$
+					\end{itemize}
+			\end{enumerate}
+	\end{definition}
+	\begin{myexample}
+		Soient $H$ et $G$ des groupes avec $H<G$. Les assertions suivantes sont équivalentes :
+		\begin{itemize}
+			\item L'action de $H$ sur $G$ par translation à gauche est une action par homomorphismes
+			\item $H=\{e\}$
+		\end{itemize}
+		En effet :
+			\[\begin{aligned}
+				\forall h\in H\quad
+				&h\cdot(gg')=(h\cdot g)(h\cdot g')\\
+				\Longleftrightarrow &hgg'=hghg'\\
+				\Longleftrightarrow& (hg)^{-1}hgg'(g')^{-1}=(hg)^{-1}hghg'(g')^{-1}\\
+				\Longleftrightarrow&e=h
+			\end{aligned}\]
+		Soit que $\forall h\in H,h=e$ et donc $H=\{e\}$
+	\end{myexample}
+	\begin{myexample}
+		L'action de $\gln{\bb K}$ sur $\bb K^n$ qu'on a vu l'autre fois est linéaire.
+	\end{myexample}
+	\begin{myexample}
+		L'action par conjugaison :
+		
+		Soient $H$ et $G$ des groupes, si $H<G$ alors $H\act G$ par $\rho_C\colon H\to\aut(G)<\mathfrak{S}_G$ avec
+			\[\begin{aligned}
+				\rho_C(h)(g)\coloneq hgh^{-1}\quad\forall h\in H,g\in G
+			\end{aligned}\]
+		Il s'agit d'une action par homomorphismes car
+			\[\begin{aligned}
+				h\cdot(gg')=hgg'h^{-1}&=hgh^{-1}hg'h^{-1}\\
+				&=(h\cdot g)(h\cdot g')\\
+				&=\rho_C(h)(g) \rho_C(h)(g')\\&\quad\forall h\in H,g,g'\in G
+			\end{aligned}\]
+	\end{myexample}
+	\begin{theorem}[Cayley]\,\\
+		Si $G$ est un groupe d'ordre $n\in N$ alors $G$ est isomorphe à un sous-groupe de $\mathfrak S_n$.
+	\end{theorem}
+	\begin{myproof}
+		$G$ agit sur lui-même par translation à gauche par 
+			\[\begin{aligned}
+				\rho_L\colon G\to \mathfrak S_G\simeq\mathfrak S_n
+			\end{aligned}\]
+			\[
+			g\in \ker(\rho_L)\Longrightarrow\rho_L(g)(e)=(e)\Longrightarrow ge=e
+			\]
+			Donc $\rho_L$ est injectif et $\rho_L\colon G\to \im(\rho_L)<\mathfrak S_n$ est un isomorphisme.
+	\end{myproof}
+	\begin{myexample}
+		On considère $\zeta=e^{\frac{2\pi i}5}$ et 
+			\[
+				\mu_5=\{\zeta^1,\zeta^2,\dots,\zeta^5\}\simeq\{1,2,\dots,5\}
+			\]
+			\[\begin{aligned}
+				\rho_L\colon&\mu_5&\to &\mathfrak S_{\mu_5}\simeq\mathfrak S_5\\
+				&\zeta^k&\mapsto &(1~2~3~4~5)^k
+			\end{aligned}\]
+	\end{myexample}
+	\begin{definition}
+		Soit $G$ un groupe et $X$ un ensemble avec $G\act X$. On a alors
+		\begin{enumerate}[label=$(\roman*)$]
+			\item $Y\in X$ est \defemph{stable} par $G$ si $G\cdot Y\sub Y$. En particulier, $Y$ est un sous-$G$ ensemble.
+			
+			\item L'\defemph{orbite} de $x\in X$ notée $\orb(x)$ ou $G\cdot x$ est
+				\[\begin{aligned}
+					G\cdot x = \{g\cdot x\mid g\in G\}
+				\end{aligned}\]
+				\begin{myremark}
+					$\orb(x)$ est stable par $G$.
+				\end{myremark}
+			
+			\item Le \defemph{stabilisateur} de $x\in X$ est $\st(x)$ ou $G_x$ est 
+				\[\begin{aligned}
+					G_x=\{g\in G\mid g\cdot x=x\}
+				\end{aligned}\]
+				\begin{myremark}
+					$\st(x)<G,e\in\st(x)$
+					\[\begin{aligned}
+						g,g'\in \st(x)\Longrightarrow g\cdot(g'\cdot x)=g\cdot x=x
+					\end{aligned}\]
+				\end{myremark}
+			\item $x\in X$ est un \defemph{point fixe} si 
+				\[\begin{aligned}
+					g\cdot x=x\quad \forall g\in G
+				\end{aligned}\]
+				Soit, si 
+					\[\begin{aligned}
+						G_x=G\qquad \text{ou}\qquad G\cdot x=x
+					\end{aligned}\]
+				L'ensemble des points fixes est noté $X^G$.
+				
+			\item L'action est \defemph{transitive} si 
+				\[\begin{aligned}
+					\exists x\in X\colon G\cdot x=X
+				\end{aligned}\]
+				Dans ce cas, on dit que $X$ est un \defemph{espace homogène}
+				
+			\item L'action est \defemph{libre} si 
+				\[\begin{aligned}
+					\forall x\in X, G_x=\{e\}
+				\end{aligned}\]
+		\end{enumerate}
+	\end{definition}
+\end{document}

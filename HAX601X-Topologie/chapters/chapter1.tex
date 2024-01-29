@@ -1,0 +1,359 @@
+\documentclass[french,a4paper,10pt]{article}
+\input{../../common/header.tex}
+\usepackage[a4paper,hmargin=30mm,vmargin=30mm]{geometry}
+
+\title{\color{astral} \sffamily \bfseries Espaces métriques, notions de topologie}
+\author{Ivan Lejeune\thanks{Cours inspiré de M. Charlier et M. Akrout}}
+\date{\today}
+% pdflatex -output-directory=output main.tex && move /Y output\main.pdf pdfs\
+
+\begin{document}
+	\maketitle
+
+	\section{Espaces métriques}
+	
+	\begin{definition}
+		Un \defemph{espace métrique} est un ensemble $X$ munit d'une application 
+		\[\begin{aligned}
+			d\coloneq X\times X\to \R
+		\end{aligned}\]
+		tel que pour tout $x,y\in X$ on a 
+		\begin{enumerate}[label=$(\roman*)$]
+			\item $d(x,y)\ge0$;
+			\item $d(x,y) = 0 \Longleftrightarrow x=y$ (séparation);
+			\item $d(x,y) = d(y,x)$ (symétrie);
+			\item $\forall z\in X, d(x,y) + d(y,z) \ge d(x,z)$ (inégalité triangulaire);
+		\end{enumerate}
+		On appelle $d$ la \defemph{distance} (ou métrique) sur $X$.
+		
+	\end{definition}
+	
+	\medskip
+	
+	\begin{myexample}
+		Soit $X$ un ensemble, on considère 
+		\[\begin{aligned}
+			\delta(x,y) = 
+			\begin{cases}
+				0&\text{si }x=y\\
+				1&\text{si }x\ne y
+			\end{cases}
+		\end{aligned}\]
+		C'est une distance, appelée la distance discrète, qu'on verra en TD.
+	\end{myexample}
+	
+	\begin{definition}
+		Une \defemph{norme} sur $E$ est une application 
+		\[\begin{aligned}
+			\mathcal N\coloneq E\to \R^+
+		\end{aligned}\]
+		telle que pour tout $x,y\in E, \lambda\in\R$, on a
+		\begin{enumerate}[label=$(\roman*)$]
+			\item $\mathcal{N}(x)=0\Longleftrightarrow x=0$;
+			\item $\mathcal{N}(\lambda x)=|\lambda|\mathcal{N}(x)$;
+			\item $\mathcal{N}(x +y) \le \mathcal{N}(x) + \mathcal{N}(y)$;
+		\end{enumerate}
+		
+		Pour $E = \R\text{-ev}$, on a $(E, \mathcal{N})$ \defemph{espace vectoriel normé}.
+	\end{definition}
+	
+	\begin{myexercice}
+			Montrer que $d(x,y) = \mathcal{N}(y-x)$ est une distance sur $E$.
+	\end{myexercice}
+	
+	\begin{myremark}
+		Si $(E, \mathcal{N})$ est un evn, alors $(E, \mathcal{N})$ est un espace métrique
+	\end{myremark}
+	
+	
+	\begin{myexercice}
+		Montrer que evn $\Longrightarrow$ espace métrique pour
+		\begin{itemize}
+			\item $(\R^n \text{ euclidiens})$
+			\item $(\{\text{fonctions bornées sur }\ff{0,1}\})$
+			\[\begin{aligned}
+				&\rightsquigarrow||f||_\infty = \sup|f|\\
+				&\rightsquigarrow||f||_p=\left(\int_0^1|f(t)|^p\det\right)^{\frac1p}\text{ pour }f\text{ continue bornée}
+			\end{aligned}\]
+		\end{itemize}
+	\end{myexercice} 
+	
+	
+	\begin{myexample}
+		Soit $(X,d)$ un espace métrique et $A\subset X$. On a $(A, \rst{d}{A\times A})$ espace métrique.
+	\end{myexample}
+	
+	\begin{myexercice} 
+		Le montrer pour $S^2\subset\R^3$.
+	\end{myexercice}
+	\begin{myrappel}
+		\[\begin{aligned}
+			S^2=\left\{x^2+y^2+z^2 = 1\right\}
+		\end{aligned}\]
+	\end{myrappel}
+	
+	\begin{definition}
+		Pour $x\in X$ et $\varepsilon\ge0$ :
+		\begin{itemize}
+			\item La \defemph{boule ouverte} de centre $x$ et de rayon $\varepsilon$ est
+			\[\begin{aligned}
+				B(x,\varepsilon\mathopen{}[\mathclose{}=\left\{y\in X, d(x,y)<\varepsilon\right\}
+			\end{aligned}\]
+			\item La \defemph{boule fermée} de centre $x$ et de rayon $\varepsilon$ est
+			\[\begin{aligned}
+				B(x,\varepsilon\mathopen{}]\mathclose{}=\left\{y\in X, d(x,y)\le\varepsilon\right\}
+			\end{aligned}\]
+		\end{itemize}
+	\end{definition}
+	
+	\begin{myexample}
+		Pour $X=\R$ et $d(x,y)=|x-y|$, on a
+		\[\begin{aligned}
+			B(x,\varepsilon\mathopen{}[\mathclose{}=\oo{x-\varepsilon, x+\varepsilon}\\
+			B(x,\varepsilon\mathopen{}]\mathclose{}=\ff{x-\varepsilon, x+\varepsilon}
+		\end{aligned}\]
+	\end{myexample}
+	
+	\begin{definition}
+		Soit $X$ un ensemble et $U$ une partie de $X$. Les assertions suivantes sont équivalentes :
+		\begin{enumerate}[label=$(\roman*)$]
+			\item $U$ est un ouvert de $X$
+			\item Pour tout $x\in U$, il existe $\varepsilon>0$ tel que
+			\[\begin{aligned}
+				\bolo{x,\varepsilon}\sub U
+			\end{aligned}\]
+		\end{enumerate}
+	\end{definition}
+	
+	
+	\begin{myexample}
+		Une boule ouverte est un ouvert.
+	\end{myexample}
+	\begin{myproof}
+		Laissée en exercice.
+	\end{myproof}
+	
+	\begin{myremark}
+		Si $(X,d)$ est un espace métrique alors
+		\begin{enumerate}
+			\item $\varnothing$ et $X$ des ouverts;
+			\item toute intersection finie d'ouverts de $X$ est un ouvert de $X$;
+			\item toute union quelconque d'ouverts de $X$ est un ouvert de $X$.
+		\end{enumerate}
+	\end{myremark}
+	
+	\begin{myproof} Il suffit de vérifier les 3 propriétés:
+		\begin{enumerate}
+			\item On a 
+			\[\begin{aligned}
+				\forall x\in X, \bolo{x,1}\sub X\quad\text{et}
+			\end{aligned}\]
+			\[\begin{aligned}
+				\forall x\in\varnothing, \text{ la propriété est toujours vrai}
+			\end{aligned}\]
+			Donc $(1)$ est vérifié.
+			
+			\item Soient $U_1,\dots,U_n$ ouverts. On pose 
+			\[\begin{aligned}
+				U=\bigcap_{i=1}^nU_i
+			\end{aligned}\]
+			Soit $x\in U$, pour tout $i\in\{1,\dots,n\}$ on a $x\in U_i$ ouvert donc il existe $\varepsilon_i>0$ tel que 
+			\[\begin{aligned}
+				\bolo{x,\varepsilon_i}\sub U_i
+			\end{aligned}\]
+			On pose $\varepsilon=\inf(\varepsilon_1,\dots,\varepsilon_n)>0$.
+			
+			Pour tout $i\in\{1,\dots,n\}$, on a alors
+			\[\begin{aligned}
+				\bolo{x,\varepsilon}\sub\bolo{x,\varepsilon_i}\sub U_i
+			\end{aligned}\]
+			Et donc
+			\[\begin{aligned}
+				\bolo{x,\varepsilon}\sub U
+			\end{aligned}\]
+			Soit que $U$ est ouvert, et donc $(2)$ est vérifié.
+			
+			\item Soient $U_1,\dots,U_n$ ouverts. On pose 
+			\[\begin{aligned}
+				U=\bigcup_{i=1}^nU_i
+			\end{aligned}\]
+			Soit $x\in U$, il existe $i\in\{1,\dots,n\}$ tel que pour $x\in U_i$ ouvert, il existe $\varepsilon_i>0$ tel que 
+			\[\begin{aligned}
+				\bolo{x,\varepsilon}\sub U_i\sub U
+			\end{aligned}\]
+			Soit que $U$ est ouvert, et donc $(3)$ est vérifié.
+		\end{enumerate}
+	\end{myproof}
+	
+	\begin{myremark}
+		On note 
+		\[\begin{aligned}
+			\mathcal{T}_d=\left\{U\in\mathscr{P}(X), U\text{ est ouvert pour }d\right\}
+		\end{aligned}\]
+	\end{myremark}
+	
+	\section{Espaces topologiques}
+	On considère $X$ un ensemble quelconque.
+	
+	\begin{definition}
+		On dit que $\mathcal{T}\sub\scr P(X)$ est une \defemph{topologie} sur $X$ si :
+		\begin{enumerate}[label=$(\roman*)$]
+			\item $\varnothing\in \mathcal{T}$ et $X\in\mathcal{T}$
+			
+			\item $\mathcal{T}$ est stable par intersection finie
+			
+			\item $\mathcal{T}$ est stable par union quelconque
+		\end{enumerate}
+		Les éléments de $\mathcal{T}$ sont dit \defemph{ouverts}.
+	\end{definition}
+	
+	\begin{myexample}
+		Si $(X,d)$ est métrique, $\mathcal{T}_d$ est une topologie.
+	\end{myexample}
+	
+	
+	\begin{myexample}
+		Pour $X$ est un ensemble, les ensembles suivants sont des topologies:
+		\begin{itemize}
+			\item $\mathcal{T} \coloneq \scr P(X)$ appelée topologie discrète;
+			\item $\mathcal{T}\coloneq\{\varnothing, X\}$ appelée topologie grossière;
+			\item $\mathcal{T}_d$, la topologie associée à la métrique $d$;
+			\item Si $X=\{a,b\}$ on a aussi la topologie
+			\[\begin{aligned}
+				\mathcal{T}=\left\{\{a,b\}, \{a\}, \varnothing\right\}
+			\end{aligned}\]
+		\end{itemize}
+	\end{myexample}
+	
+	
+	
+	A partir de maintenant, on considère $(X, T)$ un espace topologique avec $T$ l'ensemble des ouverts de $X$.
+	
+	\begin{definition}
+		Une partie $F\sub X$ est dite \defemph{fermée} si $X\setminus F$ est \defemph{ouvert}
+	\end{definition}
+	
+	\begin{myexample} 
+		Pour $(X, d)$ un espace métrique, on a $\bolf{x, r}$ fermée
+	\end{myexample}
+	\begin{myproof}
+	Laissée en exercice.
+	\end{myproof}
+	
+	\begin{myremark}
+		On n'a pas $F$ non ouvert $\Longrightarrow$ $F$ fermé.
+	\end{myremark}
+	\begin{myexample}
+		Pour $I = \fo{0, 1}\sub\R$, on a
+		\begin{enumerate}
+			\item $I$ n'est pas ouvert (problème en 0)
+			\item $I$ n'est pas fermé (problème en 1)
+		\end{enumerate}
+	\end{myexample}
+	
+	\begin{proposition}
+		Les assertions suivantes sont vraies.
+		\begin{enumerate}
+			\item $\varnothing$ et $X$ sont fermés
+			\item Une union finie de fermés est fermé
+			\item Une intersection quelconque de fermés est fermé
+		\end{enumerate}
+	\end{proposition}
+	\begin{myrappel}
+		\[
+		X\setminus\bigcap_{i\in I}A_i=\bigcup_{i\in I} X\setminus A_i
+		\]
+		\[
+		X\setminus\bigcup_{i\in I}A_i=\bigcap_{i\in I} X\setminus A_i
+		\]
+	\end{myrappel}
+	
+	
+	\begin{myremark}
+		Une topologie peut-être définie à partir de ses fermés (au lieu de ses ouverts).
+	\end{myremark}
+	
+	\subsection{Adhérence, intérieur (version topologique)}
+	
+	\begin{propdef}
+		Soit $(X, \mathcal{T})$ un espace topologique et $A\sub X$.
+		\begin{enumerate}
+			\item Il existe un plus grand ouvert (au sens de l'inclusion) noté $ \overset{\circ}A$ tel que $\overset{\circ}A\sub A$
+			
+			$\adh A$ est appelé \defemph{intérieur} de $A$
+			
+			\item Il existe un plus petit fermé (au sens de l'inclusion) noté $ \ol A$ tel que $A\sub \ol A$
+			
+			$\ol A$ est appelé \defemph{adhérence} de $A$
+		\end{enumerate}
+	\end{propdef}
+	
+	\begin{proposition}
+		On a
+		\begin{enumerate}
+			\item $x\in\adh A \Longleftrightarrow$ il existe $\varepsilon>0$ tel que $\bolo{x, \varepsilon}\sub A$
+			
+			\item $x\in\ol A\Longleftrightarrow$ pour tout $\varepsilon>0, \bolo{x,\varepsilon}\cap A\ne \varnothing$
+		\end{enumerate}
+	\end{proposition}
+	\begin{myproof}
+		Pour le $1.$, on commence par le sens direct :
+		\begin{itemize}[$\Longrightarrow$]
+			\item On a $x\in \adh A$ ouvert donc il existe $\varepsilon>0$ tel que
+			\[\begin{aligned}
+				\bolo{x,\varepsilon}\sub\adh A\underset{\text{def}}{\sub} A
+			\end{aligned}\]
+		\end{itemize}
+		\begin{itemize}[$\Longleftarrow$]
+			\item Par hypothèse, on a $\bolo{x, \varepsilon}\sub A$ un ouvert de $A$ pour $\varepsilon>0$ donc 
+			\[\begin{aligned}
+				x\in\bolo{x, \varepsilon}\sub\adh A
+			\end{aligned}\]
+		\end{itemize}
+		
+		Pour le $2.$ cela revient à montrer que 
+		\[\begin{aligned}
+			x\in\ol A &\Longleftrightarrow \exists\varepsilon>0\text{ tq }\bolo{x, \varepsilon}\sub X\setminus A\\
+			x\in X\setminus\ol A&\Longleftrightarrow x\in \badh{X\setminus A}
+		\end{aligned}\]
+		Il suffit de montrer que 
+		\[\begin{aligned}
+			X\setminus \ol A = \badh{X\setminus A}
+		\end{aligned}\]
+		\begin{lemme}
+			Soit $(X, T)$ espace topologique et $A\sub X$. Alors
+			\[\begin{aligned}
+				X\setminus \ol A = \badh{X\setminus A}
+			\end{aligned}\]
+		\end{lemme}
+		\begin{myproof}
+			On démontre le lemme pour démontrer la proposition précédente
+			\begin{itemize}[$\subset$]
+				\item $\ol A$ fermé, $X\setminus\ol A$ ouvert, $A\sub \ol A$ donc 
+				\[\begin{aligned}
+					X\setminus A \supset X\setminus \ol A
+				\end{aligned}\]
+				D'où
+				\[\begin{aligned}
+					X\setminus \ol A \sub \badh{X\setminus A}
+				\end{aligned}\]
+			\end{itemize}
+			\begin{itemize}[$\supset$]
+				\item $X\setminus \left(\badh{X\setminus A}\right)$ fermé donc 
+				\[\begin{aligned}
+					X\setminus \left(\badh{X\setminus A}\right) \supset X\setminus \left(X\setminus A\right) = A
+				\end{aligned}\]
+				donc 
+				\[\begin{aligned}
+					X\setminus \left(\badh{X\setminus A}\right) \supset \ol A = X\setminus\left(X\setminus\ol A\right)
+				\end{aligned}\]
+				donc 
+				\[\begin{aligned}
+					\badh{X\setminus A} \sub X\setminus \ol A
+				\end{aligned}\]
+			\end{itemize}
+		\end{myproof}
+		Donc $2.$ est vérifié.
+	\end{myproof}
+
+\end{document}

@@ -1,0 +1,275 @@
+% txs:///compile | txs:///view-pdf-internal --embedded | cmd /c move /Y output\%.pdf pdfs\
+% pdflatex -synctex=1 -interaction=nonstopmode -output-directory=output %.tex
+
+\documentclass[french,a4paper,10pt]{article}
+\input{../../common/header.tex}
+\usepackage[a4paper,hmargin=30mm,vmargin=30mm]{geometry}
+\title{\color{astral} \sffamily \bfseries Planche TD 0}
+\author{Ivan Lejeune\thanks{Cours inspiré de M. Charlier et M. Akrout}}
+\date{\today}
+
+\begin{document}
+	
+	\maketitle
+	\begin{td-exo}[(Distance discrète)]
+		Soit $X$ un ensemble et $\delta$ la distance discrète sur cet ensemble.
+		\begin{enumerate}
+			\item Vérifier que $\delta$ est une distance sur $X$.
+			\item Déterminer les boules ouvertes et fermées de $(X, \delta)$. Puis déterminer la topologie $\mathcal{T}_\delta$ associée à $\delta$.
+		\end{enumerate}
+	\end{td-exo}
+	\begin{td-sol}
+		Soient $x,y,z\in X$
+		\begin{enumerate}
+			\item On rappelle
+				\[\begin{aligned}
+					\delta(x,y) = 
+					\begin{cases}
+						0&\text{si }x=y\\
+						1&\text{si }x\ne y
+					\end{cases}
+				\end{aligned}\]
+				\begin{enumerate}[label=$(\roman*)$]
+					\item $\delta(x, y)\ge 0$ par définition
+					
+					\item $\delta(x,y) = 0 \Longleftrightarrow x=y$ par définition
+					
+					\item Si $x\ne y$ alors $y\ne x$ donc $\delta(x,y) = \delta(y,x)$ par définition
+					
+					\item Si $\delta(x,y) + \delta(y,z) = 0$ alors $x=y=z$ et  $\delta(x,y) + \delta(y,z) \ge \delta(x,z)$. \\Sinon $\delta(x,y) + \delta(y,z) \ge 1\ge \delta(x,z)$.
+				\end{enumerate}
+				$\delta$ vérifie les quatre propriétés donc c'est une distance sur $X$.
+				
+			\item Pour $\varepsilon=0$ on a
+				\[\begin{aligned}
+					\bolo{x, \varepsilon}&=\varnothing\\
+					\bolf{x, \varepsilon}&=\{x\}
+				\end{aligned}\]
+				Pour $\varepsilon\in\oo{0, 1}$ on a
+				\[\begin{aligned}
+					\bolo{x, \varepsilon}&=\{x\}\\
+					\bolf{x, \varepsilon}&=\{x\}
+				\end{aligned}\]
+				Pour $\varepsilon\ge 1$ on a
+				\[\begin{aligned}
+					\bolo{x, \varepsilon}&=X\\
+					\bolf{x, \varepsilon}&=X
+				\end{aligned}\]
+				La topologie $\mathcal{T}_\delta$ associée à $\delta$ est engendrée par l'union de l'ensemble des boules ouvertes de $X$. Comme on vient de le voir, il existe une boule ouverte associée à chaque élément $x\in X$. Ainsi on a
+				\[\begin{aligned}
+					\mathcal{T}_\delta = \scr P(X)
+				\end{aligned}\]
+		\end{enumerate}
+	\end{td-sol}
+	\medspace
+	\begin{td-exo}[(Distance et normes)]
+		Soit $E$ un espace vectoriel et $\mathcal{N}$ une norme sur $E$, montrer que $d(x,y)=\mathcal{N}(y-x)$ est une distance sur $E$.
+	\end{td-exo}
+	\begin{td-sol}
+		Soient $x,y\in E$
+		\begin{enumerate}[label=$(\roman*)$]
+			\item $d(x, y) = \mathcal{N}(y-x)\ge 0$ par définition d'une norme.
+			
+			\item $d(x,y) = 0 \Longleftrightarrow \mathcal{N}(y-x) = 0 \Longleftrightarrow x=y$ par définition d'une norme.
+			
+			\item $d(x,y) =\mathcal{N}(y-x)=|-1|\, \mathcal{N}(x-y)= d(y,x)$
+			
+			\item Soit $z\in X$, on a
+				\[\begin{aligned}
+					d(x,z) &= \norm(z-x)\\
+					&=\norm(z-x+y-y)\\
+					&=\norm((y-x)+(z-y))\\
+					&\le \norm(y-x)+\norm(z-y)\\
+					&\le d(x,y)+d(y,z)
+				\end{aligned}\]
+		\end{enumerate}
+		$\delta$ vérifie les quatre propriétés donc c'est une distance sur $X$.
+	\end{td-sol}
+	\medspace
+	\begin{td-exo}[(Normes sur $\R^n$)]
+		On considère les normes suivantes:
+		\[\begin{aligned}
+			\mathcal{N}_1(x_1, \dots,x_n)&=\sum_{i=1}^n|x_i|\\
+			\mathcal{N}_\infty(x_1, \dots, x_n)&=\max_{i\in\llbracket1,n\rrbracket}(|x_i|)
+		\end{aligned}\]
+		
+		Montrer qu'elles sont des normes sur $\R^n$ et dessiner leurs boules unités lorsque $n=2$
+	\end{td-exo}
+	\begin{td-sol}
+		Pour $\norm_1$ on a
+		\begin{enumerate}[label=$(\roman*)$]
+			\item On notera $x\coloneq(x_1,\dots,x_n)$ et $I=\{1,\dots,n\}$. On a alors
+				\[\begin{aligned}
+					\norm_1(x)=0&\Longrightarrow\sum_{i=1}^n|x_i| = 0\\
+					&\Longrightarrow\forall i\in I,x_i=0
+				\end{aligned}\] 
+				Dans l'autre sens on a aussi
+				\[\begin{aligned}
+					\forall i\in I,x_i=0&\Longrightarrow \sum_{i=1}^n|x_i| = 0\\
+					&\Longrightarrow\norm_1(x)=0
+				\end{aligned}\] 
+			\item On considère $\lambda x \coloneq(\lambda x_1,\dots,\lambda x_n)$ avec $\lambda>0$. On a alors
+				\[\begin{aligned}
+					\norm_1 (\lambda x)&=\sum_{i=1}^n|\lambda x_i|\\
+					&=\sum_{i=1}^n|\lambda| |x_i|\\
+					&=|\lambda| \sum_{i=1}^n|x_i|\\
+					&=|\lambda| \norm_1 (x)
+				\end{aligned}\]
+			\item On considère $y\coloneq(y_1,\dots,y_n)$. On a alors
+				\[\begin{aligned}
+					\norm_1 (x+y)&=\sum_{i=1}^n|x_i+y_i|\\
+					&\le \sum_{i=1}^n|x_i|+|y_i|\\
+					&\le \norm_1 (x)+\norm_1(y)
+				\end{aligned}\]
+		\end{enumerate}
+		Ainsi $\norm_1$ est bien une norme.
+		
+		
+		Pour $\norm_\infty$ on a
+		\begin{enumerate}[label=$(\roman*)$]
+			\item On notera $x\coloneq(x_1,\dots,x_n)$ et $I=\{1,\dots,n\}$. On a alors
+			\[\begin{aligned}
+				\norm_\infty(x)=0&\Longrightarrow\max(|x_i|) = 0\\
+				&\Longrightarrow\forall i\in I,x_i=0
+			\end{aligned}\] 
+			Dans l'autre sens on a aussi
+			\[\begin{aligned}
+				\forall i\in I,x_i=0&\Longrightarrow \max(|x_i|) = 0\\
+				&\Longrightarrow\norm_\infty(x)=0
+			\end{aligned}\] 
+			\item On considère $\lambda x \coloneq(\lambda x_1,\dots,\lambda x_n)$ avec $\lambda>0$. On a alors
+			\[\begin{aligned}
+				\norm_\infty (\lambda x)&=\max(|\lambda x_i|)\\
+				&=|\lambda| \max(|x_i|)\\
+				&=|\lambda| \norm_\infty (x)
+			\end{aligned}\]
+			\item On considère $y\coloneq(y_1,\dots,y_n)$. On a alors
+			\[\begin{aligned}
+				\norm_\infty (x+y)&=\max(|x_i + y_i|)\\
+				&\le\max(|x_i| + |y_i|)\\
+				&\le \max(|x_i|) + \max(|y_i|)\\
+				&\le \norm_\infty (x)+\norm_\infty(y)
+			\end{aligned}\]
+		\end{enumerate}
+		Ainsi $\norm_\infty$ est bien une norme.
+		
+		Les boules unités associées sont : \\
+		
+		\begin{center}
+			\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+			\begin{axis}[
+				x=1cm,y=1cm,
+				axis lines=middle,
+				grid style=dashed,
+				ymajorgrids=true,
+				xmajorgrids=true,
+				xmin=-2.5,
+				xmax=2.5,
+				ymin=-2.5,
+				ymax=2.5,
+				xtick={-2,-1,...,2},
+				ytick={-2,-1,...,2},]
+				
+				\draw [line width=1pt,color=astral] (-1,0)-- (0,1);
+				\draw [line width=1pt,color=astral] (0,1)-- (1,0);
+				\draw [line width=1pt,color=astral] (1,0)-- (0,-1);
+				\draw [line width=1pt,color=astral] (0,-1)-- (-1,0);
+				\draw [line width=1pt,color=verdant] (-1,1)-- (1,1);
+				\draw [line width=1pt,color=verdant] (1,1)-- (1,-1);
+				\draw [line width=1pt,color=verdant] (1,-1)-- (-1,-1);
+				\draw [line width=1pt,color=verdant] (-1,-1)-- (-1,1);
+				
+				\draw[color=astral] (0.7, -0.7) node {$\norm_1$};
+				\draw[color=verdant] (1.3, -1.2) node {$\norm_\infty$};
+			\end{axis}
+		\end{tikzpicture}
+		\end{center}
+	\end{td-sol}
+	\medspace
+	\begin{td-exo}[(Distance Fly Emirate)]
+		Soit $(X, d)$ un espace métrique et $\text{Dubai}=D$ un point de $X$. On considère
+		\[\begin{aligned}
+			d_{FE}(x, y)\coloneq\begin{cases}
+				0&\text{si }x=y\\
+				d(x, D)+d(y, D)&\text{sinon}
+			\end{cases}
+		\end{aligned}\]
+		
+		\begin{enumerate}
+			\item Montrer que $d_{FE}$ est une distance sur $X$
+			\item On suppose que $(X, d)=(\R^2, \text{ euclidien})$ et $D=0$. Pour $x\in X$, dessiner les boules ouvertes centrées en $x$.
+			\item Montrer que pour $x\ne D$, le singleton $\{x\}$ est ouvert.
+		\end{enumerate}
+	\end{td-exo}
+	\begin{td-sol} \,\\
+		\begin{enumerate}
+			\item Il faut vérifier les 4 conditions d'une distance :
+			\begin{enumerate}[label=$(\roman*)$]
+				\item $d_{FE}(x, y)\ge 0$ car $d(x,y)\ge 0$.
+				
+				\item On a $x=y\Longrightarrow d_{FE}(x, y)=0$ par définition. Si $d_{FE}(x, y) = 0$ alors on a $x=y$ ou $d(x, D)+d(y, D) = 0$. Comme une distance est positive, cela implique $d(x, D)=d(y, D)=0$, soit que $x=y$
+				
+				\item Si $x=y$, on a $d_{FE}(x, y) = d_{FE}(y, x)$. Dans le cas contraire on a
+				\[\begin{aligned}
+					d_{FE}(x, y) &= d_{FE}(x, D)+d_{FE}(y, D)\\
+					&=d_{FE}(y, D)+d_{FE}(x, D)\\
+					&= d_{FE}(y, x)
+				\end{aligned}\]
+				
+				\item Soit $z\in X$. Si $x=z$, cela est évident. Dans le cas contraire on a
+				\[\begin{aligned}
+					d(x,z) &= \norm(z-x)\\
+					&=\norm(z-x+y-y)\\
+					&=\norm((y-x)+(z-y))\\
+					&\le \norm(y-x)+\norm(z-y)\\
+					&\le d(x,y)+d(y,z)
+				\end{aligned}\]
+			\end{enumerate}
+			\item On fixe $x=(0,1.5)$ et on fait varier $\varepsilon\in\{1, 2, 4\}$.
+			
+			Pour $\varepsilon = 1$ on a $\bolo{x, \varepsilon} = \{x\}$\\
+			\begin{center}
+				\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+					\begin{axis}[
+						x=1cm,y=1cm,
+						axis lines=middle,
+						grid style=dashed,
+						ymajorgrids=true,
+						xmajorgrids=true,
+						xmin=-3.5,
+						xmax=3.5,
+						ymin=-3.5,
+						ymax=3.5,
+						xtick={-3,-2,...,3},
+						ytick={-3,-2,...,3},
+						legend style={at={(1,1)}, nodes={scale=0.8}},
+						]
+						\draw [line width=1pt,color=astral] (0,0) circle (0.5cm);
+						\addlegendimage{line width=1pt, color=astral};
+						\addlegendentry{$r_1 = 2-d(x, D)$}
+						
+						\draw [line width=1pt,color=verdant] (0,0) circle (2.5cm);
+						\addlegendimage{line width=1pt, color=verdant};
+						\addlegendentry{$r_2 = 4-d(x, D)$}
+						
+						\draw [line width=1pt,color=verdant] (0,0)-- (2.5,0);
+						\draw [line width=1pt,color=astral] (0,0)-- (0.5,0);
+						\draw[color=astral] (0.2, -0.2) node {$r_1$};
+						\draw[color=verdant] (1.3, 0.2) node {$r_2$};
+						\addplot [mark=*, color=astral] coordinates {(0, 1.5)};
+						\draw[color=astral] (0.25, 1.5) node {$x$};
+						
+					\end{axis}
+				
+				\end{tikzpicture}
+			\end{center}
+		\item Comme on vient de le voir, pour $x\ne D$ on peut choisir $0\le \varepsilon< d(x,D)$ et on a alors $\bolo{x, \varepsilon}=\{x\}\sub \{x\}$. Soit, que $\{x\}$ est ouvert.
+		\end{enumerate}
+	
+	\end{td-sol}
+	
+	
+\end{document}
+
+
+
