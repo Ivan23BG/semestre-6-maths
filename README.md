@@ -1,4 +1,4 @@
-# semestre-6-maths
+# Semestre-6-maths
 
 
 Ce dépôt contient les sources TeX d'un polycopié pour plusieurs cours de L3 maths
