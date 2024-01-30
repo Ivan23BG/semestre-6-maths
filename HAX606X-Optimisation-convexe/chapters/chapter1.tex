@@ -1,6 +1,6 @@
 % txs:///compile | txs:///view-pdf-internal --embedded | cmd /c move /Y output\%.pdf pdfs\
 % pdflatex -synctex=1 -interaction=nonstopmode -output-directory=output %.tex
-
+% pdflatex -synctex=1 -output-directory=output chapter1.tex && move /Y output\chapter1.pdf .\
 \documentclass[french,a4paper,10pt]{article}
 \input{../../common/header.tex}
 \usepackage[a4paper,hmargin=30mm,vmargin=30mm]{geometry}
@@ -12,80 +12,94 @@
 	
 	\maketitle
 	\section{Optimisation en dimension finie}
-	\subsection{Introduction}
-	Méthode d'évaluation :
-	\begin{itemize}
-		\item CC noté en CM
-		\item TP noté
-		\item Examen terminal
-	\end{itemize}
-	% Notation
-	On considère un espace vectoriel normé de dimension $n$ noté $(E, ||\cdot||)$ et $U$ ouvert de $E$.
+	\begin{oc-intro}
+		Méthode d'évaluation :
+		\begin{itemize}
+			\item CC noté en CM
+			\item 2TPs notés
+			\item Examen terminal à 40\%
+		\end{itemize}
+	\end{oc-intro}
 	
-	On considère une fonction $f\colon U\to \bb R$. Dans la pratique, $E$ sera égal à $\bb R^n$.
-	
-	Soit $x\in U$, on note $f'(x)$ la différentielle (qu'on appelera plus simplement "dérivée") de $f$ en $x$. 
-	
-	On a donc, pour tout $h\in E$ tel que $||h||$ soit assez petit, 
+	\begin{oc-notation}\,
+		On considère un espace vectoriel normé de dimension $n$ noté $(E, ||\cdot||)$ et $U$ ouvert de $E$. On considère une fonction $f\colon U\to \bb R$. Dans la pratique, $E$ sera égal à $\bb R^n$. 
+		
+		Soit $x\in U$, on note $f'(x)$ la différentielle (qu'on appellera plus simplement "dérivée") de $f$ en $x$. 
+		
+		On a donc, pour tout $h\in E$ tel que $||h||$ soit assez petit, 
 		\[\begin{aligned}
 			f(x+h)=f(x)+f'(x)\cdot h+||h||\varepsilon(x, h)
 		\end{aligned}\]
 		avec $\varepsilon(x, h)\underset{h\to 0}\to 0$
 		et $f'(x)\in\scr L(E, \bb R)$.
 		
-	Avec cette notation, si $f$ est dérivable en $x$, alors $f$ admet des dérivées partielles en $x$ dans toutes les directions, et si $(e_1,\dots,e_n)$ est une base de $E$, on note "$\partial f(x)$" ou encore $\frac{\partial f}{\partial x}(x)$".
-	
-	La dérivée partielle de $f$ par rapport à la ieme variable. On a alors
-	
+		Avec cette notation, si $f$ est dérivable en $x$, alors $f$ admet des dérivées partielles en $x$ dans toutes les directions, et si $(e_1,\dots,e_n)$ est une base de $E$, on note "$\partial_i f(x)$" ou encore $\frac{\partial f}{\partial x_i}(x)$" la dérivée partielle de $f$ par rapport à la $i$-ème variable. On a alors
+		
 		\[\begin{aligned}
 			\partial f(x)=f'(x)\cdot e_i\qquad i=1,\dots n
 		\end{aligned}\]
-	
-	Ainsi, pour $h\in E$ tel que $h=\sum_{i=1}^nh_ie_i$; on a
-	
+		
+		Ainsi, pour $h\in E$ tel que $h=\sum_{i=1}^nh_ie_i$; on a
+		
 		\[\begin{aligned}
 			f'(x)\cdot h &= f'(x)\cdot\left(\sum_{i=1}^nh_ie_i\right)\\
 			&=\sum_{i=1}^n h_i f'(x) e_i\\
 			&=\sum_{i=1}^{n} h_i\partial f(x)
 		\end{aligned}\]
-	
-	De même, si $x\mapsto f(x)$ est dérivable en $x$, on note $f''(x)\in\scr L(E;\scr L(E, \bb R))$ cette dérivée seconde et on considère $f''(x)$ comme une forme bilinéaire 
-	
+		
+		De même, si $x\mapsto f(x)$ est dérivable en $x$, on note $f''(x)\in\scr L(E;\scr L(E, \bb R))$ cette dérivée seconde et on considère $f''(x)$ comme une forme bilinéaire 
+		
 		\[\begin{aligned}
 			f''(x)\in\scr L(E\times E,\bb R)
 		\end{aligned}\]
+	\end{oc-notation}
+	
+	
 	
 	Avec ces notations, le théorème fondamental de l'analyse (TTA) peut s'énoncer ainsi :
 	
-	\begin{oc-theorem}
+	\begin{no-num-theorem}
 		Soit $f\in\scr C'(U, \bb R)$. Alors pour tout $(x, y)\in U$ tel que $\forall t\in\ff{0, 1}, x+t(y-x)\in U$, on a
 			\[\begin{aligned}
 				f(y)=f(x) + \int_0^1f'(x+t(y-x))\cdot(y-x)dt
 			\end{aligned}\]	
-	\end{oc-theorem}
+	\end{no-num-theorem}
 
-	% Formule de Taylor à l'ordre 2
-	
-	Soit $f\in \scr C^2(U, \bb R), x\in U$. Alors il existe un voisinage $v$ de $x$ tel que pour tout $h\in v$
-	
+	\begin{oc-young}
+		Soit $f\in \scr C^2(U, \bb R), x\in U$. Alors il existe un voisinage $\nu$ de $x$ tel que pour tout $h\in \nu$
+		
 		\[\begin{aligned}
 			f(x+h)=f(x)+f'(x)\cdot h+\frac12 f''(x)\cdot(h,h)+ o(||h||^2)
 		\end{aligned}\]
-	
-	Bien entendu, cette expression peut aussi se formuler ainsi :
+		
+		Bien entendu, cette expression peut aussi se formuler ainsi :
 		\[\begin{aligned}
-			f(x+h)=f(x)&+\sum_{i=1}^n\partial f(x)h_i\\&+\frac12\sum_{i,j=1}^n\partial^2f(x)h_ih_j\\&+||h||^2\varepsilon (h)\\
+			f(x+h)=f(x)&+\sum_{i=1}^n\partial_i f(x)h_i\\&+\frac12\sum_{i,j=1}^n\partial_{i, j}^2f(x)h_ih_j\\&+||h||^2\varepsilon (h)\\
 		\end{aligned}\]
-	avec $\varepsilon(h)\underset{||h||\to 0}\to 0$.
+		avec $\varepsilon(h)\underset{||h||\to 0}\to 0$, de manière a bien mettre en évidence la linéarité de la dérivée et la bilinéarité de la dérivée seconde.
+		
+		En notant $\nabla f(x)$ le gradient de $f$ évalué en $x$, et $\nabla^2 f(x)$ la matrice Hessienne de $f$ évaluée en $x$, on a :
+			\[\begin{aligned}
+				f(x+h)=f(x)+\nabla f(x)h+\frac12\prescript{T}{}{h} \nabla^2f(x)\cdot h+ o(||h||^2)
+			\end{aligned}\]
+	\end{oc-young}
 	
-	% Gradient d'une fonction
-	
-	Soit $f\colon U\to \bb R$ de classe $\scr C^1$. Alors pour tout $a\in U$, il existe un unique vecteur, noté $\nabla f(a)$ tel que pour tout $h\in E$
+	\begin{no-num-definition}
+		Soit $f\colon U\to \bb R$ de classe $\scr C^1$. Alors pour tout $a\in U$, il existe un unique vecteur, noté $\nabla f(a)$ tel que pour tout $h\in E$
 		\[\begin{aligned}
-			f'(a)\cdot h=<\nabla f(a), h>
+			f'(a)\cdot h=\langle\nabla f(a), h\rangle
 		\end{aligned}\]
+		
+		où $\langle\cdot, \cdot\rangle $ désigne le produit scalaire canonique sur $\bb R^n$ (qui peut être noté aussi avec $\cdot$ mais dans ce cas attention aux confusions). C'est le \defemph{gradient} de $f$.
+	\end{no-num-definition}
 	
-	où $<\cdot, \cdot>$ désigne le produit scalaire canonique sur $\bb R^n$
+	\begin{rappel}
+		Dans une base orthonormée, on a
+		\[\begin{aligned}
+			\nabla f(a)=\sum_{i=1}^n\partial_i f(a)e_i
+		\end{aligned}\]
+	\end{rappel}
+	
 	
 	\subsection{Résultats d'existence}
 	
@@ -106,22 +120,27 @@
 	\end{oc-theorem}
 
 	\begin{myproof}
-		Ce résultat à été démontré dans le cours de topologie / analyse fonctionnelle. Puisque $f$ est continue, $f(K)$ est une partie compacte de $\bb R$, c'est à dire une partie fermée et bornée de $\bb R$. Ainsi on a
+		Ce résultat à été démontré dans le cours de topologie / analyse fonctionnelle. 
+		
+		Puisque $f$ est continue, $f(K)$ est une partie compacte de $\bb R$, c'est à dire une partie fermée et bornée de $\bb R$. Ainsi on a
 		\[\begin{aligned}
 			-\infty<\inf f(K)\le \sup f(k)<+\infty
 		\end{aligned}\]
-		et puisque $f(K)$ est fermé et que $\inf f(k)$ et $\sup f(k)$ sont adhérents à $f(K)$, on a nécessairement
-			\[\begin{aligned}
-				&\inf f(K)=\min f(K)\in f(E)\\
-				\text{ et}&\sup f(K)=\max f(K)\in f(E)
-			\end{aligned}\]
+		et puisque $f(K)$ est fermée et que $\inf f(k)$ et $\sup f(k)$ sont adhérents à $f(K)$, on a
+			\[
+				\inf f(K)=\min f(K)\in f(E)
+			\]
+		et 
+			\[
+			\sup f(K)=\max f(K)\in f(E)
+			\]
 	\end{myproof}
 	\begin{oc-definition}
 		Soit $f\colon\bb R^n\to \bb R$. On dit que $f$ est \defemph{coercive} si $f(x)\to+\infty$ lorsque $||x||\to+\infty$.
 		
 	\end{oc-definition}
 	\begin{oc-theorem}
-		$f\colon\bb R^n\to\bb R$ continue et coercive. Alors $f$ est minorée et atteint son minimum.
+		Soit $f\colon\bb R^n\to\bb R$ continue et coercive. Alors $f$ est minorée et atteint son minimum.
 		
 	\end{oc-theorem}
 
@@ -138,14 +157,12 @@
 		D'après le Théorème 1.1.1, $f$ est minorée sur $\ol B(0, \alpha)$ et atteint son minimum en un certain $x_0\quad(\forall x\in \ol B(0, \alpha), f(x)\ge f(x_0))$
 		
 		Ainsi, soit $x\in \bb R^n$
-		\begin{enumerate}[label=$a\\$]
+		\begin{enumerate}[a)]
 			\item si $x\in \ol B(0, \alpha)$, alors $f(x)\ge f(x_0)$
-			\item $x\notin \ol B(0, \alpha)$, alors $||x||>\alpha$ et donc $f(x)\ge f(0)+1$ et $f(x)\ge f(x_0)+1>$...
+			\item $x\notin \ol B(0, \alpha)$, alors $||x||>\alpha$ et donc $f(x)\ge f(0)+1$ et $f(x)\ge f(x_0)+1>f(x_0)$ puisque $0\in \ol B(0, \alpha)$
 		\end{enumerate}
 	
-		puisque $0\in \ol B(0, \alpha)$
-		
-		Ainsi...
+		Ainsi $\forall x\in\bb R^n,f(x)\ge f(x_0)$ et $x_0$ est bien le minimum de $f$ sur $\bb R^n$
 		
 	\end{oc-proof}
 
@@ -164,9 +181,9 @@
 	\end{oc-theorem}
 
 	\begin{oc-proof}
-		Rappelons ce qu'il se passe pour une fonction $\varphi\colon I\sub \bb R\to\bb R$ qui admet par exemple un maximum local en $O\in I$.
+		Rappelons ce qu'il se passe pour une fonction $\varphi\colon I\sub \bb R\to\bb R$ qui admet par exemple un maximum local en $0\in I$.
 		
-		On a d'une part $\varphi'(0)=\lim\lim\limits_{x\to0^+}\frac{\varphi(x)-\varphi(0)}x\le 0$
+		On a d'une part $\varphi'(0)=\lim\limits_{x\to0^+}\frac{\varphi(x)-\varphi(0)}x\le 0$
 		car $x>0$ et $\varphi(x)-\varphi(0)\le 0$
 		
 		et d'autre part $\varphi'(0)=\lim\limits_{x\to0^-}\frac{\varphi(x)-\varphi(0)}x\ge 0$ car $x<0$ et $\varphi(x)-\varphi(0)\le 0$
@@ -182,7 +199,11 @@
 			\forall x\in B(x_0, r),\quad f(x)\le f(x_0)
 		\end{aligned}\]
 	
-		Soit $h\in\bb R^n$ tel que $||h||\le r$ alors $f(x_0+h)\le f(x_0)$.
+		Soit $h\in\bb R^n$ tel que $||h||\le r$ alors
+		
+		\[
+		f(x_0+h)\le f(x_0)
+		\]
 		
 		et en particulier
 		
