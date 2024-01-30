@@ -15,7 +15,7 @@
 	\begin{definition}
 		Un \defemph{espace métrique} est un ensemble $X$ munit d'une application 
 		\[\begin{aligned}
-			d\coloneq X\times X\to \R
+			d\coloneq X\times X\to \bb R
 		\end{aligned}\]
 		tel que pour tout $x,y\in X$ on a 
 		\begin{enumerate}[label=$(\roman*)$]
@@ -30,7 +30,7 @@
 	
 	\medskip
 	
-	\begin{myexample}
+	\begin{example}
 		Soit $X$ un ensemble, on considère 
 		\[\begin{aligned}
 			\delta(x,y) = 
@@ -40,57 +40,57 @@
 			\end{cases}
 		\end{aligned}\]
 		C'est une distance, appelée la distance discrète, qu'on verra en TD.
-	\end{myexample}
+	\end{example}
 	
 	\begin{definition}
 		Une \defemph{norme} sur $E$ est une application 
 		\[\begin{aligned}
-			\mathcal N\coloneq E\to \R^+
+			\mathcal N\coloneq E\to \bb R^+
 		\end{aligned}\]
-		telle que pour tout $x,y\in E, \lambda\in\R$, on a
+		telle que pour tout $x,y\in E, \lambda\in\bb R$, on a
 		\begin{enumerate}[label=$(\roman*)$]
 			\item $\mathcal{N}(x)=0\Longleftrightarrow x=0$;
 			\item $\mathcal{N}(\lambda x)=|\lambda|\mathcal{N}(x)$;
 			\item $\mathcal{N}(x +y) \le \mathcal{N}(x) + \mathcal{N}(y)$;
 		\end{enumerate}
 		
-		Pour $E = \R\text{-ev}$, on a $(E, \mathcal{N})$ \defemph{espace vectoriel normé}.
+		Pour $E = \bb R\text{-ev}$, on a $(E, \mathcal{N})$ \defemph{espace vectoriel normé}.
 	\end{definition}
 	
-	\begin{myexercice}
+	\begin{exercice}
 			Montrer que $d(x,y) = \mathcal{N}(y-x)$ est une distance sur $E$.
-	\end{myexercice}
+	\end{exercice}
 	
-	\begin{myremark}
+	\begin{remark}
 		Si $(E, \mathcal{N})$ est un evn, alors $(E, \mathcal{N})$ est un espace métrique
-	\end{myremark}
+	\end{remark}
 	
 	
-	\begin{myexercice}
+	\begin{exercice}
 		Montrer que evn $\Longrightarrow$ espace métrique pour
 		\begin{itemize}
-			\item $(\R^n \text{ euclidiens})$
+			\item $(\bb R^n \text{ euclidiens})$
 			\item $(\{\text{fonctions bornées sur }\ff{0,1}\})$
 			\[\begin{aligned}
 				&\rightsquigarrow||f||_\infty = \sup|f|\\
 				&\rightsquigarrow||f||_p=\left(\int_0^1|f(t)|^p\det\right)^{\frac1p}\text{ pour }f\text{ continue bornée}
 			\end{aligned}\]
 		\end{itemize}
-	\end{myexercice} 
+	\end{exercice} 
 	
 	
-	\begin{myexample}
-		Soit $(X,d)$ un espace métrique et $A\subset X$. On a $(A, \rst{d}{A\times A})$ espace métrique.
-	\end{myexample}
+	\begin{example}
+		Soit $(X,d)$ un espace métrique et $A\subset X$. On a $(A, \restr{d}{A\times A})$ espace métrique.
+	\end{example}
 	
-	\begin{myexercice} 
-		Le montrer pour $S^2\subset\R^3$.
-	\end{myexercice}
-	\begin{myrappel}
+	\begin{exercice} 
+		Le montrer pour $S^2\subset\bb R^3$.
+	\end{exercice}
+	\begin{rappel}
 		\[\begin{aligned}
 			S^2=\left\{x^2+y^2+z^2 = 1\right\}
 		\end{aligned}\]
-	\end{myrappel}
+	\end{rappel}
 	
 	\begin{definition}
 		Pour $x\in X$ et $\varepsilon\ge0$ :
@@ -106,13 +106,13 @@
 		\end{itemize}
 	\end{definition}
 	
-	\begin{myexample}
-		Pour $X=\R$ et $d(x,y)=|x-y|$, on a
+	\begin{example}
+		Pour $X=\bb R$ et $d(x,y)=|x-y|$, on a
 		\[\begin{aligned}
 			B(x,\varepsilon\mathopen{}[\mathclose{}=\oo{x-\varepsilon, x+\varepsilon}\\
 			B(x,\varepsilon\mathopen{}]\mathclose{}=\ff{x-\varepsilon, x+\varepsilon}
 		\end{aligned}\]
-	\end{myexample}
+	\end{example}
 	
 	\begin{definition}
 		Soit $X$ un ensemble et $U$ une partie de $X$. Les assertions suivantes sont équivalentes :
@@ -126,21 +126,21 @@
 	\end{definition}
 	
 	
-	\begin{myexample}
+	\begin{example}
 		Une boule ouverte est un ouvert.
-	\end{myexample}
+	\end{example}
 	\begin{myproof}
 		Laissée en exercice.
 	\end{myproof}
 	
-	\begin{myremark}
+	\begin{remark}
 		Si $(X,d)$ est un espace métrique alors
 		\begin{enumerate}
 			\item $\varnothing$ et $X$ des ouverts;
 			\item toute intersection finie d'ouverts de $X$ est un ouvert de $X$;
 			\item toute union quelconque d'ouverts de $X$ est un ouvert de $X$.
 		\end{enumerate}
-	\end{myremark}
+	\end{remark}
 	
 	\begin{myproof} Il suffit de vérifier les 3 propriétés:
 		\begin{enumerate}
@@ -185,12 +185,12 @@
 		\end{enumerate}
 	\end{myproof}
 	
-	\begin{myremark}
+	\begin{remark}
 		On note 
 		\[\begin{aligned}
 			\mathcal{T}_d=\left\{U\in\mathscr{P}(X), U\text{ est ouvert pour }d\right\}
 		\end{aligned}\]
-	\end{myremark}
+	\end{remark}
 	
 	\section{Espaces topologiques}
 	On considère $X$ un ensemble quelconque.
@@ -207,12 +207,12 @@
 		Les éléments de $\mathcal{T}$ sont dit \defemph{ouverts}.
 	\end{definition}
 	
-	\begin{myexample}
+	\begin{example}
 		Si $(X,d)$ est métrique, $\mathcal{T}_d$ est une topologie.
-	\end{myexample}
+	\end{example}
 	
 	
-	\begin{myexample}
+	\begin{example}
 		Pour $X$ est un ensemble, les ensembles suivants sont des topologies:
 		\begin{itemize}
 			\item $\mathcal{T} \coloneq \scr P(X)$ appelée topologie discrète;
@@ -223,7 +223,7 @@
 				\mathcal{T}=\left\{\{a,b\}, \{a\}, \varnothing\right\}
 			\end{aligned}\]
 		\end{itemize}
-	\end{myexample}
+	\end{example}
 	
 	
 	
@@ -233,23 +233,23 @@
 		Une partie $F\sub X$ est dite \defemph{fermée} si $X\setminus F$ est \defemph{ouvert}
 	\end{definition}
 	
-	\begin{myexample} 
+	\begin{example} 
 		Pour $(X, d)$ un espace métrique, on a $\bolf{x, r}$ fermée
-	\end{myexample}
+	\end{example}
 	\begin{myproof}
 	Laissée en exercice.
 	\end{myproof}
 	
-	\begin{myremark}
+	\begin{remark}
 		On n'a pas $F$ non ouvert $\Longrightarrow$ $F$ fermé.
-	\end{myremark}
-	\begin{myexample}
-		Pour $I = \fo{0, 1}\sub\R$, on a
+	\end{remark}
+	\begin{example}
+		Pour $I = \fo{0, 1}\sub\bb R$, on a
 		\begin{enumerate}
 			\item $I$ n'est pas ouvert (problème en 0)
 			\item $I$ n'est pas fermé (problème en 1)
 		\end{enumerate}
-	\end{myexample}
+	\end{example}
 	
 	\begin{proposition}
 		Les assertions suivantes sont vraies.
@@ -259,19 +259,19 @@
 			\item Une intersection quelconque de fermés est fermé
 		\end{enumerate}
 	\end{proposition}
-	\begin{myrappel}
+	\begin{rappel}
 		\[
 		X\setminus\bigcap_{i\in I}A_i=\bigcup_{i\in I} X\setminus A_i
 		\]
 		\[
 		X\setminus\bigcup_{i\in I}A_i=\bigcap_{i\in I} X\setminus A_i
 		\]
-	\end{myrappel}
+	\end{rappel}
 	
 	
-	\begin{myremark}
+	\begin{remark}
 		Une topologie peut-être définie à partir de ses fermés (au lieu de ses ouverts).
-	\end{myremark}
+	\end{remark}
 	
 	\subsection{Adhérence, intérieur (version topologique)}
 	

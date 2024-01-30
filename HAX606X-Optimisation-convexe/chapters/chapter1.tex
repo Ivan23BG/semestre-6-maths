@@ -22,7 +22,7 @@
 	% Notation
 	On considère un espace vectoriel normé de dimension $n$ noté $(E, ||\cdot||)$ et $U$ ouvert de $E$.
 	
-	On considère une fonction $f\colon U\to \R$. Dans la pratique, $E$ sera égal à $\R^n$.
+	On considère une fonction $f\colon U\to \bb R$. Dans la pratique, $E$ sera égal à $\bb R^n$.
 	
 	Soit $x\in U$, on note $f'(x)$ la différentielle (qu'on appelera plus simplement "dérivée") de $f$ en $x$. 
 	
@@ -31,7 +31,7 @@
 			f(x+h)=f(x)+f'(x)\cdot h+||h||\varepsilon(x, h)
 		\end{aligned}\]
 		avec $\varepsilon(x, h)\underset{h\to 0}\to 0$
-		et $f'(x)\in\scr L(E, \R)$.
+		et $f'(x)\in\scr L(E, \bb R)$.
 		
 	Avec cette notation, si $f$ est dérivable en $x$, alors $f$ admet des dérivées partielles en $x$ dans toutes les directions, et si $(e_1,\dots,e_n)$ est une base de $E$, on note "$\partial f(x)$" ou encore $\frac{\partial f}{\partial x}(x)$".
 	
@@ -52,13 +52,13 @@
 	De même, si $x\mapsto f(x)$ est dérivable en $x$, on note $f''(x)\in\scr L(E;\scr L(E, \bb R))$ cette dérivée seconde et on considère $f''(x)$ comme une forme bilinéaire 
 	
 		\[\begin{aligned}
-			f''(x)\in\scr L(E\times E,\R)
+			f''(x)\in\scr L(E\times E,\bb R)
 		\end{aligned}\]
 	
 	Avec ces notations, le théorème fondamental de l'analyse (TTA) peut s'énoncer ainsi :
 	
 	\begin{theorem}
-		Soit $f\in\scr C'(U, \R)$. Alors pour tout $(x, y)\in U$ tel que $\forall t\in\ff{0, 1}, x+t(y-x)\in U$, on a
+		Soit $f\in\scr C'(U, \bb R)$. Alors pour tout $(x, y)\in U$ tel que $\forall t\in\ff{0, 1}, x+t(y-x)\in U$, on a
 			\[\begin{aligned}
 				f(y)=f(x) + \int_0^1f'(x+t(y-x))\cdot(y-x)dt
 			\end{aligned}\]	
@@ -66,7 +66,7 @@
 
 	% Formule de Taylor à l'ordre 2
 	
-	Soit $f\in \scr C^2(U, \R), x\in U$. Alors il existe un voisinage $v$ de $x$ tel que pour tout $h\in v$
+	Soit $f\in \scr C^2(U, \bb R), x\in U$. Alors il existe un voisinage $v$ de $x$ tel que pour tout $h\in v$
 	
 		\[\begin{aligned}
 			f(x+h)=f(x)+f'(x)\cdot h+\frac12 f''(x)\cdot(h,h)+ o(||h||^2)
@@ -80,19 +80,19 @@
 	
 	% Gradient d'une fonction
 	
-	Soit $f\colon U\to \R$ de classe $\scr C^1$. Alors pour tout $a\in U$, il existe un unique vecteur, noté $\nabla f(a)$ tel que pour tout $h\in E$
+	Soit $f\colon U\to \bb R$ de classe $\scr C^1$. Alors pour tout $a\in U$, il existe un unique vecteur, noté $\nabla f(a)$ tel que pour tout $h\in E$
 		\[\begin{aligned}
 			f'(a)\cdot h=<\nabla f(a), h>
 		\end{aligned}\]
 	
-	où $<\cdot, \cdot>$ désigne le produit scalaire canonique sur $\R^n$
+	où $<\cdot, \cdot>$ désigne le produit scalaire canonique sur $\bb R^n$
 	
 	\subsection{Résultats d'existence}
 	
 	Un outil fondamental à la compacité
 	
 	\begin{theorem}
-		Soit $K$ un compact de $\R^n$ et $f\colon K\to \bb R$ une fonction continue. Alors $f$ est bornée et atteint ses bornes :
+		Soit $K$ un compact de $\bb R^n$ et $f\colon K\to \bb R$ une fonction continue. Alors $f$ est bornée et atteint ses bornes :
 		
 			\[\begin{aligned}
 				\sup_{x\in K}|f(x)|<+\infty
@@ -106,7 +106,7 @@
 	\end{theorem}
 
 	\begin{myproof}
-		Ce résultat à été démontré dans le cours de topologie / analyse fonctionnelle. Puisque $f$ est continue, $f(K)$ est une partie compacte de $\R$, c'est à dire une partie fermée et bornée de $\R$. Ainsi on a
+		Ce résultat à été démontré dans le cours de topologie / analyse fonctionnelle. Puisque $f$ est continue, $f(K)$ est une partie compacte de $\bb R$, c'est à dire une partie fermée et bornée de $\bb R$. Ainsi on a
 		\[\begin{aligned}
 			-\infty<\inf f(K)\le \sup f(k)<+\infty
 		\end{aligned}\]
@@ -117,11 +117,11 @@
 			\end{aligned}\]
 	\end{myproof}
 	\begin{definition}
-		Soit $f\colon\R^n\to \R$. On dit que $f$ est \defemph{coercive} si $f(x)\to+\infty$ lorsque $||x||\to+\infty$.
+		Soit $f\colon\bb R^n\to \bb R$. On dit que $f$ est \defemph{coercive} si $f(x)\to+\infty$ lorsque $||x||\to+\infty$.
 		
 	\end{definition}
 	\begin{theorem}
-		$f\colon\R^n\to\R$ continue et coercive. Alors $f$ est minorée et atteint son minimum.
+		$f\colon\bb R^n\to\bb R$ continue et coercive. Alors $f$ est minorée et atteint son minimum.
 		
 	\end{theorem}
 
@@ -130,14 +130,14 @@
 		
 		Puisque $f$ est coercive, il existe $\alpha>0$ tel que
 			\[\begin{aligned}
-				\forall x\in\R^n,||x||\ge\alpha\Longrightarrow f(x)\ge f(0)+1
+				\forall x\in\bb R^n,||x||\ge\alpha\Longrightarrow f(x)\ge f(0)+1
 			\end{aligned}\]
 		
-		La boule $\ol B(0, \alpha)$ est un fermé borné de $\R^n$ donc un compact de $\R^n$ et $\rst f{\ol B(0, \alpha)}$ est continue.
+		La boule $\ol B(0, \alpha)$ est un fermé borné de $\bb R^n$ donc un compact de $\bb R^n$ et $\restr f{\ol B(0, \alpha)}$ est continue.
 		
 		D'après le Théorème 1.1.1, $f$ est minorée sur $\ol B(0, \alpha)$ et atteint son minimum en un certain $x_0\quad(\forall x\in \ol B(0, \alpha), f(x)\ge f(x_0))$
 		
-		Ainsi, soit $x\in \R^n$
+		Ainsi, soit $x\in \bb R^n$
 		\begin{enumerate}[label=$a\\$]
 			\item si $x\in \ol B(0, \alpha)$, alors $f(x)\ge f(x_0)$
 			\item $x\notin \ol B(0, \alpha)$, alors $||x||>\alpha$ et donc $f(x)\ge f(0)+1$ et $f(x)\ge f(x_0)+1>$...
@@ -149,29 +149,29 @@
 		
 	\end{myproof}
 
-	\begin{myremark}
-		Ce dernier résultat peut être généralisé, sous les même hypothèses, au cas d'une fonction $f\colon K\to\R$ avec $K$ fermé de $\R^n$.
+	\begin{remark}
+		Ce dernier résultat peut être généralisé, sous les même hypothèses, au cas d'une fonction $f\colon K\to\bb R$ avec $K$ fermé de $\bb R^n$.
 		
-	\end{myremark}
+	\end{remark}
 
 	\subsection{Caractérisation des extremas sans contraintes}
 	
 	Un outil fondamental au calcul différentiel.
 	
 	\begin{theorem}
-		Soit $U\sub \R^n$ ouvert et $f\colon U\to\R$ de classe $\scr C^1$. Si $x_0\in U$ est extremum local de $f$ sur $U$ alors on a $f'(x_0)=0$ $($ou $\nabla f(x_0)=0)$
+		Soit $U\sub \bb R^n$ ouvert et $f\colon U\to\bb R$ de classe $\scr C^1$. Si $x_0\in U$ est extremum local de $f$ sur $U$ alors on a $f'(x_0)=0$ $($ou $\nabla f(x_0)=0)$
 		
 	\end{theorem}
 
 	\begin{myproof}
-		Rappelons ce qu'il se passe pour une fonction $\varphi\colon I\sub \R\to\R$ qui admet par exemple un maximum local en $O\in I$.
+		Rappelons ce qu'il se passe pour une fonction $\varphi\colon I\sub \bb R\to\bb R$ qui admet par exemple un maximum local en $O\in I$.
 		
 		On a d'une part $\varphi'(0)=\lim\lim\limits_{x\to0^+}\frac{\varphi(x)-\varphi(0)}x\le 0$
 		car $x>0$ et $\varphi(x)-\varphi(0)\le 0$
 		
 		et d'autre part $\varphi'(0)=\lim\limits_{x\to0^-}\frac{\varphi(x)-\varphi(0)}x\ge 0$ car $x<0$ et $\varphi(x)-\varphi(0)\le 0$
 		
-		Dans le cas $E=\R^n$, supposons que $f$ admet un maximum local en $x_0\in U$. Soit $e_i$ un vecteur de base.
+		Dans le cas $E=\bb R^n$, supposons que $f$ admet un maximum local en $x_0\in U$. Soit $e_i$ un vecteur de base.
 		
 		On sait que $\partial_i f(x_0)=f'(x_0)\cdot e_i=\varphi_{e_i}'(0)$ avec $\varphi_{e_i}(t)=f(x_0+te_i)$
 		
@@ -182,7 +182,7 @@
 			\forall x\in B(x_0, r),\quad f(x)\le f(x_0)
 		\end{aligned}\]
 	
-		Soit $h\in\R^n$ tel que $||h||\le r$ alors $f(x_0+h)\le f(x_0)$.
+		Soit $h\in\bb R^n$ tel que $||h||\le r$ alors $f(x_0+h)\le f(x_0)$.
 		
 		et en particulier
 		

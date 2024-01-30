@@ -2,14 +2,15 @@
 \input{../../common/header.tex}
 \usepackage[a4paper,hmargin=30mm,vmargin=30mm]{geometry}
 
-\title{\color{astral} \sffamily \bfseries TD 1}
+\title{\color{astral} \sffamily \bfseries Feuilles de TD}
 \author{Ivan Lejeune\thanks{Cours inspiré de M. Charlier et M. De Renzi}}
 \date{\today}
 % pdflatex -output-directory=output chapter1.tex && move /Y output\chapter1.pdf .\
 
 \begin{document}
 	\maketitle
-	\begin{myexample}
+	\section{TD1}
+	\begin{example}
 		On considère $G=\glx2(\bb K)$ et son action sur $\bb K^n$. Pour $n=2$, la base standard de $\bb K^2$ est $\{e_1, e_2\}$. Alors, $G\cdot e_1=\bb K^2\setminus\{0\}$ car
 		\[\begin{aligned}
 			\underset{\in G\cdot e_1}{
@@ -61,7 +62,7 @@
 			\[\begin{aligned}
 				A\cdot\cequiv{v}=\cequiv{Av}\quad\forall A\in G,v\in \bb K^n
 			\end{aligned}\]
-	\end{myexample}
+	\end{example}
 
 	\medspace
 	\begin{td-exo}
@@ -114,7 +115,7 @@
 			Donc l'action n'est pas libre
 			
 			\item \,
-				\begin{myrappel}
+				\begin{rappel}
 					On a
 					\[\begin{aligned}
 						&R\cdot\zeta=e^{\frac{2\pi i}n}\zeta\\
@@ -139,7 +140,7 @@
 						R^j&\mapsto\left[\zeta^k\mapsto e^{\frac{2j\pi i}n}\zeta^k\right]\\
 						R^jS&\mapsto\left[\zeta^k\mapsto e^{\frac{2j\pi i}n}\zeta^{-k}\right]
 					\end{aligned}\]
-				\end{myrappel}
+				\end{rappel}
 			
 			L'action de $\scr D_n$ sur $\mu_n$ n'est pas libre car $S\in\st(1)$ et donc $S\cdot 1=\ol 1=1$.
 			
@@ -162,7 +163,7 @@
 	\end{td-sol}
 	\medspace
 	\begin{td-exo}
-	Soit $||\_||$ la norme euclidienne usuelle de $\bb R^n$ et soit $0_n$ le sous-groupe de $\glx n(\R)$ dont les éléments sont les matrices $A\in\glx n(\R)$ telles que $||Av||=||v||$ pour tout $v\in\R^n$. On appelle $0_n$ le \defemph{groupe orthogonal de dimension $n$}. Soit $S^{n-1}\coloneq \{v\in \R^n\mid||v||=1\}$ la \defemph{sphère de dimension $n-1$}. Montrer que $O_n$ agit transitivement, mais pas librement sur $S^{n-1}$ pour tout $n>1$.
+	Soit $||\_||$ la norme euclidienne usuelle de $\bb R^n$ et soit $0_n$ le sous-groupe de $\glx n(\bb R)$ dont les éléments sont les matrices $A\in\glx n(\bb R)$ telles que $||Av||=||v||$ pour tout $v\in\bb R^n$. On appelle $0_n$ le \defemph{groupe orthogonal de dimension $n$}. Soit $S^{n-1}\coloneq \{v\in \bb R^n\mid||v||=1\}$ la \defemph{sphère de dimension $n-1$}. Montrer que $O_n$ agit transitivement, mais pas librement sur $S^{n-1}$ pour tout $n>1$.
 	\end{td-exo}
 	
 	
