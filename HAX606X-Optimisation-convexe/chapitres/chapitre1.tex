@@ -15,16 +15,17 @@
 	\subsection{Introduction}
 	Méthode d'évaluation :
 	\begin{itemize}
-		\item CC noté en CM
-		\item TP noté
-		\item Examen terminal
+		\item CC noté en CM - 20%
+		\item TP1 en 3 jours - 15%
+		\item TP2 en 3 heures - 25%
+		\item Examen terminal - 40%
 	\end{itemize}
 	% Notation
 	On considère un espace vectoriel normé de dimension $n$ noté $(E, ||\cdot||)$ et $U$ ouvert de $E$.
 	
 	On considère une fonction $f\colon U\to \bb R$. Dans la pratique, $E$ sera égal à $\bb R^n$.
 	
-	Soit $x\in U$, on note $f'(x)$ la différentielle (qu'on appelera plus simplement "dérivée") de $f$ en $x$. 
+	Soit $x\in U$, on note $f'(x)$ la différentielle (qu'on appellera plus simplement "dérivée") de $f$ en $x$. 
 	
 	On a donc, pour tout $h\in E$ tel que $||h||$ soit assez petit, 
 		\[\begin{aligned}
@@ -105,7 +106,7 @@
 			\end{aligned}\]
 	\end{oc-theorem}
 
-	\begin{myproof}
+	\begin{oc-proof}
 		Ce résultat à été démontré dans le cours de topologie / analyse fonctionnelle. Puisque $f$ est continue, $f(K)$ est une partie compacte de $\bb R$, c'est à dire une partie fermée et bornée de $\bb R$. Ainsi on a
 		\[\begin{aligned}
 			-\infty<\inf f(K)\le \sup f(k)<+\infty
@@ -115,7 +116,7 @@
 				&\inf f(K)=\min f(K)\in f(E)\\
 				\text{ et}&\sup f(K)=\max f(K)\in f(E)
 			\end{aligned}\]
-	\end{myproof}
+	\end{oc-proof}
 	\begin{oc-definition}
 		Soit $f\colon\bb R^n\to \bb R$. On dit que $f$ est \defemph{coercive} si $f(x)\to+\infty$ lorsque $||x||\to+\infty$.
 		

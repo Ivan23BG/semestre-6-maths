@@ -13,7 +13,7 @@
 \definecolor{astral}{RGB}{46,116,181}
 \definecolor{verdant}{RGB}{96,172,128}
 \definecolor{algebraic-amber}{RGB}{255,179,102} % definition colour
-\definecolor{calculus-coral}{RGB}{255,179,102} % exercice colour
+\definecolor{calculus-coral}{RGB}{255,191,191} % exercice colour
 \definecolor{divergent-denim}{RGB}{130,172,211} % proposition colour 
 \definecolor{matrix-mist}{RGB}{204,204,204} % remark colour
 \definecolor{numeric-navy}{RGB}{204,204,204} % theorem colour 
@@ -37,35 +37,26 @@
 
 
 \newtheoremstyle{gen-style}{\topsep}{\topsep}%
-     {}%         Body font
-     {}%         Indent amount (empty = no indent, \parindent = para indent)
-     {\sffamily\bfseries}% Thm head font
-     {.}%        Punctuation after thm head
-     { }%     Space after thm head (\newline = linebreak)
-     {\thmname{#1}\thmnumber{~#2}\thmnote{~#3}}%         Thm head spec
+{}%         Body font
+{}%         Indent amount (empty = no indent, \parindent = para indent)
+{\sffamily\bfseries}% Thm head font
+{.}%        Punctuation after thm head
+{ }%     Space after thm head (\newline = linebreak)
+{\thmname{#1}\thmnumber{~#2}\thmnote{~#3}}%         Thm head spec
 
 
-\newtheoremstyle{no-title-style}{\topsep}{\topsep}%
-    {}%         Body font
-    {}%         Indent amount (empty = no indent, \parindent = para indent)
-    {\sffamily\bfseries}% Thm head font
-    {.}%        Punctuation after thm head
-    { }%     Space after thm head (\newline = linebreak)
-    {\thmname{#1}}%         Thm head spec
+\newtheoremstyle{no-num-style}{\topsep}{\topsep}%
+{}%         Body font
+{}%         Indent amount (empty = no indent, \parindent = para indent)
+{\sffamily\bfseries}% Thm head font
+{.}%        Punctuation after thm head
+{ }%     Space after thm head (\newline = linebreak)
+{\thmname{#1}}%         Thm head spec
 
 
 %\usepackage[framemethod=tikz]{mdframed}
 \usepackage[]{mdframed}
 % general
-\newcommand{\mystylesettings}{
-	hidealllines=true,
-	leftline=true,
-	skipabove=0pt,
-	innertopmargin=-5pt,
-	innerbottommargin=2pt,
-	linewidth=4pt,
-	innerrightmargin=0pt,
-}
 \theoremstyle{gen-style}
 \newmdtheoremenv[
 hidealllines=true,
@@ -75,81 +66,257 @@ innertopmargin=-5pt,
 innerbottommargin=2pt,
 linewidth=4pt,
 innerrightmargin=0pt,
-]{mystyle}{}
-\newmdtheoremenv[
 linecolor=divergent-denim,
 ]{proposition}{Proposition}[section]
 \newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+innerrightmargin=0pt,
 linecolor=divergent-denim,
 ]{propdef}{Proposition - Définition}[section]
 \newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+innerrightmargin=0pt,
 linecolor=quadratic-quartz,
 ]{theorem}{Théorème}[section]
 \newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+innerrightmargin=0pt,
 linecolor=quadratic-quartz,
 ]{lemme}{Lemme}[section]
+
 \newmdtheoremenv[
-linecolor=verdant,
-]{myproof}{Preuve}[section]
-\newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+innerrightmargin=0pt,
 linecolor=quadratic-quartz,
 ]{example}{Exemple}[section]
 \newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+innerrightmargin=0pt,
 linecolor=matrix-mist,
 ]{remark}{Remarque}[section]
 \newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+innerrightmargin=0pt,
 linecolor=matrix-mist,
 ]{notation}{Notation}[section]
 \newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+innerrightmargin=0pt,
 linecolor=matrix-mist,
 ]{rappel}{Rappel}[section]
 \newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+innerrightmargin=0pt,
 linecolor=calculus-coral,
 ]{exercise}{Exercice}[section]
 \newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+innerrightmargin=0pt,
 linecolor=calculus-coral,
 ]{exercice}{Exercice}[section]
 \newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+innerrightmargin=0pt,
 linecolor=algebraic-amber,
 ]{definition}{Definition}[section]
 
 
 \newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+innerrightmargin=0pt,
 linecolor=divergent-denim,
-]{oc-proposition}{Proposition}[]
+shared counter=opt-conv,
+]{oc-proposition}{Proposition}[section]
 \newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+innerrightmargin=0pt,
 linecolor=divergent-denim,
-]{oc-propdef}{Proposition - Définition}[]
+shared counter=opt-conv,
+]{oc-propdef}{Proposition - Définition}[section]
 \newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+innerrightmargin=0pt,
 linecolor=quadratic-quartz,
-]{oc-theorem}{Théorème}[]
+shared counter=opt-conv,
+]{oc-theorem}{Théorème}[section]
 \newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+innerrightmargin=0pt,
 linecolor=quadratic-quartz,
-]{oc-lemme}{Lemme}[]
+shared counter=opt-conv,
+]{oc-lemme}{Lemme}[section]
 \newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+innerrightmargin=0pt,
 linecolor=verdant,
-]{oc-proof}{Preuve}[]
+shared counter=opt-conv,
+]{oc-myproof}{Preuve}[section]
 \newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+innerrightmargin=0pt,
 linecolor=quadratic-quartz,
-]{oc-example}{Exemple}[]
+shared counter=opt-conv,
+]{oc-example}{Exemple}[section]
 \newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+innerrightmargin=0pt,
 linecolor=matrix-mist,
-]{oc-remark}{Remarque}[]
+shared counter=opt-conv,
+]{oc-remark}{Remarque}[section]
 \newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+innerrightmargin=0pt,
 linecolor=matrix-mist,
-]{oc-notation}{Notation}[]
+shared counter=opt-conv,
+]{oc-notation}{Notation}[section]
 \newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+innerrightmargin=0pt,
 linecolor=calculus-coral,
-]{oc-exercise}{Exercice}[]
+shared counter=opt-conv,
+]{oc-exercise}{Exercice}[section]
 \newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+innerrightmargin=0pt,
 linecolor=algebraic-amber,
-]{oc-definition}{Definition}[]
+shared counter=opt-conv,
+]{oc-definition}{Definition}[section]
 
 
-\theoremstyle{no-title-style}
+\theoremstyle{no-num-style}
 \newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+innerrightmargin=0pt,
 linecolor=verdant,
 ]{td-sol}{Solution}
+
+\newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+innerrightmargin=0pt,
+linecolor=verdant,
+]{myproof}{Preuve}
+
+\newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+innerrightmargin=0pt,
+linecolor=calculus-coral,
+]{td-exo}{Exercice}
+
 
 %---------------
 % Mise en page
@@ -168,16 +335,16 @@ linecolor=verdant,
 %----- Easy way to redeclare math operators -----
 \makeatletter
 \newcommand\RedeclareMathOperator{%
-  \@ifstar{\def\rmo@s{m}\rmo@redeclare}{\def\rmo@s{o}\rmo@redeclare}%
+	\@ifstar{\def\rmo@s{m}\rmo@redeclare}{\def\rmo@s{o}\rmo@redeclare}%
 }
 \newcommand\rmo@redeclare[2]{%
-  \begingroup \escapechar\m@ne\xdef\@gtempa{{\string#1}}\endgroup
-  \expandafter\@ifundefined\@gtempa
-     {\@latex@error{\noexpand#1undefined}\@ehc}%
-     \relax
-  \expandafter\rmo@declmathop\rmo@s{#1}{#2}}
+	\begingroup \escapechar\m@ne\xdef\@gtempa{{\string#1}}\endgroup
+	\expandafter\@ifundefined\@gtempa
+	{\@latex@error{\noexpand#1undefined}\@ehc}%
+	\relax
+	\expandafter\rmo@declmathop\rmo@s{#1}{#2}}
 \newcommand\rmo@declmathop[3]{%
-  \DeclareRobustCommand{#2}{\qopname\newmcodes@#1{#3}}%
+	\DeclareRobustCommand{#2}{\qopname\newmcodes@#1{#3}}%
 }
 \@onlypreamble\RedeclareMathOperator
 \makeatother
@@ -199,7 +366,7 @@ linecolor=verdant,
 \newcommand{\act}{\circlearrowleft} % agit sur
 \newcommand{\glx}[1]{\text{GL}_{#1}} % GL_x
 \newcommand{\cequiv}[1]{\mathopen{}[#1\mathclose{}]} % classe d'equivalence
-\newcommand{\restr}[2]{#1\mathop{}\!|_{#2}}
+\newcommand{\restr}[2]{#1\mathop{}\!|_{#2}} % restriction
 
 
 %----- Intervalles -----
@@ -215,6 +382,7 @@ linecolor=verdant,
 \DeclareRobustCommand{\re}{\mathsf{Re}}
 \RedeclareMathOperator{\ker}{\mathsf{Ker}}
 \RedeclareMathOperator{\det}{\mathsf{det}}
+\DeclareMathOperator{\vect}{\mathsf{Vect}}
 \DeclareMathOperator{\orb}{\mathsf{orb}}
 \DeclareMathOperator{\st}{\mathsf{st}}
 \DeclareMathOperator{\aut}{\mathsf{Aut}}
