@@ -50,12 +50,17 @@
 					\bolo{x, \varepsilon}&=\{x\}\\
 					\bolf{x, \varepsilon}&=\{x\}
 				\end{aligned}\]
-				Pour $\varepsilon\ge 1$ on a
+				Pour $\varepsilon= 1$ on a
+				\[\begin{aligned}
+					\bolo{x, \varepsilon}&=\{x\}\\
+					\bolf{x, \varepsilon}&=X
+				\end{aligned}\]
+				Pour $\varepsilon> 1$ on a
 				\[\begin{aligned}
 					\bolo{x, \varepsilon}&=X\\
 					\bolf{x, \varepsilon}&=X
 				\end{aligned}\]
-				La topologie $\mathcal{T}_\delta$ associée à $\delta$ est engendrée par l'union de l'ensemble des boules ouvertes de $X$. Comme on vient de le voir, il existe une boule ouverte associée à chaque élément $x\in X$. Ainsi on a
+				La topologie $\mathcal{T}_\delta$ associée à $\delta$ est engendrée par l'ensemble des boules ouvertes de $X$. Comme on vient de le voir, il existe une boule ouverte associée à chaque élément $x\in X$. Ainsi on a
 				\[\begin{aligned}
 					\mathcal{T}_\delta = \scr P(X)
 				\end{aligned}\]
@@ -201,21 +206,23 @@
 			\item Montrer que pour $x\ne D$, le singleton $\{x\}$ est ouvert.
 		\end{enumerate}
 	\end{td-exo}
-	\begin{td-sol} \,\\
+	\newpage
+	\begin{td-sol} \,
 		\begin{enumerate}
 			\item Il faut vérifier les 4 conditions d'une distance :
 			\begin{enumerate}[label=$(\roman*)$]
-				\item $d_{FE}(x, y)\ge 0$ car $d(x,y)\ge 0$.
+				\item $d_{FE}(x, y)\ge 0$ car $d(x,y)\ge 0$
+				\item On a $x=y\Longrightarrow d_{FE}(x, y)=0$ par définition. 
 				
-				\item On a $x=y\Longrightarrow d_{FE}(x, y)=0$ par définition. Si $d_{FE}(x, y) = 0$ alors on a $x=y$ ou $d(x, D)+d(y, D) = 0$. Comme une distance est positive, cela implique $d(x, D)=d(y, D)=0$, soit que $x=y$
+				Si $d_{FE}(x, y) = 0$ alors on a $x=y$ ou $d(x, D)+d(y, D) = 0$. 
 				
+				Comme une distance est positive, on a $d(x, D)=d(y, D)=0$ donc $x=y$.
 				\item Si $x=y$, on a $d_{FE}(x, y) = d_{FE}(y, x)$. Dans le cas contraire on a
 				\[\begin{aligned}
 					d_{FE}(x, y) &= d_{FE}(x, D)+d_{FE}(y, D)\\
 					&=d_{FE}(y, D)+d_{FE}(x, D)\\
 					&= d_{FE}(y, x)
 				\end{aligned}\]
-				
 				\item Soit $z\in X$. Si $x=z$, cela est évident. Dans le cas contraire on a
 				\[\begin{aligned}
 					d(x,z) &= \norm(z-x)\\
