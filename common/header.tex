@@ -61,314 +61,79 @@
 {\thmname{#1}}%         Thm head spec
 
 
-%\usepackage[framemethod=tikz]{mdframed}
 \usepackage[]{mdframed}
-% general
+
+\newcommand{\mytheorem}[4]{%
+	\newmdtheoremenv[
+	hidealllines=true,
+	leftline=true,
+	skipabove=0pt,
+	innertopmargin=-5pt,
+	innerbottommargin=2pt,
+	linewidth=4pt,
+	innerrightmargin=0pt,
+	linecolor=#3,
+	]{#1}{#2}[#4]%
+}
+
+\newcommand{\myoctheorem}[4]{%
+	\newmdtheoremenv[
+	hidealllines=true,
+	leftline=true,
+	skipabove=0pt,
+	innertopmargin=-5pt,
+	innerbottommargin=2pt,
+	linewidth=4pt,
+	innerrightmargin=0pt,
+	linecolor=#3,
+	]{#1}[#4]{#2}%
+}
+
+\newcommand{\mytheoremnocount}[3]{%
+	\newmdtheoremenv[
+	hidealllines=true,
+	leftline=true,
+	skipabove=0pt,
+	innertopmargin=-5pt,
+	innerbottommargin=2pt,
+	linewidth=4pt,
+	innerrightmargin=0pt,
+	linecolor=#3,
+	]{#1}{#2}%
+}
+
 \theoremstyle{gen-style}
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=divergent-denim,
-]{proposition}{Proposition}[section]
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=divergent-denim,
-]{propdef}{Proposition - Définition}[section]
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=quadratic-quartz,
-]{theorem}{Théorème}[section]
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=quadratic-quartz,
-]{lemme}{Lemme}[section]
-
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=quadratic-quartz,
-]{example}{Exemple}[section]
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=matrix-mist,
-]{remark}{Remarque}[section]
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=matrix-mist,
-]{notation}{Notation}[section]
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=calculus-coral,
-]{exercise}{Exercice}[section]
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=calculus-coral,
-]{exercice}{Exercice}[section]
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=algebraic-amber,
-]{definition}{Definition}[section]
-
+\mytheorem{proposition}{Proposition}{divergent-denim}{section}
+\mytheorem{propdef}{Proposition - Définition}{divergent-denim}{section}
+\mytheorem{theorem}{Théorème}{quadratic-quartz}{section}
+\mytheorem{lemme}{Lemme}{quadratic-quartz}{section}
+\mytheorem{example}{Exemple}{quadratic-quartz}{section}
+\mytheorem{remark}{Remarque}{matrix-mist}{section}
+\mytheorem{notation}{Notation}{matrix-mist}{section}
+\mytheorem{exercise}{Exercice}{calculus-coral}{section}
+\mytheorem{exercice}{Exercice}{calculus-coral}{section}
+\mytheorem{definition}{Definition}{algebraic-amber}{section}
 \newcounter{oc-counter}
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=divergent-denim,
-]{oc-proposition}[oc-counter]{Proposition}
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=divergent-denim,
-]{oc-propdef}[oc-counter]{Proposition - Définition}
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=quadratic-quartz,
-]{oc-theorem}[oc-counter]{Théorème}
-
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=quadratic-quartz,
-]{oc-lemme}[oc-counter]{Lemme}
-
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=quadratic-quartz,
-]{oc-example}[oc-counter]{Exemple}
-
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=matrix-mist,
-]{oc-remark}[oc-counter]{Remarque}
-
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=calculus-coral,
-]{oc-exercise}[oc-counter]{Exercice}
-
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=algebraic-amber,
-]{oc-definition}[oc-counter]{Definition}
-
+\myoctheorem{oc-proposition}{Proposition}{divergent-denim}{oc-counter}
+\myoctheorem{oc-propdef}{Proposition - Définition}{divergent-denim}{oc-counter}
+\myoctheorem{oc-theorem}{Théorème}{divergent-denim}{oc-counter}
+\myoctheorem{oc-lemme}{Lemme}{quadratic-quartz}{oc-counter}
+\myoctheorem{oc-example}{Exemple}{quadratic-quartz}{oc-counter}
+\myoctheorem{oc-remark}{Remarque}{matrix-mist}{oc-counter}
+\myoctheorem{oc-exercise}{Exercice}{calculus-coral}{oc-counter}
+\myoctheorem{oc-definition}{Definition}{algebraic-amber}{oc-counter}
 \theoremstyle{no-num-style}
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=verdant,
-]{td-sol}{Solution}
-
-
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=algebraic-amber,
-]{no-num-definition}{Definition}
-
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=algebraic-amber,
-]{no-num-theorem}{Théorème}
-
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=quadratic-quartz,
-]{oc-intro}{Introduction}
-
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=verdant,
-]{oc-proof}{Preuve}
-
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=verdant,
-]{oc-young}{Formule de Taylor à l'ordre 2}
-
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=matrix-mist,
-]{oc-notation}{Notation}
-
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=matrix-mist,
-]{rappel}{Rappel}[section]
-
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=verdant,
-]{myproof}{Preuve}
-
-\newmdtheoremenv[
-hidealllines=true,
-leftline=true,
-skipabove=0pt,
-innertopmargin=-5pt,
-innerbottommargin=2pt,
-linewidth=4pt,
-innerrightmargin=0pt,
-linecolor=calculus-coral,
-]{td-exo}{Exercice}
-
+\mytheoremnocount{td-sol}{Solution}{verdant}
+\mytheoremnocount{no-num-definition}{Definition}{algebraic-amber}
+\mytheoremnocount{no-num-theorem}{Théorème}{algebraic-amber}
+\mytheoremnocount{oc-intro}{Introduction}{quadratic-quartz}
+\mytheoremnocount{oc-proof}{Preuve}{verdant}
+\mytheoremnocount{oc-young}{Formule de Taylor à l'ordre 2}{verdant}
+\mytheoremnocount{oc-notation}{Notation}{matrix-mist}
+\mytheorem{rappel}{Rappel}{matrix-mist}{section}
+\mytheoremnocount{myproof}{Preuve}{verdant}
+\mytheoremnocount{td-exo}{Exercice}{calculus-coral}
 \numberwithin{oc-counter}{subsection}
-
-
 
 %---------------
 % Mise en page
