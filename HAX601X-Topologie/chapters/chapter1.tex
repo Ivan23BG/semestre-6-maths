@@ -355,5 +355,143 @@
 		\end{myproof}
 		Donc $2.$ est vérifié.
 	\end{myproof}
-
+	\begin{remark}
+		Soit $X$ un espace topologique et $A\sub X$. On a 
+			\[\begin{aligned}
+				\adh A\sub A\sub \ol A
+			\end{aligned}\]
+		\begin{exercise}
+			Montrer que 
+			\begin{enumerate}
+				\item $A$ ouvert $\Longleftrightarrow$ $A=\adh A$
+				\item $A$ fermé $\Longleftrightarrow$ $A=\ol A$
+			\end{enumerate}
+		\end{exercise}
+	\end{remark}
+	\section{Applications continues}
+		\begin{definition}
+			Soient $X, Y$ deux espaces topologiques.
+			
+			Une application $f\colon X\to Y$ est \defemph{continue} si et seulement si pour tout $U$ ouvert dans $Y$, $f^{-1}(U)$ est ouvert dans $X$.
+		\end{definition}
+		\begin{remark}
+			On a $f^{-1}(Y\setminus U)=X-f^{-1}(U)$.
+			
+			$f$ est continue si et seulement si pour tout fermé $F\sub Y$, on a $f^{-1}(F)$ fermé.
+		\end{remark}
+	\subsection{Voisinages}
+	
+		\begin{definition}
+			Soit $X$ un espace topologique, $x\in X$. $N\sub X$ est un \defemph{voisinage} de $x$ si il existe $U$ ouvert avec $x\in U\sub N$.
+		\end{definition}
+		\begin{example}
+			Soit $(X, d)$ un espace métrique avec $x\in X$ et $\varepsilon>0$. 
+			
+			On a $\bolo{x, \varepsilon}$ et $\bolf{x, \varepsilon}$ voisinages de $x$
+		\end{example}
+		\begin{example}
+			$X$ est voisinage de chaque $x\in X$
+		\end{example}
+		\begin{definition}
+			Soient $X, Y$ des espaces topologiques et $f\colon X\to Y$. Soit $x\in X$. On dit que $f$ est \defemph{continue} en $x$ si pour tout voisinage $N$ de $f(x)$, on a $f^{-1}(N)$ voisinage de $x$.
+		\end{definition}
+		\begin{remark}
+			$f$ est continue en $x$ si et seulement si, pour tout voisinage $N$ de $f(x)$, il existe un voisinage $M$ de $x$ tel que $f(M)\sub N$.
+		\end{remark}
+		\begin{proposition}
+			Soit $f$ une application de $X\to Y$. $f$ est continue si et seulement si pour tout $x\in X$, $f$ est continue en $x$.
+		\end{proposition}
+		\begin{myproof}\,
+			\begin{itemize}[$\Longrightarrow$]
+				\item Soit $x\in X$ et $N$ un voisinage de $f(x)$. Il existe $V$ ouvert de $Y$ avec $f(x)\in V\sub N$. En conséquence, on a $x\in \color{astral}\underbrace{\color{black}f^{-1}(V)}_{\text{ouvert}}\color{black}\sub f^{-1}(N)$.
+			\end{itemize}
+			Pour l'autre sens, commençons par démontrer le lemme nécessaire.
+			\begin{lemme}
+				Soit $X$ un espace topologique et $U\sub X$. On a $U$ ouvert si et seulement si 
+					\[\begin{aligned}
+						\forall x\in U,U\in \mathcal{V}(x)
+					\end{aligned}\]
+				avec $\mathcal{V}(x)$ l'ensemble des voisinages de $x$
+			\end{lemme}
+			\begin{myproof}\,
+				\begin{itemize}[$\Longrightarrow$]
+					\item Soit $x\in U$, il existe un ouvert $U$ de $X$ tel que $x\in U$ et $U\sub X$
+				\end{itemize}
+				\begin{itemize}[$\Longleftarrow$]
+					\item Soit $x\in U$, il existe un \defemph{ouvert} $V_x$ de $X$ tel que $x\in V_x\sub U$. Ainsi
+						\[\begin{aligned}
+							U=\bigcup_{x\in U}\color{astral}\underbrace{\color{black}V_x}_{\text{ouvert}}\color{black}
+						\end{aligned}\]
+					Soit $U\sub Y$ ouvert, il faut montrer que $f^{-1}(U)$ est ouvert.
+					
+					Si $x\in f^{-1}(U)$, alors $f(x)\in U$ et donc $U\in \mathcal{V}(f(x))$.
+					
+					donc $f^{-1}(U)\in \mathcal{V}(x)$.
+					
+					D'où pour tout $x\in f^{-1}(U),f^{-1}(U)$ est voisinage de $x$.
+				\end{itemize}
+			\end{myproof}
+			\begin{itemize}[$\Longleftarrow$]
+				\item D'après le lemme, $f^{-1}(U)$ est ouvert
+			\end{itemize}
+		\end{myproof}
+		Cas de $f\colon (X, d_X)\to(Y,d_Y)$ avec $(X, d_X),(Y,d_Y)$ des espaces métriques.
+		\begin{proposition}
+			Soit $f\colon X\to Y$ continue si et seulement si 
+				\[\begin{aligned}
+					\forall x\in X, \forall \varepsilon>0,\exists\lambda>0\text{ tq }d_X(x,y)\le\delta\Longrightarrow d_Y(f(x),f(y))<\varepsilon
+				\end{aligned}\]
+		\end{proposition}
+		\begin{myproof}\,
+			\begin{itemize}[$\Longleftarrow$]
+				\item Soit $x\in X,\varepsilon>0$. On a $\bolo{f(x),\varepsilon}$ ouvert.
+					
+					Donc $f$ continue, $f^{-1}(B)$ ouvert et $x\in f^{-1}(B)$.
+					
+					Cela revient à dire qu'il existe $\delta>0$ tel que
+						\[\begin{aligned}
+							\bolo{x,\delta}\sub f^{-1}\left(\bolo{f(x),\varepsilon}\right)
+						\end{aligned}\]
+			\end{itemize}
+			\begin{itemize}[$\Longrightarrow$]
+				\item Soit $V\sub Y$ ouvert. Montrons que $f^{-1}$ est ouvert.
+				
+				Soit $x\in f^{-1}(V),f(x)\in V$ ouvert. Alors il existe $\varepsilon_0$ tel que 
+					\[\begin{aligned}
+						\bolo{f(x),\varepsilon_0}\sub V
+					\end{aligned}\]
+				Par hypothèse, il existe alors $\delta$ tel que
+					\[\begin{aligned}
+						x\in \bolo{x,\delta}\sub f^{-1}\left(\bolo{f(x),\varepsilon_0}\right)\sub f^{-1}(V)
+					\end{aligned}\]
+				En conclusion, $f^{-1}(V)$ est un voisinage de tous ses points, donc $f^{-1}(V)$ est ouvert.
+			\end{itemize}
+		\end{myproof}
+		\begin{definition}
+			Soient $X, Y$ des espaces topologiques. On dit que $f\colon X\to Y$ est un \defemph{homéomorphisme} si 
+				\begin{enumerate}[label=$(\roman*)$]
+					\item $f$ continue
+					\item $f$ bijective (et donc $f^{-1}$ existe)
+					\item $f^{-1}$ continue
+				\end{enumerate}
+		\end{definition}
+		\begin{remark}
+			On n'a pas $(i)+(ii)\Longrightarrow(iii)$.
+				\begin{example}
+					On prend $X=\ff{0, 1}\cup \of{2, 3}$ et $Y=\ff{0, 2}$. Muni de la distance
+						\[\begin{aligned}
+							d(x,y)=|x-y|
+						\end{aligned}\]
+					% inserer graphe
+				\end{example}
+		\end{remark}
+		\begin{definition}
+			Soit $f\colon (X,d_X)\to (Y,d_Y)$. On dit que $f$ est une \defemph{isométrie} si $f$ est bijective et
+				\[\begin{aligned}
+					d_Y(f(x), f(y))=d_X(x,y)
+				\end{aligned}\]
+		\end{definition}
+		\begin{remark}
+			Une isométrie est un homéomorphisme.		
+		\end{remark}
 \end{document}

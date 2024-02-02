@@ -8,6 +8,7 @@
 \usepackage{fancyhdr} % customises head and foot-notes
 \usepackage{centernot} % allows centering \not with \centernot
 \usepackage{stmaryrd} % allows \llbracket
+\usepackage[overload]{abraces} % allows \aoverbrace
 
 \usepackage{xcolor} % colour customisation, extends to tables with {colortbl}
 \definecolor{astral}{RGB}{46,116,181}
@@ -28,6 +29,12 @@
 \usepackage{mathtools}
 \usepackage{mathrsfs}
 \usepackage{mnsymbol}
+\usepackage{etoolbox}% http://ctan.org/pkg/etoolbox
+
+\let\overfence\overbrace % \overfence is similar to \overbrace
+\let\downfencefill\downbracefill % match components of \overbrace
+\patchcmd{\overfence}{\downbracefill}{\downfencefill}{}{}% patch \overfence...
+\patchcmd{\downfencefill}{\braceru \bracelu}{}{}{}%... and \downfencefill
 
 
 \usepackage{tikz}
@@ -400,7 +407,7 @@ linecolor=calculus-coral,
 
 
 \newcommand{\adh}[1]{\mathring{#1}} %adherence
-\newcommand{\badh}[1]{\mathring{\wideparen{#1}}} % big adherence
+\newcommand{\badh}[1]{\mathring{\overfence{#1}}} % big adherence
 \newcommand{\norm}{\mathcal{N}} % norme
 \newcommand{\ol}[1]{\overline{#1}} % overline
 \newcommand{\sub}{\subset} % subset
