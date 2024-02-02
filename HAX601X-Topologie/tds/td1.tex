@@ -1,0 +1,71 @@
+% txs:///compile | txs:///view-pdf-internal --embedded | cmd /c move /Y output\%.pdf pdfs\
+% pdflatex -synctex=1 -interaction=nonstopmode -output-directory=output %.tex
+
+\documentclass[french,a4paper,10pt]{article}
+\input{../../common/header.tex}
+\usepackage[a4paper,hmargin=30mm,vmargin=30mm]{geometry}
+\title{\color{astral} \sffamily \bfseries Planche TD 1}
+\author{Ivan Lejeune\thanks{Cours inspiré de M. Akrout}}
+\date{\today}
+
+\begin{document}
+	
+	\maketitle
+	\begin{td-exo}[(Seconde inégalité triangulaire)]
+		Soit $(X, d)$ un espace métrique, montrer que pour tous $x,y,z\in X$ on a
+			\[\begin{aligned}
+				|d(x,y)-d(y,z)|\le d(x,z)
+			\end{aligned}\]
+	\end{td-exo}
+	\begin{td-sol}
+		Soient $x,y,z\in X$. On a
+			\[\begin{aligned}
+				d(x,y)&\le d(x,z)+d(z,y)\\
+				d(x,y)-d(z,y)&\le d(x,z)&(1)
+			\end{aligned}\]
+		et
+			\[\begin{aligned}
+				d(z,y)&\le d(z,x)+d(x,y)\\
+				d(z,y)-d(x,y)&\le d(x,z)&(2)
+			\end{aligned}\]
+		En combinant les 2 on obtient
+			\[\begin{aligned}
+				-d(x,z)\underset{\text{par }(2)}\le d(x,y)-d(y,z)\underset{\text{par }(1)}\le d(x,z)
+			\end{aligned}\]
+		Donc on a bien
+			 \[\begin{aligned}
+			 	|d(x,y)-d(y,z)|\le d(x,z)
+			 \end{aligned}\]
+		
+	\end{td-sol}
+	\medspace
+	\begin{td-exo}[(Distance induite)]
+		Soit $x=(\ff{0, 1}\times\{0\})\cup (\{0\}\times \ff{0, 1})$ munit de la distance induite par la norme infinie de $\bb R^2$. Dessiner les boules de centre $(1,0)$.
+	\end{td-exo}
+	\begin{td-sol}
+		On a 
+			\[\begin{aligned}
+				\bolo{x_0,r}_{||\cdot||_\infty}&=\{y\in X\mid \mathcal N_\infty(y-(1, 0))<r\}\\
+				&=\left\{y\in X\bigg\mid ~\begin{matrix}
+					|y_1-1|<r&\text{et}\\
+					|y_2|<r
+					\end{matrix}~\right\}\\
+				&=x\text{ si }r>1\\
+				&=\of{1-r,1}\times\{0\}\text{ sinon}
+			\end{aligned}\]
+		On a 
+			\[\begin{aligned}
+				\bolo{x_0,r}_X=\bolo{x_0, r}_{\bb R^2}\cap X
+			\end{aligned}\]
+	\end{td-sol}
+	\medspace
+	\begin{td-exo}[(Fonctions sous-additives et distance)]
+		Soit $(X, d)$ un espace métrique
+			\begin{enumerate}
+				\item Soit $\phi$ une fonction croissante de $\bb R^+$ dans $\bb R^+$ telle que $\phi(0)=0$, $\phi$ est injective sur un voisinage de $0$ et $\phi(s+t)\le\phi(s)+\phi(t)$ pour tous $s,t\in \bb R^+$. Montrer que $D=\phi\circ d$ est une métrique sur $X$.
+			\end{enumerate}
+	\end{td-exo}
+\end{document}
+
+
+

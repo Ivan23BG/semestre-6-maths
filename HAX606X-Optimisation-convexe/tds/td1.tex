@@ -1,0 +1,115 @@
+\documentclass[french,a4paper,10pt]{article}
+\input{../../common/header.tex}
+\usepackage[a4paper,hmargin=30mm,vmargin=30mm]{geometry}
+
+\title{\color{astral} \sffamily \bfseries TD1}
+\author{Ivan Lejeune\thanks{Cours inspiré de M. Marche}}
+\date{\today}
+% pdflatex -output-directory=output chapter1.tex && move /Y output\chapter1.pdf .\
+
+\begin{document}
+	\maketitle
+	\begin{td-exo}
+		Soit $f\in\scr C^0(\ff{a,b},\bb R)$. On dit que $f$ est \defemph{unimodale} sur l'intervalle $\ff{a,b}$ si il existe un point $\ol x\in\ff{a,b}$ tel que $f$ soit strictement décroissante sur $\fo{a,\ol x}$ et strictement croissante sur $\of{\ol x, b}$.\\
+		
+		Pour chercher $\ol x$, nous allons générer une suite strictement décroissante d'intervalles dont le diamètre tend vers 0 et qui encadrent le minimum recherché.\\
+		
+		Supposons connus cinq point $a=x_1<x_2<x_3<x_4<x_5=b$. Cinq situations se présentent :
+			\begin{enumerate}[label=$(\roman*)$]
+				\item $f(x_1)<f(x_2)<f(x_3)<f(x_4)<f(x_5)$ : $\ol x$ appartient alors à $\oo{x_1,x_2}$,
+				
+				\item $f(x_1)>f(x_2),\quad f(x_2)<f(x_3)<f(x_4)<f(x_5)$ : $\ol x$ appartient alors à $\oo{x_1,x_3}$,
+				
+				\item $f(x_1)>f(x_2)>f(x_3),\quad f(x_3)<f(x_4)<f(x_5)$ : $\ol x$ appartient alors à $\oo{x_2,x_4}$,
+				
+				\item $f(x_1)>f(x_2)>f(x_3)>f(x_4),\quad f(x_4)<f(x_5)$ : $\ol x$ appartient alors à $\oo{x_3,x_5}$,
+				
+				\item $f(x_1)>f(x_2)>f(x_3)>f(x_4)>f(x_5)$ : $\ol x$ appartient alors à $\oo{x_4,x_5}$.
+			\end{enumerate}
+		\begin{enumerate}
+			\item Utiliser ces propriétés pour construire un algorithme permettant de générer une suite d'intervalles $(\ff{a_k,b_k})_{k\in\bb N}$ telle que
+				\begin{itemize}
+					\item $\ol x\in\ff{a_k,b_k}$
+					
+					\item $b_k-a_k=\frac{b_{k-1}-a_{k-1}}2$
+					
+					\item mis à part pour le premier pas, 2 évaluations de $f$ sont nécessaires à chaque itération.
+				\end{itemize}
+			\item Montrer que $a_k\to\ol x$ et $b_k\to \ol x$.
+		\end{enumerate}
+	\end{td-exo}
+	
+	\begin{td-sol}
+		\begin{enumerate}
+			\item On notera $\{x_1, x_2, x_3, x_4, x_5\}$ plutôt $\{a_i, y_i, z_i, t_i, b_i\}$ à la $i$-ème itération. 
+				
+				Pour n'évaluer $f$ que deux fois à chaque itération on regroupera également les cas $(i)$ et $(ii)$, soit
+				\[\begin{aligned}
+					\underbar x \in\oo{a_k, z_k}
+				\end{aligned}\]
+				et les cas $(iv)$ et $(v)$, soit
+				\[\begin{aligned}
+					\underbar x\in\oo{z_k,b_k}
+				\end{aligned}\]
+				le dernier cas est alors $(iii)$
+				\[\begin{aligned}
+					\ul x\in\oo{y_k,t_k}
+				\end{aligned}\]
+				
+				Les valeurs deviennent alors dans le cas $(i)$ et $(ii)$,
+				\[\begin{aligned}
+					a_{k+1}&=a_k\\
+					b_{k+1}&=z_k
+				\end{aligned}\]
+				dans le cas $(iii)$,
+				\[\begin{aligned}
+					a_{k+1}&=y_k\\
+					b_{k+1}&=t_k
+				\end{aligned}\]
+				et dans le cas $(iv)$ et $(v)$,
+				\[\begin{aligned}
+					a_{k+1}&=z_k\\
+					b_{k+1}&= b_k
+				\end{aligned}\]
+			
+			\item On a $\frac{L_{k+1}}{L_k}=\frac12$ donc
+				\[\begin{aligned}
+					L_{k+1}&=\frac12L_k\\
+					&=\left(\frac12\right)^{k+1}L_0
+				\end{aligned}\]
+			Soit que $L_k\underset{k\to\infty}\to 0$, et même que $(a_k)$ est strictement croissante, $(b_k)$ strictement décroissante et $\forall k,a_k<b_k$.
+			
+			$(a_k)$ et $(b_k)$ sont alors adjacentes et convergent vers la même limite.
+			
+			Par construction, $a_k\le l\le b_k$ pour tout $k$. Or, on sait que $\forall k,a_k\le \ul x\le b_k$ donc nécessairement $l=\ul x$.
+		\end{enumerate}
+	\end{td-sol}
+	\medspace
+	
+	\begin{td-exo}
+		Nous reprenons le principe de la méthode de la dichotomie précédente mais à chaque itération, nous allons maintenant chercher à diviser l'intervalle d'approximation en 3 parties (au lieu de 4 pour la dichotomie).\\
+		
+		Plus précisément, nous allons construire une suite décroissante d'intervalles $\ff{a_k,b_k}$ qui contiennent tous le minimum $\ol x$. Pour passer de $\ff{a_k,b_k}$ à $\ff{a_{k+1},b_{k+1}}$, on introduit deux nombres $x_2^k$ et $x_3^k$ de l'intervalle $\ff{a_k,b_k}$.\\
+			
+		On calcule alors les valeurs $f(x_2^k)$ et $f(x_3^k)$ et deux possibilités se présentent :
+			\begin{enumerate}[label=$(\roman*)$]
+				\item Si $f(x_2^k)\le f(x_3^k)$, alors le minimum se trouve nécessairement à gauche de $x_3^k$. Ceci définit alors le nouvel intervalle en posant $a_{k+1}=a_k$ et $b_{k+1}=x_3^k$.
+				
+				\item Si $f(x_2^k)\ge f(x_3^k)$, alors le minimum se trouve nécessairement à droite de $x_2^k$. Ceci définit alors le nouvel intervalle en posant $a_{k+1}=x_2^k$ et $b_{k+1}=b^k$.
+			\end{enumerate}
+		La question suivant se pose alors : comment choisir $x_2^k$ et $x_3^k$ en pratique ? Il faut privilégier deux aspects :
+			\begin{enumerate}[label=$(\roman*)$]
+				\item On souhaite que le facteur de réduction $\gamma$, qui représente le ratio de la longueur du nouvel intervalle, noté $L_{k+1}$, par rapport à la longueur du précédent, notée $L_k$, soit constant :
+					\[\begin{aligned}
+						\frac{L_{k+1}}{L_k}=\gamma
+					\end{aligned}\]
+				\item On désire, comme pour la méthode de la dichotomie, réutiliser le point qui n'a pas été choisi dans l'itération précédente afin de diminuer les coûts de calcul : ceci permettra de n'évaluer $f$ qu'une fois par itération au lieu de deux (sauf pour la première itération, où deux évaluations sont nécessaires). Rappelons que pour la dichotomie, il est nécessaire d'évaluer $f$ deux fois par itération.
+			\end{enumerate}
+		\begin{enumerate}
+			\item Traduire ces contraintes permettant de choisir $x_2^k,x_3^k,a_{k+1},b_{k+1}$, proposer un algorithme et montrer qu'il n'y a qu'une seule valeur possible pour $\gamma$,
+			
+			\item Montrer que pour tout $k$, on a $b_k-a_k=\gamma^k(b-a)$. Conclure.
+		\end{enumerate}
+	\end{td-exo}
+	
+\end{document}

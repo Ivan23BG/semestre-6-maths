@@ -29,18 +29,13 @@
 \usepackage{mathtools}
 \usepackage{mathrsfs}
 \usepackage{mnsymbol}
+%\usepackage{MnSymbol}
 \usepackage{etoolbox}% http://ctan.org/pkg/etoolbox
 
-\let\overfence\overbrace % \overfence is similar to \overbrace
-\let\downfencefill\downbracefill % match components of \overbrace
-\patchcmd{\overfence}{\downbracefill}{\downfencefill}{}{}% patch \overfence...
-\patchcmd{\downfencefill}{\braceru \bracelu}{}{}{}%... and \downfencefill
-
-
-\usepackage{tikz}
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
-\usetikzlibrary{arrows}
+%\usepackage{tikz}
+%\usepackage{pgfplots}
+%\pgfplotsset{compat=1.18}
+%\usetikzlibrary{arrows}
 
 
 \newtheoremstyle{gen-style}{\topsep}{\topsep}%
@@ -113,6 +108,7 @@
 \mytheorem{exercise}{Exercice}{calculus-coral}{section}
 \mytheorem{exercice}{Exercice}{calculus-coral}{section}
 \mytheorem{definition}{Definition}{algebraic-amber}{section}
+
 \newcounter{oc-counter}
 \myoctheorem{oc-proposition}{Proposition}{divergent-denim}{oc-counter}
 \myoctheorem{oc-propdef}{Proposition - Définition}{divergent-denim}{oc-counter}
@@ -122,6 +118,7 @@
 \myoctheorem{oc-remark}{Remarque}{matrix-mist}{oc-counter}
 \myoctheorem{oc-exercise}{Exercice}{calculus-coral}{oc-counter}
 \myoctheorem{oc-definition}{Definition}{algebraic-amber}{oc-counter}
+
 \theoremstyle{no-num-style}
 \mytheoremnocount{td-sol}{Solution}{verdant}
 \mytheoremnocount{no-num-definition}{Definition}{algebraic-amber}
@@ -172,9 +169,10 @@
 
 
 \newcommand{\adh}[1]{\mathring{#1}} %adherence
-\newcommand{\badh}[1]{\mathring{\overfence{#1}}} % big adherence
+\newcommand{\badh}[1]{\mathring{\overbrace{#1}}} % big adherence
 \newcommand{\norm}{\mathcal{N}} % norme
 \newcommand{\ol}[1]{\overline{#1}} % overline
+\newcommand{\ul}[1]{\underline{#1}} % underline
 \newcommand{\sub}{\subset} % subset
 \newcommand{\scr}[1]{\mathscr{#1}} % scr rapide
 \newcommand{\bb}[1]{\mathbb{#1}} % bb rapide
