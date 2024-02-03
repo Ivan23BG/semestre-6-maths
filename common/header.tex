@@ -28,8 +28,7 @@
 \usepackage{amsthm}
 \usepackage{mathtools}
 \usepackage{mathrsfs}
-\usepackage{mnsymbol}
-%\usepackage{MnSymbol}
+\usepackage{MnSymbol}
 \usepackage{etoolbox}% http://ctan.org/pkg/etoolbox
 
 %\usepackage{tikz}
@@ -71,18 +70,6 @@
 	]{#1}{#2}[#4]%
 }
 
-\newcommand{\myoctheorem}[4]{%
-	\newmdtheoremenv[
-	hidealllines=true,
-	leftline=true,
-	skipabove=0pt,
-	innertopmargin=-5pt,
-	innerbottommargin=2pt,
-	linewidth=4pt,
-	innerrightmargin=0pt,
-	linecolor=#3,
-	]{#1}[#4]{#2}%
-}
 
 \newcommand{\mytheoremnocount}[3]{%
 	\newmdtheoremenv[
@@ -95,6 +82,18 @@
 	innerrightmargin=0pt,
 	linecolor=#3,
 	]{#1}{#2}%
+}
+\newcommand{\myoctheorem}[4]{%
+	\newmdtheoremenv[
+	hidealllines=true,
+	leftline=true,
+	skipabove=0pt,
+	innertopmargin=-5pt,
+	innerbottommargin=2pt,
+	linewidth=4pt,
+	innerrightmargin=0pt,
+	linecolor=#3,
+	]{#1}[#4]{#2}%
 }
 
 \theoremstyle{gen-style}
