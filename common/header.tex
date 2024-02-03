@@ -52,7 +52,7 @@
 {\sffamily\bfseries}% Thm head font
 {.}%        Punctuation after thm head
 { }%     Space after thm head (\newline = linebreak)
-{\thmname{#1}}%         Thm head spec
+{\thmname{#1}\thmnote{~#3}}%         Thm head spec
 
 
 \usepackage[]{mdframed}
@@ -70,19 +70,6 @@
 	]{#1}{#2}[#4]%
 }
 
-
-\newcommand{\mytheoremnocount}[3]{%
-	\newmdtheoremenv[
-	hidealllines=true,
-	leftline=true,
-	skipabove=0pt,
-	innertopmargin=-5pt,
-	innerbottommargin=2pt,
-	linewidth=4pt,
-	innerrightmargin=0pt,
-	linecolor=#3,
-	]{#1}{#2}%
-}
 \newcommand{\myoctheorem}[4]{%
 	\newmdtheoremenv[
 	hidealllines=true,
@@ -119,16 +106,16 @@
 \myoctheorem{oc-definition}{Definition}{algebraic-amber}{oc-counter}
 
 \theoremstyle{no-num-style}
-\mytheoremnocount{td-sol}{Solution}{verdant}
-\mytheoremnocount{no-num-definition}{Definition}{algebraic-amber}
-\mytheoremnocount{no-num-theorem}{Théorème}{algebraic-amber}
-\mytheoremnocount{oc-intro}{Introduction}{quadratic-quartz}
-\mytheoremnocount{oc-proof}{Preuve}{verdant}
-\mytheoremnocount{oc-young}{Formule de Taylor à l'ordre 2}{verdant}
-\mytheoremnocount{oc-notation}{Notation}{matrix-mist}
+\mytheorem{td-sol}{Solution}{verdant}{}
+\mytheorem{no-num-definition}{Définition}{algebraic-amber}{}
+\mytheorem{no-num-theorem}{Théorème}{algebraic-amber}{}
+\mytheorem{oc-intro}{Introduction}{quadratic-quartz}{}
+\mytheorem{oc-proof}{Preuve}{verdant}{}
+\mytheorem{oc-young}{Formule de Taylor à l'ordre 2}{verdant}{}
+\mytheorem{oc-notation}{Notation}{matrix-mist}{}
 \mytheorem{rappel}{Rappel}{matrix-mist}{section}
-\mytheoremnocount{myproof}{Preuve}{verdant}
-\mytheoremnocount{td-exo}{Exercice}{calculus-coral}
+\mytheorem{myproof}{Preuve}{verdant}{}
+\mytheorem{td-exo}{Exercice}{calculus-coral}{}
 \numberwithin{oc-counter}{subsection}
 
 %---------------
