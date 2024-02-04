@@ -1,4 +1,5 @@
 $.aux
 $.log
-/output/
+*/output/*
 $.synctex.gz
+$.pdf
