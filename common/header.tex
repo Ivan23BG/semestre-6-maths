@@ -57,65 +57,65 @@
 
 \usepackage[]{mdframed}
 
-\newcommand{\mytheorem}[4]{%
-	\newmdtheoremenv[
-	hidealllines=true,
-	leftline=true,
-	skipabove=0pt,
-	innertopmargin=-5pt,
-	innerbottommargin=2pt,
-	linewidth=4pt,
-	innerrightmargin=0pt,
-	linecolor=#3,
-	]{#1}{#2}[#4]%
-}
-
-\newcommand{\myoctheorem}[4]{%
-	\newmdtheoremenv[
-	hidealllines=true,
-	leftline=true,
-	skipabove=0pt,
-	innertopmargin=-5pt,
-	innerbottommargin=2pt,
-	linewidth=4pt,
-	innerrightmargin=0pt,
-	linecolor=#3,
-	]{#1}[#4]{#2}%
+\newcommand{\mytheorem}[5]{%
+	\ifstrequal{#5}{o}{%
+		\newmdtheoremenv[
+		hidealllines=true,
+		leftline=true,
+		skipabove=0pt,
+		innertopmargin=-5pt,
+		innerbottommargin=2pt,
+		linewidth=4pt,
+		innerrightmargin=0pt,
+		linecolor=#3,
+		]{#1}[#4]{#2}%
+	}{%
+		\newmdtheoremenv[
+		hidealllines=true,
+		leftline=true,
+		skipabove=0pt,
+		innertopmargin=-5pt,
+		innerbottommargin=2pt,
+		linewidth=4pt,
+		innerrightmargin=0pt,
+		linecolor=#3,
+		]{#1}{#2}[#4]%
+	}%
 }
 
 \theoremstyle{gen-style}
-\mytheorem{proposition}{Proposition}{divergent-denim}{section}
-\mytheorem{propdef}{Proposition - Définition}{divergent-denim}{section}
-\mytheorem{theorem}{Théorème}{quadratic-quartz}{section}
-\mytheorem{lemme}{Lemme}{quadratic-quartz}{section}
-\mytheorem{example}{Exemple}{quadratic-quartz}{section}
-\mytheorem{remark}{Remarque}{matrix-mist}{section}
-\mytheorem{notation}{Notation}{matrix-mist}{section}
-\mytheorem{exercise}{Exercice}{calculus-coral}{section}
-\mytheorem{exercice}{Exercice}{calculus-coral}{section}
-\mytheorem{definition}{Definition}{algebraic-amber}{section}
+\mytheorem{proposition}{Proposition}{divergent-denim}{section}{}
+\mytheorem{propdef}{Proposition - Définition}{divergent-denim}{section}{}
+\mytheorem{theorem}{Théorème}{quadratic-quartz}{section}{}
+\mytheorem{lemme}{Lemme}{quadratic-quartz}{section}{}
+\mytheorem{example}{Exemple}{quadratic-quartz}{section}{}
+\mytheorem{remark}{Remarque}{matrix-mist}{section}{}
+\mytheorem{notation}{Notation}{matrix-mist}{section}{}
+\mytheorem{exercise}{Exercice}{calculus-coral}{section}{}
+\mytheorem{exercice}{Exercice}{calculus-coral}{section}{}
+\mytheorem{definition}{Definition}{algebraic-amber}{section}{}
 
 \newcounter{oc-counter}
-\myoctheorem{oc-proposition}{Proposition}{divergent-denim}{oc-counter}
-\myoctheorem{oc-propdef}{Proposition - Définition}{divergent-denim}{oc-counter}
-\myoctheorem{oc-theorem}{Théorème}{divergent-denim}{oc-counter}
-\myoctheorem{oc-lemme}{Lemme}{quadratic-quartz}{oc-counter}
-\myoctheorem{oc-example}{Exemple}{quadratic-quartz}{oc-counter}
-\myoctheorem{oc-remark}{Remarque}{matrix-mist}{oc-counter}
-\myoctheorem{oc-exercise}{Exercice}{calculus-coral}{oc-counter}
-\myoctheorem{oc-definition}{Definition}{algebraic-amber}{oc-counter}
+\mytheorem{oc-proposition}{Proposition}{divergent-denim}{oc-counter}{o}
+\mytheorem{oc-propdef}{Proposition - Définition}{divergent-denim}{oc-counter}{o}
+\mytheorem{oc-theorem}{Théorème}{divergent-denim}{oc-counter}{o}
+\mytheorem{oc-lemme}{Lemme}{quadratic-quartz}{oc-counter}{o}
+\mytheorem{oc-example}{Exemple}{quadratic-quartz}{oc-counter}{o}
+\mytheorem{oc-remark}{Remarque}{matrix-mist}{oc-counter}{o}
+\mytheorem{oc-exercise}{Exercice}{calculus-coral}{oc-counter}{o}
+\mytheorem{oc-definition}{Definition}{algebraic-amber}{oc-counter}{o}
 
 \theoremstyle{no-num-style}
-\mytheorem{td-sol}{Solution}{verdant}{}
-\mytheorem{no-num-definition}{Définition}{algebraic-amber}{}
-\mytheorem{no-num-theorem}{Théorème}{algebraic-amber}{}
-\mytheorem{oc-intro}{Introduction}{quadratic-quartz}{}
-\mytheorem{oc-proof}{Preuve}{verdant}{}
-\mytheorem{oc-young}{Formule de Taylor à l'ordre 2}{verdant}{}
-\mytheorem{oc-notation}{Notation}{matrix-mist}{}
-\mytheorem{rappel}{Rappel}{matrix-mist}{section}
-\mytheorem{myproof}{Preuve}{verdant}{}
-\mytheorem{td-exo}{Exercice}{calculus-coral}{}
+\mytheorem{td-sol}{Solution}{verdant}{}{}
+\mytheorem{no-num-definition}{Définition}{algebraic-amber}{}{}
+\mytheorem{no-num-theorem}{Théorème}{algebraic-amber}{}{}
+\mytheorem{oc-intro}{Introduction}{quadratic-quartz}{}{}
+\mytheorem{oc-proof}{Preuve}{verdant}{}{}
+\mytheorem{oc-young}{Formule de Taylor à l'ordre 2}{verdant}{}{}
+\mytheorem{oc-notation}{Notation}{matrix-mist}{}{}
+\mytheorem{rappel}{Rappel}{matrix-mist}{section}{}
+\mytheorem{myproof}{Preuve}{verdant}{}{}
+\mytheorem{td-exo}{Exercice}{calculus-coral}{}{}
 \numberwithin{oc-counter}{subsection}
 
 %---------------
