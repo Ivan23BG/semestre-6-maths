@@ -495,4 +495,25 @@
 				f(y)>f(x)+f'(x)\cdot(y-x)
 			\end{aligned}\]
 	\end{myproof}
+	
+	\begin{oc-remark}
+		En analyse fonctionnelle, un opérateur 
+			\[\begin{aligned}
+				T\colon X\to X^\ast
+			\end{aligned}\]
+		sur un espace vectoriel topologique $X$ est dit \defemph{opérateur monotone} si
+			\[\begin{aligned}
+				\forall u,v\in X,(T_u-T_v,u-v)\ge 0
+			\end{aligned}\]
+			
+		
+	\end{oc-remark}
+	\begin{oc-proposition}
+		Soit $U$ ouvert convexe de $\bb R^n$ et $f\colon U\to \bb R$ de classe $\scr C^1$. Alors $f$ est convexe si et seulement si $f'$ est monotone sur $U$, c'est à dire :
+			\[\begin{aligned}
+				\forall (u,v)\in U,(f'(v)-f'(u))\cdot (v-u)\ge 0
+			\end{aligned}\]
+		De plus, $f$ est strictement convexe si et seulement si $f$ est strictement monotone.
+		
+	\end{oc-proposition}
 \end{document}
