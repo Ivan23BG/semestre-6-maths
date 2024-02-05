@@ -447,16 +447,52 @@
 		Soient $(u,v)\in U\times U$ et $t\in\oo{0,1}$.
 		
 		On pose $x=tu+(1-t)v$ et $y=u$. On a alors
-			\[
-			\begin{aligned}\label{eq1}
-				f(u)\ge f(tu+(1-t)v+f'(tu+(1-t)v)\cdot((1-t)(u-v))
-			\end{aligned}\]
+			\[\label{eq1}
+			f(u)\ge f(tu+(1-t)v+f'(tu+(1-t)v)\cdot((1-t)(u-v))\tag{1}
+			\]
 			
 		On pose $x=tu+(1-t)v$ et $y=v$. On a alors
-			\[
-			\begin{aligned}\label{eq2}
-				f(u)\ge f(tu+(1-t)v+f'(tu+(1-t)v)\cdot(t(v-u))
+			\[\label{eq2}
+			f(u)\ge f(tu+(1-t)v+f'(tu+(1-t)v)\cdot(t(v-u))\tag{2}
+			\]
+		La combinaison linéaire $t\hyperref[eq1]{(1)}+(1-t)\hyperref[eq2]{(2)}$ donne alors 
+			\[\begin{aligned}
+				tf(u)+(1-t)f(v)\ge f(tu+(1-t)v)
 			\end{aligned}\]
-		La combinaison linéaire
+		Donc $f$ est convexe.
+		
+		En appliquant le même raisonnement avec des inégalités strictes on peut montrer que si
+			\[\begin{aligned}
+				f(y)>f(x)+f'(x)\cdot(y-x)
+			\end{aligned}\]
+		alors $f$ est strictement convexe.
+		
+		Enfin, supposons $f$ strictement convexe.
+		
+		On considère 
+			\[\begin{aligned}
+				x,y\in U,x\ne y,t\in\oo{0, 1},w=tx+(1-t)y
+			\end{aligned}\]
+		On a $f$ convexe par hypothèse donc, d'après ce qui précède, on a
+			\[\begin{aligned}
+				f(w)-f(x)\ge f'(x)\cdot (w-x)
+			\end{aligned}\]
+		Or 
+			\[\begin{gathered}
+				f(w)< tf(x)+(1-t)f(y)\\
+				\text{et }w-x=(1-t)(y-x)
+			\end{gathered}\]
+		Ainsi, on obtient :
+			\[\begin{aligned}
+				tf(x)+(1-t)f(y)-f(x)>f'(x)\cdot((1-t)(y-x))
+			\end{aligned}\]
+		d'où
+			\[\begin{aligned}
+				(1-t)(f(y)-f(x))>(1-t)f'(x)\cdot(y-x)
+			\end{aligned}\]
+		et donc
+			\[\begin{aligned}
+				f(y)>f(x)+f'(x)\cdot(y-x)
+			\end{aligned}\]
 	\end{myproof}
 \end{document}
