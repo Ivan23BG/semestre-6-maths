@@ -14,9 +14,9 @@
 		On considère $G=\glx2(\bb K)$ et son action sur $\bb K^n$. Pour $n=2$, la base standard de $\bb K^2$ est $\{e_1, e_2\}$. Alors, $G\cdot e_1=\bb K^2\setminus\{0\}$ car
 		\[\begin{aligned}
 			\underset{\in G\cdot e_1}{
-			\begin{pmatrix*}
-			x\\
-			y
+				\begin{pmatrix*}
+					x\\
+					y
 			\end{pmatrix*}}
 			=
 			\begin{cases}
@@ -34,20 +34,20 @@
 			\end{cases}
 		\end{aligned}\]
 		Alors $G\cdot 0=\{0\}$. L'action est donc transitive sur $\bb K^2\setminus\{0\}$ et $0$ est l'unique point fixe. De plus
-			\[\begin{aligned}
-				G_{e_1}= \left\{
-				\begin{pmatrix*}
-					1&b\\0&d
-				\end{pmatrix*}
-				\bigg{\mid}~
-				\begin{matrix}
+		\[\begin{aligned}
+			G_{e_1}= \left\{
+			\begin{pmatrix*}
+				1&b\\0&d
+			\end{pmatrix*}
+			\bigg{\mid}~
+			\begin{matrix}
 				b,d\in \bb K\\
 				d\ne 0
-				\end{matrix}
-				\right\}
-			\end{aligned}\]
+			\end{matrix}
+			\right\}
+		\end{aligned}\]
 		Cela implique $\bb K^2$ n'est pas homogène (l'action n'est pas transitive) et l'action n'est pas libre.
-			\begin{definition}
+		\begin{definition}
 			Soit $\bb P^{n-1}(\bb K)$ l'\defemph{espace projectif de dimension $n-1$}. C'est l'ensemble des droites vectorielles de $\bb K^n$.
 			
 			De manière équivalente, $\bb P^{n-1}(\bb K)$ est le quotient de $\bb K^n\setminus\{0\}$ par la relation d'équivalence
@@ -59,11 +59,11 @@
 			Si $x\in X$, sa classe d'équivalence notée $\cequiv{x}\in X/\sim$ correspond à $\{x'\in X\mid x'\sim x\}$
 		\end{definition}\,\\
 		$G$ agit sur $\bb P^{n-1}(\bb K)$ par 
-			\[\begin{aligned}
-				A\cdot\cequiv{v}=\cequiv{Av}\quad\forall A\in G,v\in \bb K^n
-			\end{aligned}\]
+		\[\begin{aligned}
+			A\cdot\cequiv{v}=\cequiv{Av}\quad\forall A\in G,v\in \bb K^n
+		\end{aligned}\]
 	\end{example}
-
+	
 	\medspace
 	\begin{td-exo}
 		Considérer les actions suivantes :
@@ -79,68 +79,68 @@
 		\,
 		\begin{enumerate}[label=$(\roman*)$]
 			\item Si $n>2$, l'action n'est pas libre car 
-				\[\begin{aligned}
-					\st(n)=\mathfrak{S}_{n-1}<\mathfrak{S}_n
-				\end{aligned}\]
-				L'action est transitive car on a
-					\[\begin{aligned}
-						i = (i~j)\cdot j\quad\forall 1\le i,j\le n
-					\end{aligned}\]
-				Si $n\le 2$, alors l'action est libre et transitive.
+			\[\begin{aligned}
+				\st(n)=\mathfrak{S}_{n-1}<\mathfrak{S}_n
+			\end{aligned}\]
+			L'action est transitive car on a
+			\[\begin{aligned}
+				i = (i~j)\cdot j\quad\forall 1\le i,j\le n
+			\end{aligned}\]
+			Si $n\le 2$, alors l'action est libre et transitive.
 			\item L'action est transitive car l'action de $G$ sur $\bb K^2\setminus\{0\}$ l'est. Donc 
-				\[\begin{aligned}
-					\forall v\in \bb K^2\setminus\{0\},\exists A\in G\colon Ae_1=v
-				\end{aligned}\]
+			\[\begin{aligned}
+				\forall v\in \bb K^2\setminus\{0\},\exists A\in G\colon Ae_1=v
+			\end{aligned}\]
 			Soit que 
-				\[\begin{aligned}
-					A\cdot\cequiv{e_1} = \cequiv{A\cdot e_1} = \cequiv{v}
-				\end{aligned}\]
+			\[\begin{aligned}
+				A\cdot\cequiv{e_1} = \cequiv{A\cdot e_1} = \cequiv{v}
+			\end{aligned}\]
 			Il suffit de considérer le même $A$ qu'avant $($pour un choix quelconque d'un représentant $v$ de $\cequiv{v})$.
 			
 			Il vient $G\cdot\cequiv{e_1}=\bb P^1(\bb K)$ et
-				\[\begin{aligned}
-					G_{\cequiv{e_1}}=
-					\begin{cases}
-						\begin{pmatrix*}
-							a&b\\
-							0&d
-						\end{pmatrix*}
-						\bigg \mid~
-						\begin{matrix*}
-							a,b,d\in \bb K\\
-							ad\ne 0
-						\end{matrix*}
-					\end{cases}
-				\end{aligned}\]
+			\[\begin{aligned}
+				G_{\cequiv{e_1}}=
+				\begin{cases}
+					\begin{pmatrix*}
+						a&b\\
+						0&d
+					\end{pmatrix*}
+					\bigg \mid~
+					\begin{matrix*}
+						a,b,d\in \bb K\\
+						ad\ne 0
+					\end{matrix*}
+				\end{cases}
+			\end{aligned}\]
 			Donc l'action n'est pas libre
 			
 			\item \,
-				\begin{rappel}
-					On a
-					\[\begin{aligned}
-						&R\cdot\zeta=e^{\frac{2\pi i}n}\zeta\\
-						&S\cdot\zeta=\ol\zeta
-					\end{aligned}\]
-					Avec
-						\[\begin{aligned}
-							R&=
-								\begin{pmatrix*}
-									\cos\frac{2\pi}n&-\sin\\
-									\sin\frac{2\pi}n&\cos
-								\end{pmatrix*}\\
-							S&=
-								\begin{pmatrix*}
-									1&0\\
-									0&-1
-								\end{pmatrix*}
-						\end{aligned}\]
+			\begin{rappel}
+				On a
+				\[\begin{aligned}
+					&R\cdot\zeta=e^{\frac{2\pi i}n}\zeta\\
+					&S\cdot\zeta=\ol\zeta
+				\end{aligned}\]
+				Avec
+				\[\begin{aligned}
+					R&=
+					\begin{pmatrix*}
+						\cos\frac{2\pi}n&-\sin\\
+						\sin\frac{2\pi}n&\cos
+					\end{pmatrix*}\\
+					S&=
+					\begin{pmatrix*}
+						1&0\\
+						0&-1
+					\end{pmatrix*}
+				\end{aligned}\]
 				
-					\[\begin{aligned}
-						\scr D_n&\to\mathfrak{S}_{\mu_n}\\
-						R^j&\mapsto\left[\zeta^k\mapsto e^{\frac{2j\pi i}n}\zeta^k\right]\\
-						R^jS&\mapsto\left[\zeta^k\mapsto e^{\frac{2j\pi i}n}\zeta^{-k}\right]
-					\end{aligned}\]
-				\end{rappel}
+				\[\begin{aligned}
+					\scr D_n&\to\mathfrak{S}_{\mu_n}\\
+					R^j&\mapsto\left[\zeta^k\mapsto e^{\frac{2j\pi i}n}\zeta^k\right]\\
+					R^jS&\mapsto\left[\zeta^k\mapsto e^{\frac{2j\pi i}n}\zeta^{-k}\right]
+				\end{aligned}\]
+			\end{rappel}
 			
 			L'action de $\scr D_n$ sur $\mu_n$ n'est pas libre car $S\in\st(1)$ et donc $S\cdot 1=\ol 1=1$.
 			
@@ -149,13 +149,13 @@
 			\item Si $H<\mathfrak{S}_n$ est un sous-groupe d'ordre 2, c'est que $H=\{\id, \sigma\}$ pour tout $\sigma\in \mathfrak{S}_n$.
 			
 			On a donc $\sigma\in\st(\{1, \sigma\})$ pour $\sigma$ d'ordre 2 car
-				\[\begin{aligned}
-					\left\{\sigma 1\sigma^{-1},\sigma\sigma\sigma^{-1}\right\}=\left\{1, \sigma\right\}
-				\end{aligned}\]
+			\[\begin{aligned}
+				\left\{\sigma 1\sigma^{-1},\sigma\sigma\sigma^{-1}\right\}=\left\{1, \sigma\right\}
+			\end{aligned}\]
 			Pour $\sigma = (i~j)$ et $\phi\in\mathfrak{S}_n$ quelconque, on a
-				\[\begin{aligned}
-					\phi\circ\sigma\circ\phi^{-1}=\left(\phi(i)~\phi(j)\right)
-				\end{aligned}\]
+			\[\begin{aligned}
+				\phi\circ\sigma\circ\phi^{-1}=\left(\phi(i)~\phi(j)\right)
+			\end{aligned}\]
 			Donc $<(1~2)(3~4)>\notin\orb(<1~2>)$ pour $n\ge 4$.
 			
 			En conclusion l'action n'est jamais libre, et elle n'est pas transitive pour $n\ge 4$.
@@ -163,8 +163,324 @@
 	\end{td-sol}
 	\medspace
 	\begin{td-exo}
-	Soit $||\_||$ la norme euclidienne usuelle de $\bb R^n$ et soit $0_n$ le sous-groupe de $\glx n(\bb R)$ dont les éléments sont les matrices $A\in\glx n(\bb R)$ telles que $||Av||=||v||$ pour tout $v\in\bb R^n$. On appelle $0_n$ le \defemph{groupe orthogonal de dimension $n$}. Soit $S^{n-1}\coloneq \{v\in \bb R^n\mid||v||=1\}$ la \defemph{sphère de dimension $n-1$}. Montrer que $O_n$ agit transitivement, mais pas librement sur $S^{n-1}$ pour tout $n>1$.
+		Soit $||\_||$ la norme euclidienne usuelle de $\bb R^n$ et soit $0_n$ le sous-groupe de $\glx n(\bb R)$ dont les éléments sont les matrices $A\in\glx n(\bb R)$ telles que $||Av||=||v||$ pour tout $v\in\bb R^n$. On appelle $0_n$ le \defemph{groupe orthogonal de dimension $n$}. Soit $S^{n-1}\coloneq \{v\in \bb R^n\mid||v||=1\}$ la \defemph{sphère de dimension $n-1$}. Montrer que $O_n$ agit transitivement, mais pas librement sur $S^{n-1}$ pour tout $n>1$.
 	\end{td-exo}
 	
+	\begin{td-sol}
+		Soit $n \geq 2$
+		
+		$O_n = \{A\in \glx n (\bb R)\ \mid~ A^{-1} = A^T\}$
+		
+		$O_n \act S^{n-1}$, l'action de $O_n$ sur $S^{n-1}$ n'est pas libre, car 
+		
+		\[\begin{aligned}
+			i: O_{n-1} \to O_n\\
+			A \mapsto \begin{pmatrix*}
+				A&\begin{matrix*} 0 \\ \vdots\\ 0\end{matrix*}\\
+				0 \hdots 0 &1
+			\end{pmatrix*}
+		\end{aligned}\]
+		
+		$i(O_{n-1}) \subset \st{\begin{pmatrix*} 0 \\ \vdots\\ 0 \\ 1\end{pmatrix*}}$
+		
+		$\supset$ 
+		Soit $x\in S^{n-1}$. On considère la base $\mathcal{B} = (e_1, e_2, \dots, e_n)$ canonique. $x \neq 0_{\bb R^n}$,
+		on peut construire une base $\mathcal{B}' = (x, e_1', e_2', \dots, e_n')$ par Gram-Schmidt on peut
+		l'orthogonaliser et obtenir $\mathcal{B}'' = (x, e_1'', e_2'', \dots, e_n'')$. Soit 
+		$A$ la matrice de passage entre $\mathcal{B}''$ et $\mathcal{B}$, $x = A\cdot e_1$, $A$
+		est orthogonale car $A^T A = (\langle e_i'', e_j''\rangle)_{i,j} = (S_{i,j})_{i,j}$
+	\end{td-sol}
 	
+	\begin{td-exo}
+		L'action de $\scr D_n$ sur les racines de l'unité $\mu_n$ est-elle une action 
+		par morphismes de groupe ?
+	\end{td-exo}
+	\begin{td-sol}
+		$\scr D_n$ n'agit pas par homomorphisme sur $\mu_n$. En effet, si 
+		$\zeta = e^{\frac{2\pi i}{n}}$, alors $R(1) = \zeta$ donc $R$ n'agit pas 
+		par homomorphisme. $R(\zeta^k) = \zeta^{k+1}$ $R(\zeta^2) = \zeta^3 \neq \zeta^4
+		= R(\zeta)R(\zeta)$ 
+	\end{td-sol}
+	\begin{td-exo}
+		Soit $H < G$ un sous-groupe. Soit $G_L$ l'ensemble $G$ muni de l'action 
+		par translation à gauche de $H$, à savoir, $\rho_L(h)(g) = hg$ pour 
+		tout $h\in H$ et $g\in G_L$. Soit $G_R$ l'ensemble $G$ muni de l'action 
+		par translation à droite de $H$, à savoir, $\rho_R(h)(g) = gh^{-1}$ pour 
+		tout $h\in H$ et $G\in G_R$. Montrer que la fonction ${\_}^{-1}: G_L \to G_R$ 
+		est une bijection $H-$équivariante.
+	\end{td-exo}
+	\begin{td-sol}
+		(Déjà fait en cours) "homomorphisme" = "morphisme de groupes".
+	\end{td-sol}
+	\begin{td-exo}
+		En utilisant l'action de $\glx{2}(\bb F_2)$ sur l'espace projectif $\bb P^1(\bb F_2)$ 
+		montrer que $\glx{2}(\bb F_2) \cong \mathfrak{S}_3$. Similairement, utiliser
+		l'action de $\scr D_3$ sur $\mu_3$ pour montrer que $\scr D_3 \cong \mathfrak{S}_3$.
+	\end{td-exo}
+	\begin{td-sol}
+		$\bb P^1(\bb F_2) = \{[e_1], [e_2], [e_1+e_2]\}$
+		
+		$\glx{2}(\bb F^2) \act \bb P^1(\bb F_2)$ par $\rho: \glx{2}(\bb F_2) \to \mathfrak{S}_{\bb P^1(\bb F_2)} \cong
+		\mathfrak{S}_3$
+		
+		$A\in \ker \rho \implies A[e_1] = [e_1]
+		\implies A[e_2] = [e_2] \implies A = \id_2 \implies \rho$ injectif.
+		
+		Mais $| \glx{2}(\bb F_2) | = | \mathfrak{S}_{\bb P^1(\bb F_2)} | = 6$
+		$\implies \rho$ isomorphe.
+		
+		$
+		\begin{pmatrix}
+			0 & 1 \\ 1 & 0
+		\end{pmatrix} \to \begin{pmatrix}
+			1 & 2
+		\end{pmatrix}
+		$
+		
+		$
+		\begin{pmatrix}
+			1 & 1 \\ 0 & 1
+		\end{pmatrix} \to \begin{pmatrix}
+			2 & 3
+		\end{pmatrix}
+		$
+		
+		$
+		\begin{pmatrix}
+			0 & 1 \\ 1 & 1
+		\end{pmatrix} \to \begin{pmatrix}
+			1 & 2 & 3
+		\end{pmatrix}
+		$
+		
+		$\mu_3 = \{1,\zeta,\zeta^2\}$ avec $\zeta = e^{\frac{2\pi i}{3}}$.
+		$\scr D \act \mu_3$ par $\rho: \scr D_3 \to \mathfrak{S}_{\mu_3} \cong \mathfrak{S}_{3}$
+		
+		$R^l S^i$, $\zeta^{l+k} = \begin{cases}\zeta^{l+k} \textrm{ si } j = 0\\
+			\zeta^{l-k} \textrm{ si } j = 1 \end{cases}$
+		
+		avec $0 \leq l \leq 2$ et $0\leq j\leq 1$. Donc $R^lS_j\in \ker \rho$
+		$\Longleftrightarrow l = j = 0 \implies \rho$ injectif mais 
+		$|\scr D_3| = |\mathfrak{S}_{\mu_3}| = 6 \implies \rho$ isomorphisme.
+	\end{td-sol}
+	
+	\begin{td-exo}
+		Exercice 6
+	\end{td-exo}
+	\begin{td-sol}
+		\begin{enumerate}[label=$(\roman*)$]
+			\item\,
+			
+			$\bb Z \times \bb R\to \bb R$
+			
+			$(n,t) \mapsto n+t$ 
+			
+			$\varphi : \bb R/\bb Z \to S^1_{2t\pi i}$
+			
+			$\orb t = [t] \mapsto e^{2t\pi i}$
+			$\varphi$ bien définie car $\varphi(n+t) = e^{2(n+t)\pi i} = 
+			e^{2t\pi i} = \varphi(t)$
+			
+			$\varphi$ injective $\varphi(t) = \varphi(t') \implies e^{2t\pi i} = 
+			e^{2t'\pi i} \implies t - t'\in\bb Z$
+			
+			$\varphi$ sujective car $e^{v_i} = \varphi(\frac{v}{2\pi}) \forall e^{v_i}\in S^1$
+			
+			\item $X = \bb R^2\setminus \Big\{\begin{pmatrix}
+				0 \\ 0
+			\end{pmatrix}\Big\} \cong \bb C^{X}$
+			
+			$\bb R^X \times X \to X$ 
+			
+			$(\lambda, z) \mapsto \lambda z$
+			
+			$\varphi: X/\bb R^X \to S^1$
+			
+			$[z] \mapsto \frac{z^2}{|z^2|}$
+		\end{enumerate}
+	\end{td-sol}
+
+	\begin{corollaire}
+		Soit $X$ un $G$-ensemble homogène (i.e. une seule orbite). Alors, il existe $H$ sous groupe de $G$ et $\varphi G/H\to X$ une bijection $G$-équivariante
+	\end{corollaire}
+
+	\begin{myproof}
+		On choisit $x\in X$, on pose $H=G_X$ et on applique le dernier.
+	\end{myproof}
+
+	\begin{corollaire}
+		On prend $G\act X$ avec $G,X$ des ensembles finis. Alors, les propositions suivantes sont vraies :
+			\begin{enumerate}[label=$(\roman*)$]
+				\item $|{G\cdot X}|=\ff{G\colon G_X}\quad\forall x\in X$
+				\item $X=(G\cdot X_1)\sqcup\cdots\sqcup (G\cdot X_n)$ soit
+					\[\begin{aligned}
+						|X| = \sum_{i=1}^n|{G\cdot X_i}|=\sum_{i=1}^n\frac{| G|}{|{G_{X_i}}|}
+					\end{aligned}\]
+			\end{enumerate}
+	\end{corollaire}
+	\begin{myproof}
+		\begin{enumerate}[label=$(\roman*)$]
+			\item Si 
+				\[\begin{aligned}
+					\varphi_x\colon &G/G_X&\to G\cdot X\\
+					&gG_X&\mapsto g\cdot x
+				\end{aligned}\] est une bijection alors
+			\[\begin{aligned}
+				|G\cdot x|=|G/G_X|=\colon\ff{G\colon G_X}
+			\end{aligned}\]
+			\item Soit $X=\bigsqcup_{i=1}^n G\cdot X_i$. Alors
+				\[\begin{aligned}
+					|X|=\sum_{i=1}^n|G\cdot x_i|&=\sum_{i=1}^n|G/G_{X_i}\\
+					&=\sum_{i=1}^n\frac{|G|}{|G_{x_i}|}
+				\end{aligned}\]
+		\end{enumerate}
+		
+	\end{myproof}
+	\begin{td-sol}[Suite]
+		Pour le troisième point on a
+			\[\begin{aligned}
+				O_n\times S^{n-1}&\to S^{n-1}\\
+				(A,v)&\mapsto Av
+			\end{aligned}\]
+		$\st(e_n)=i(O_{n-1})$ car
+			\[\begin{aligned}
+				~&
+				\begin{pmatrix}
+					A&\vline&0\\
+					\hline\\
+					c&\vline&1
+				\end{pmatrix}
+				=
+				\begin{pmatrix}
+					A^T&c^T\\
+					\hline\\
+					0&1
+				\end{pmatrix}\\
+				\Longleftrightarrow&
+				\begin{pmatrix}
+					A^T&C^T\\
+					\hline\\
+					0\cdot0&1
+				\end{pmatrix}
+				\begin{pmatrix}
+					A&\begin{matrix}
+						0\\\vdots\\0
+					\end{matrix}\\
+					\hline\\
+					c&1
+				\end{pmatrix}
+				=I_n=
+				\begin{pmatrix}
+					A&\begin{matrix}
+						0\\\vdots\\0
+					\end{matrix}\\
+					\hline\\
+					c&1
+				\end{pmatrix}
+				\begin{pmatrix}
+					A^T&C^T\\
+					\hline\\
+					0\cdot0&1
+				\end{pmatrix}
+			\\\Longleftrightarrow&
+			\begin{cases}
+				A^TA+C^TC=I_{n-1}=AA^T\\
+				C^T=\begin{pmatrix}
+					0\\\vdots\\0
+				\end{pmatrix}=AC^T\\
+			C=\begin{pmatrix}
+				0\cdots0
+			\end{pmatrix}=CA^T
+			\end{cases}\\
+		\Longrightarrow&C=\begin{pmatrix}
+			0\cdots0
+		\end{pmatrix},A\in O_{n-1}
+			\end{aligned}\]
+		Pour résumer
+			\begin{itemize}
+				\item On avait vu dans l'ex 2 que $i(O_{n-1})\sub \st(e_n)$\\
+				\item On a montré que $\st(e_n)\sub i(O_{n-1})$.
+			\end{itemize}
+		Comme cette action est transitive, on obtient (grâce au corollaire) que 
+			\[\begin{aligned}
+				O_n/i(O_{n-1})&\to S^{n-1}\\
+				\ff A&\mapsto Ae_n
+			\end{aligned}\]
+		est une bijection.
+	\end{td-sol}
+	\begin{td-exo}
+		Soit $p$ premier et $|G|=p^n$. On a
+			\begin{enumerate}[label=$(\roman*)$]
+				\item 
+				$G\act X$ fini, $x\in X\colon |\orb(X)|>1$ implique
+					\[\begin{aligned}
+						|\orb(X)|\equiv 0\pmod p
+					\end{aligned}\]
+			\end{enumerate}
+	\end{td-exo}
+	\begin{td-sol}
+		On considère $\varphi_X\colon G/\st(x)\to\orb(x)$ bijection implique
+			\[\begin{aligned}
+				|\orb(x)|=|G/\st(x)|=|G|/|\st(x)|
+			\end{aligned}\]
+		ce qui implique
+			\[\begin{aligned}
+				|\orb(x)|\big||G|=p^n
+			\end{aligned}\]
+		mais $|\orb(x)|>1\Longrightarrow|\orb(x)\equiv 0\pmod p$.
+		($\ast$) Donc, grâce au corollaire 2, si $X=\orb(x_1)\sqcup\cdots\sqcup\orb(x_n)$
+		avec $|\orb(x_1)|=1\forall 1\le i\le l$ (donc $x^G=\{x_i\mid 1\le i\le l\}$)
+		
+		$\ast$ donne alors
+			\[\begin{aligned}
+				|X|&=\sum_{i=1}^l|\orb(x_i)|+\sum_{i=l+1}^n|\orb(x_i)|\\
+				&=|X^G|+\sum_{i=l+1}^n|\orb(x_i)|\\
+				&=|X^G|\pmod p
+			\end{aligned}\]
+		\medspace\medspace
+		\[\begin{gathered}
+			F=\{f\colon\bb Z/p\bb Z\to G\}\\
+			\bb Z/p\bb Z\times F\to F\\
+			(a,f)\to \left[a\cdot f\colon b\mapsto f(a+b)\right]
+		\end{gathered}\]
+		\begin{itemize}
+			\item $0\cdot f=f$ car $f(0+b)=f(b)\quad\forall b\in\bb Z$\\
+			\item 
+				\[\begin{aligned}
+					\left(a\cdot(b\cdot f)\right)(c)&=(b\cdot f)(a+c)\\&=f(a+b+c)\\&=\left((a+b)\cdot f\right)(c)\quad\forall a,b,c\in\bb Z_p
+				\end{aligned}\]
+			Les points fixes sont les fonctions constantes, car
+				\[\begin{aligned}
+					f(a)=(a\cdot f)(0)=f(0)\quad\forall a\in\bb Z_p
+				\end{aligned}\]
+		\end{itemize}
+	\medspace\medspace
+	\[\begin{gathered}
+		X=\left\{f\in F\big|\prod_{a\in\bb Z_p}f(a)=e\right\}
+	\end{gathered}\]
+	$X$ est stable car 
+		\[\begin{aligned}
+			\prod_{a\in\bb Z_p}f(a)=e&\Longrightarrow\prod_{a\in\bb Z_p}(b\cdot f)(a)\\
+			&=\prod_{a\in\bb Z_p}f(a+b)\\
+			&=\prod_{c\in\bb Z_p}f(c)=e\quad\forall b\in\bb Z_p\\
+			&\Longrightarrow bf\in X\quad\forall b\in\bb Z_p
+		\end{aligned}\]
+	$X$ est stable car 
+		\[\begin{aligned}
+			f\in X&\Longrightarrow f(0)f(1)\cdots f(p-1)=e\\
+			&\Longrightarrow(b\cdot f)(0)\cdots(b\cdot f)(p-1)=f(b)f(b+1)\cdots f(p-1)f(0)\cdots f(b-1)=g\\
+		\end{aligned}\]
+	Alors, $g^2=g\Longrightarrow g=e\forall b\in \bb Z_p$. Donc $X$ est stable par $\bb Z_p$.
+	
+	Les points fixes dans $X$ sont en bijection avec les éléments $g\in G$ tels que $g^p=e$ car
+		\[\begin{aligned}
+			f(0)\cdots f(p-1)=e=f(0)^p
+		\end{aligned}\]
+		Grâce à $(i)$
+			\[\begin{aligned}
+				|X|\equiv |X^{\bb Z_p}|\pmod p
+			\end{aligned}\]
+		Mais $|X|=|G|^{p-1}$ car on a $|G|$ choix pour $f(0)$ et $f(1)$ et ... a completer
+	\end{td-sol}
+
 \end{document}
