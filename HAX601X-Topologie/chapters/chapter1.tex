@@ -494,4 +494,187 @@
 		\begin{remark}
 			Une isométrie est un homéomorphisme.		
 		\end{remark}
+	
+	\section{Construction d'espaces topologiques}
+		\subsection{Sous-espaces}
+		On se place dans le cadre de $\bb R$ et $\bb R^2$. Même si intuitivement ces deux espaces sont différents, "ensemblistement" ils sont identiques :
+		
+		Il existe $\varphi \colon\bb R\to\bb R^2$ bijective. Il faut d'abord voir que d'après le corollaire de Cantor Bernstein, on a
+			\[\begin{aligned}
+				|X\times Y|=\max(|X|,|Y|)
+			\end{aligned}\]
+		
+		On va travailler sur $\oo{0, 1}\simeq \bb R$ et on considère
+			\[\begin{aligned}
+				x&=0,x_1x_2\dots x_n\in \oo{0, 1}\\
+				y&=0,y_1y_2\dots y_n\in\oo{0,1}
+			\end{aligned}\]
+		On considère alors
+			\[\begin{aligned}
+				\varphi\colon &\oo{0, 1}^2&\to &\oo{0, 1}\\
+				&(x,y)&\mapsto &0, x_1y_1x_2y_2\dots x_ny_n
+			\end{aligned}\]
+		qui est alors clairement une bijection.
+		
+		Or, $\bb R^2$ n'est pas homéomorphe à $\bb R$.
+		\begin{definition}
+			Soit $X,\mathcal T$ un espace topologique et $A\sub X$. On pose
+				\[\begin{aligned}
+					\mathcal T_A=\left\{A\cap \overset\sim U\text{ avec }\overset\sim U\in\mathcal T\right\}
+				\end{aligned}\]
+		\end{definition}
+		
+		\begin{propdef}
+			$\mathcal T_A$ est une topologie sur $A$ appelée \defemph{topologie induite} par $\mathcal T$ sur $A$.
+		\end{propdef}
+	
+		\begin{myproof}
+			Laissée en exercice, il faut voir que
+				\[\begin{aligned}
+					\bigcap\bigcup=\bigcup\bigcap
+				\end{aligned}\]
+		\end{myproof}
+	
+		\begin{example}
+			On considère $(X,d)$ métrique avec $\mathcal T_d$ la topologie associée à $d$. On a alors
+				\[\begin{aligned}
+					A\sub X\rightsquigarrow(A,\underset{=\restr d{A\times A}}{\restr dA})\rightsquigarrow\mathcal T_{d_A}
+				\end{aligned}\]
+			où $\mathcal T_{d_A}$ est la topologie associée à $\restr dA$.
+		\end{example}
+	
+		\begin{proposition}
+			La topologie $\mathcal T_{d_A}$ associée à $d_A$ est la topologie induite par $\mathcal T_d$ sur $A$.
+		\end{proposition}
+	
+		\begin{example}
+			On considère 
+				\[\begin{aligned}
+					A=\ff{0, 1}\sub \left(\bb R, |\cdot|\right)
+				\end{aligned}\]
+			Alors, $\bof{\frac12,1}$ est ouvert pour la topologie induite dans $A$. Alors
+				\[\begin{aligned}
+					\bof{\frac12,1}=A\cap\boo{\frac12,\frac32}= B_{\bb R}(1,\frac12[\text{ ouvert}
+				\end{aligned}\]
+		\end{example}
+	
+		Dans la suite, tous les ensembles seront des espaces topologiques.
+		
+		\begin{proposition}
+			Soit $f\colon X\to Y$ continue et $A\sub X$. Alors, $\restr fA$ continue.
+			
+		\end{proposition}
+	
+		\begin{myproof}
+			On prend $V$ un ouvert dans $Y$, alors
+				\[\begin{aligned}
+					\restr fA^{-1}(V)=\underbrace{A\cap \underbrace{f^{-1}(V)}_{\text{ouvert dans }X}}_{\text{ouvert dans }A}
+				\end{aligned}\]
+		\end{myproof}
+	
+		\begin{remark}
+			Toutes les fonctions continues sur $A$ ne proviennent pas forcément de fonctions continues sur $X$.
+		\end{remark}
+	
+		\begin{example}
+			Il suffit de prendre $x\mapsto\frac1x$ sur $\bb R^\ast$. Cette fonction n'est pas la restriction d'une application continue de $\bb R\to\bb R$.
+		\end{example}
+		\begin{exercise}
+			Soit $X$ un espace topologique et $A\sub X$. Alors : 
+			\begin{center}
+				$A$ ouvert dans $X\quad\Longleftrightarrow\quad\mathcal T_A=\left\{U\sub X\text{ ouverts dans } X,U\sub A\right\}$
+			\end{center}
+		\end{exercise}
+		\begin{example}\,
+			\begin{enumerate}[label=$(\roman*)$]
+				\item 
+					\[\begin{aligned}
+						S^n=\left\{X\in\bb R^{n+1},||X||_2=1\right\}
+					\end{aligned}\]
+					La sphère $S^n$ correspond à
+					\begin{center}
+						\begin{tikzpicture}
+							\shade[ball color = gray!40, opacity = 0.4] (0,0) circle (2cm);
+							\draw (0,0) circle (2cm);
+							\draw (-2,0) arc (180:360:2 and 0.6);
+							\draw[dashed] (2,0) arc (0:180:2 and 0.6);
+							\fill[fill=black] (0,0) circle (1pt);
+							\draw[dashed] (0,0 ) -- node[above]{$r$} (2,0);
+						\end{tikzpicture}
+					\end{center}		
+				\item 
+					\[\begin{aligned}
+						\bb N\sub \bb R
+					\end{aligned}\]
+					qui a une topologie induite = discrète.
+					
+				\item 
+					\[\begin{aligned}
+						\bb Q\sub \bb R
+					\end{aligned}\]
+					qui a une topologie induite = le bordel
+			\end{enumerate}
+		\end{example}
+		\subsection{Base d'une topologie}
+			Soit $(X,\mathcal T)$ un espace topologique.
+			
+			\begin{definition}
+				On considère $\scr B\sub \scr P(X)$. $\scr B$ est une \defemph{base d'ouverts} pour $\mathcal T$ si tout ouvert de $X$ est réunion d'éléments de $\scr B$.
+			\end{definition}
+			
+			\begin{proposition}
+				On considère $B$ si et seulement si
+					\begin{center}
+						$U$ ouvert $\Longleftrightarrow$ pour tout $x\in U$, il existe $B_x\in\scr B$ avec $x\in B_x\sub U$.
+					\end{center}
+			\end{proposition}
+			\begin{myproof}
+				Laissée en exercice
+			\end{myproof}
+		
+			\begin{example}
+				\begin{enumerate}[label=$(\roman*)$]
+					\item 
+					Pour $(X,d)$ un espace métrique, on a
+					\[\begin{aligned}
+						\scr B=\left\{B(x,\varepsilon[,x\in X,\varepsilon>0\right\}
+					\end{aligned}\]
+				
+					\item 
+					Pour $(X,d)$ un espace métrique, on a
+					\[\begin{aligned}
+						\scr B=\left\{B(x,\frac1n[,x\in X,n\in\bb N^\ast\right\}
+					\end{aligned}\]
+					\item On se place dans $(\bb R^n,||\cdot||_2)$. Alors
+						\[\begin{aligned}
+							\scr B=\color{red}\underbrace{\color{black}\{B(\alpha,\frac1n[,\alpha\in\bb Q^N,n\in \bb N^\ast\}}_{\text{dénombrable}}
+						\end{aligned}\]
+					\item Pour $(X,\delta)$ un espace discret, l'ensemble des singletons est une base.
+					
+					\item $\scr B=\mathcal T$ est une base de $\mathcal T$.
+				\end{enumerate}
+			\end{example}
+		
+			\begin{proposition}
+				Soit $X$ un ensemble, $\scr B\sub\scr P(X)$ telle que
+					\begin{enumerate}[label=$(\roman*)$]
+						\item $\varnothing\in\scr B$
+						
+						\item Stable par intersection finie
+						
+						\item $\bigcup_{A\in \scr B}A=X$.
+					\end{enumerate}
+				alors, il existe une unique topologie $\mathcal T$ dont $\scr B$ est une base.
+			\end{proposition}
+			\begin{myproof}
+				On a
+					\begin{center}
+						$\mathcal T=\{$unions d'éléments de $\scr B\}$
+					\end{center}
+				Soit
+					\[\begin{aligned}
+						\mathcal T = \left\{\bigcup_{V\in S}V,S\sub \scr B\right\}
+					\end{aligned}\]
+				Qui est stable par intersection.
+			\end{myproof}
 \end{document}
