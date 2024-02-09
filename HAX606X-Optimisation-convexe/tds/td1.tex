@@ -2,14 +2,14 @@
 \input{../../common/header.tex}
 \usepackage[a4paper,hmargin=30mm,vmargin=30mm]{geometry}
 
-\title{\color{astral} \sffamily \bfseries TD1}
+\title{\color{astral} \sffamily \bfseries TD1 - Algorithmes unidimensionnels}
 \author{Ivan Lejeune\thanks{Cours inspiré de M. Marche}}
 \date{\today}
 % pdflatex -output-directory=output chapter1.tex && move /Y output\chapter1.pdf .\
 
 \begin{document}
 	\maketitle
-	\begin{td-exo}
+	\begin{td-exo}[1. Minimisation d'une fonction par dichotomie]
 		Soit $f\in\scr C^0(\ff{a,b},\bb R)$. On dit que $f$ est \defemph{unimodale} sur l'intervalle $\ff{a,b}$ si il existe un point $\ol x\in\ff{a,b}$ tel que $f$ soit strictement décroissante sur $\fo{a,\ol x}$ et strictement croissante sur $\of{\ol x, b}$.\\
 		
 		Pour chercher $\ol x$, nous allons générer une suite strictement décroissante d'intervalles dont le diamètre tend vers 0 et qui encadrent le minimum recherché.\\
@@ -45,11 +45,11 @@
 				
 				Pour n'évaluer $f$ que deux fois à chaque itération on regroupera également les cas $(i)$ et $(ii)$, soit
 				\[\begin{aligned}
-					\underbar x \in\oo{a_k, z_k}
+					\ul x \in\oo{a_k, z_k}
 				\end{aligned}\]
 				et les cas $(iv)$ et $(v)$, soit
 				\[\begin{aligned}
-					\underbar x\in\oo{z_k,b_k}
+					\ul x\in\oo{z_k,b_k}
 				\end{aligned}\]
 				le dernier cas est alors $(iii)$
 				\[\begin{aligned}
@@ -86,7 +86,7 @@
 	\end{td-sol}
 	\medspace
 	
-	\begin{td-exo}
+	\begin{td-exo}[2. Méthode de la section dorée]
 		Nous reprenons le principe de la méthode de la dichotomie précédente mais à chaque itération, nous allons maintenant chercher à diviser l'intervalle d'approximation en 3 parties (au lieu de 4 pour la dichotomie).\\
 		
 		Plus précisément, nous allons construire une suite décroissante d'intervalles $\ff{a_k,b_k}$ qui contiennent tous le minimum $\ol x$. Pour passer de $\ff{a_k,b_k}$ à $\ff{a_{k+1},b_{k+1}}$, on introduit deux nombres $x_2^k$ et $x_3^k$ de l'intervalle $\ff{a_k,b_k}$.\\

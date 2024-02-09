@@ -228,6 +228,145 @@
 			\end{aligned}\]
 		Qui converge vers $2\arctan(n)$.
 	\end{td-sol}
+	
+	\begin{td-sol}
+		Il faut commencer par montrer que ultra métrique implique l'inégalité triangulaire.
+		
+		Soit $s,t\ge 0$, on a
+			\[\begin{aligned}
+				\max(s,t)=s\text{ ou }t\le s+t
+			\end{aligned}\]
+		Comme la distance est positive, on a
+			\[\begin{aligned}
+				d(x,z)\le \max(d(x,y),d(y,z))\le d(x,y)+d(y,z)
+			\end{aligned}\]
+			
+		Ainsi si on a l'inégalité ultra métrique, alors on a l'inégalité triangulaire.
+		
+		Montrons maintenant qu'en ultra métrique tous les triangles sont isocèles et tout point d'une boule est centre de cette boule.
+		
+		\begin{no-num-remark}[$($exo$\ast)$]
+			La distance discrète est une distance ultra-métrique
+		\end{no-num-remark}
+		
+		\begin{itemize}
+			\item Pour le triangle isocèle, on pose $x,y,z\in x$ définissant un triangle.
+			
+			Si ce triangle n'est pas isocèle, alors on a
+				\[\begin{cases}
+					d(x,y)&\ne d(y,z)\\
+					d(x,y)&\ne d(x,z)\\
+					d(y,z)&\ne d(x,z)
+				\end{cases}\]
+			On suppose,quitte à inter-changer $x,y$ et $z$, que
+			\[\begin{aligned}
+				d(x,y)=\max\{d(x,y),d(y,z),d(x,z)\}
+			\end{aligned}\]
+			et donc on a pas
+			\[\begin{aligned}
+				d(x,y)\le \max\{d(y,z),d(x,z)\}
+			\end{aligned}\]
+			Ainsi $x,y,z$ forment forcément un triangle isocèle.
+			\begin{no-num-remark}
+				On ne le précise pas mais en plus d'être isocèle, le côté "isocèle" est le plus grand, il suffit de prendre la définition d'ultra-métrique.
+			\end{no-num-remark}
+			
+			\item Pour montrer que tout point d'une boule en est un centre, on considère $B(x,\varepsilon)$ et $y\in B(x,\varepsilon)$. On montre alors que $B(x,\varepsilon)=B(y,\varepsilon)$.
+			
+			Soit $x'\in B(x,\varepsilon)$, on a
+			\[\begin{gathered}
+				d(x',x)\le\varepsilon\\\text{et }d(x,y)\le\varepsilon\\\text{et }d(x',y)\le\max\{d(x',x),d(x,y)\}
+			\end{gathered}\]
+			Et donc $x'\in B(y,\varepsilon)$, soit que
+				\[\begin{aligned}
+					\bolo{x,\varepsilon}\sub \bolo{y,\varepsilon}
+				\end{aligned}\]
+			Pour l'autre sens on a
+				\[\begin{aligned}
+					y\in\bolo{x,\varepsilon}&\Longleftrightarrow d(x,y)<\varepsilon\\
+					&\Longleftrightarrow x\in \bolo{y,\varepsilon}
+				\end{aligned}\]
+				
+			\item Soient $x\in X$ et $r>0$. On veut montrer que $\bolo{x,r}$ est fermée.
+			
+			Soit $y\in \bolo{x,r}^C$. Montrons que $\bolo{y,r}\sub \bolo{x,r}^C$.
+			
+			Supposons par l'absurde qu'il existe
+				\[\begin{aligned}
+					z\in \bolo{y,r}\cap \bolo{x,r}
+				\end{aligned}\]
+			D'après la question précédente, on a
+				\[\begin{aligned}
+					\bolo{y,r}=\bolo{z,r}=\bolo{x,r}
+				\end{aligned}\]
+			En particulier $y\in\bolo{x,r}$ ce qui est absurde.
+			
+			\item Pour l'autre, on considère $y\in\bolf{x,r}$. On a
+			\[\begin{aligned}
+				y\in\bolo{y,r}\sub\bolf{y,r}=\bolf{x,r}
+			\end{aligned}\]
+			
+			\item Soit $x,y\in X$, on considère $\bolf{x,r},\bolf{y,r'}$. On a alors deux possibilités :
+			
+			Si $\bolo{x,r}\cap \bolo{y,r}=\varnothing$ alors
+			
+			
+			Sinon, on considère $\alpha \in \bolo{x,r}\cap \bolo{y,r}=\varnothing$. Supposons (quitte à refaire le même raisonnement dans l'autre sens) que $r'\le r$, alors :
+				\[\begin{aligned}
+					\bolo{y,r'}=\bolo{\alpha,r'}\sub \bolo{\alpha,r}=\bolo{x,r}
+				\end{aligned}\]
+		\end{itemize}
+	\end{td-sol}
+	\begin{td-exo}[6]
+		On rappelle $U_p(0)=+\infty$ (par convention) dans le cadre de cet exercice. Indice de résolution :
+			\[\begin{aligned}
+				U_p(xy)=U_p(x)+U_p(y)
+			\end{aligned}\]
+	\end{td-exo}
+	
+	\begin{td-exo}[Anticipation feuille 2]
+		Soit $\left(\bb R^n,||\cdot||_\infty\right)$. Montrer que
+			\[\begin{aligned}
+				\scr B=\left\{\bolo{\alpha,\frac1n},\alpha\in\bb Q^n,n\in\bb N^\ast\right\}
+			\end{aligned}\]
+		est une base de $\mathcal T_{||\cdot||_\infty}$.
+	\end{td-exo}
+	
+	\begin{td-sol}
+		Soit $U$ un ouvert de $\bb R^n$ et $x\in U$. Montrons qu'il existe $\alpha\in\bb Q^n$ et $N\in\bb N^\ast$ tels que
+			\[\begin{aligned}
+				x\in\bolo{\alpha,\frac1N}\sub U
+			\end{aligned}\]
+		$U$ est ouvert donc il existe $\varepsilon>0$ tel que $\bolo{x,\varepsilon}\sub U$. Il existe aussi $N\in\bb N^\ast$ tel que $\frac1N<\varepsilon$.
+		
+		Ainsi,
+			\[\begin{aligned}
+				\bolo{x,\frac1N}\sub \bolo{x,\varepsilon}\sub U
+			\end{aligned}\]
+			
+		% inserer schema topo ici
+		
+		Il existe donc $\alpha\in\bb Q^n\cap\bolo{x,\frac1{2N}}$.
+		
+		Si $x=(x_1,\dots,x_n)$ alors $\oo{x_i-\frac1{2N},x_i+\frac1{2N}}$ contient un rationnel $\alpha_i$ (par densité de $\bb Q$ dans $\bb R$). Alors
+			\[\begin{aligned}
+				\bolo{x,\frac1{2N}_{||\cdot||_\infty}=\prod_{i=1}^n\oo{x_i-\frac1{2N},x_i+\frac1{2N}}
+			\end{aligned}\]
+		Si $\alpha=(\alpha_1,\dots,\alpha_n)$ alors
+			\[\begin{aligned}
+				\alpha\in\bolo{x,\frac1{2N}\text{ donc }x\in\bolo{\alpha,\frac1{2N}
+			\end{aligned}\]
+		Soit $y\in\bolo{\alpha,\frac1{2N}$. On a
+			\[\begin{aligned}
+				d(x,y)<d(x,\alpha)+d(\alpha,y)<\frac1N
+			\end{aligned}\]
+		Or ces deux distances (au mileu) sont plus petites que $\frac1{2N}$. Alors
+			\[\begin{aligned}
+				y\in\bolo{x,\frac1N}\sub U
+			\end{aligned}\]
+		Donc $y\sub Y$.
+			
+	\end{td-sol}
 \end{document}
 
 
