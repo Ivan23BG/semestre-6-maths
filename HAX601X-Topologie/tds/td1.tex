@@ -344,19 +344,71 @@
 				\bolo{x,\frac1N}\sub \bolo{x,\varepsilon}\sub U
 			\end{aligned}\]
 			
-		% inserer schema topo ici
+		\begin{center}
+			\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm,scale=0.4]
+				\begin{axis}[
+					x=1cm,y=1cm,
+					axis lines=middle,
+					ymajorgrids=true,
+					xmajorgrids=true,
+					xmin=-10.5,
+					xmax=10.5,
+					ymin=-10.5,
+					ymax=10.5,
+					xtick={-10,-8,...,10},
+					ytick={-10,-8,...,10},]
+					
+					
+					\fill[line width=2pt,color=astral,fill=astral,fill opacity=0.1] (-6,-8) -- (-6,8) -- (6,8) -- (6,-8) -- cycle; % fill outer rectangle
+					
+					\fill[line width=2pt,color=algebraic-amber,fill=algebraic-amber,fill opacity=0.2] (-5,-7) -- (-5,7) -- (5,7) -- (5,-7) -- cycle; % fill middle rectangle
+					
+					\fill[line width=2pt,color=astral,fill=astral,fill opacity=0.3] (-3,4) -- (3,4) -- (3,-4) -- (-3,-4) -- cycle; % fill inner rectangle
+					
+					
+					\draw [line width=1pt] (0,0) circle (10cm);
+					\draw [line width=1pt,color=astral] (-6,-8)-- (-6,8);
+					\draw [line width=1pt,color=astral] (-6,8)-- (6,8);
+					\draw [line width=1pt,color=astral] (6,8)-- (6,-8);
+					\draw [line width=1pt,color=astral] (6,-8)-- (-6,-8); % draw outer rectangle
+					
+					\draw [line width=1pt,color=algebraic-amber] (-5,-7)-- (-5,7);
+					\draw [line width=1pt,color=algebraic-amber] (-5,7)-- (5,7);
+					\draw [line width=1pt,color=algebraic-amber] (5,7)-- (5,-7);
+					\draw [line width=1pt,color=algebraic-amber] (5,-7)-- (-5,-7); % draw middle rectangle
+					
+					\draw [line width=1pt,color=astral] (-3,4)-- (3,4);
+					\draw [line width=1pt,color=astral] (3,4)-- (3,-4);
+					\draw [line width=1pt,color=astral] (3,-4)-- (-3,-4);
+					\draw [line width=1pt,color=astral] (-3,-4)-- (-3,4); % draw inner rectangle
+					
+					
+					\draw [line width=1pt] (0,0)-- (0,8); % top radius
+					\draw[color=black] (0.3,4.3) node {$\varepsilon$}; % name top radius
+					
+					\draw [line width=1pt] (0,0)-- (5, 0); % side radius
+					\draw[color=black] (3.3,0.5) node {$\frac1N$}; % name side radius
+					
+					
+					\draw [fill=black] (0,0) circle (2.5pt);
+					\draw[color=black] (0.2,0.2) node {$x$}; % center of circle x
+					
+				\end{axis}
+			\end{tikzpicture}
+			
+		\end{center}
 		
 		Il existe donc $\alpha\in\bb Q^n\cap\bolo{x,\frac1{2N}}$.
 		
 		Si $x=(x_1,\dots,x_n)$ alors $\oo{x_i-\frac1{2N},x_i+\frac1{2N}}$ contient un rationnel $\alpha_i$ (par densité de $\bb Q$ dans $\bb R$). Alors
 			\[\begin{aligned}
-				\bolo{x,\frac1{2N}_{||\cdot||_\infty}=\prod_{i=1}^n\oo{x_i-\frac1{2N},x_i+\frac1{2N}}
+				\bolo{x,\frac1{2N}}_{||\cdot||_\infty}=\prod_{i=1}^n\oo{x_i-\frac1{2N},x_i+\frac1{2N}}
 			\end{aligned}\]
 		Si $\alpha=(\alpha_1,\dots,\alpha_n)$ alors
 			\[\begin{aligned}
-				\alpha\in\bolo{x,\frac1{2N}\text{ donc }x\in\bolo{\alpha,\frac1{2N}
+				\alpha\in\bolo{x,\frac1{2N}}\text{ donc }x\in\bolo{\alpha,\frac1{2N}}
 			\end{aligned}\]
-		Soit $y\in\bolo{\alpha,\frac1{2N}$. On a
+		Soit $y\in\bolo{\alpha,\frac1{2N}}$. On a
 			\[\begin{aligned}
 				d(x,y)<d(x,\alpha)+d(\alpha,y)<\frac1N
 			\end{aligned}\]
