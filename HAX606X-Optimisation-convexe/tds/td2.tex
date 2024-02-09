@@ -1,0 +1,218 @@
+\documentclass[french,a4paper,10pt]{article}
+\input{../../common/header.tex}
+\usepackage[a4paper,hmargin=30mm,vmargin=30mm]{geometry}
+
+\title{\color{astral} \sffamily \bfseries TD2 - Optimisation sans contraintes}
+\author{Ivan Lejeune\thanks{Cours inspiré de M. Marche}}
+\date{\today}
+% pdflatex -output-directory=output chapter1.tex && move /Y output\chapter1.pdf .\
+
+\begin{document}
+	\maketitle
+	\begin{td-exo}[1]
+		Soit $A\in S_n(\bb R)$. On note $\lambda_1\le\dots\le\lambda_n$ ses valeurs propres. Montrer que pour tout $x\in\bb R^n$, on a
+			\[\begin{aligned}
+				x^TAx\ge \lambda_1||x||^2
+			\end{aligned}\]
+	\end{td-exo}
+	\begin{td-sol}
+		Comme $A$ appartient au groupe symétrique réel, on a
+			\begin{enumerate}
+				\item $A$ diagonalisable
+				\item dans une base orthonormée
+				\item valeurs propres réelles
+			\end{enumerate}
+			Donc il existe $P\in O_n(\bb R)$ tel que $A=P^TDP$ avec
+				\[\begin{aligned}
+					D = \begin{pmatrix}
+						\lambda_1&0&\cdots&0&0\\
+						0&\lambda_2&\cdots&0&0\\
+						\vdots&\vdots&\ddots&\vdots&\vdots\\
+						0&0&\cdots&\lambda_{n-1}&0\\
+						0&0&\cdots&0&\lambda_n
+					\end{pmatrix}
+				\end{aligned}\]
+				
+			Soit $X\in \bb R^n$, on a
+				\[\begin{aligned}
+					X^TAX&=\underbrace{X^TP^T}_{=(PX^T)}DPX&\ge \lambda \min ||X||^2\\
+					&=Y^TDY&\rotatebox{90}=\quad\\
+					&=\sum_{i}\lambda_i y_i^2&\ge \min_i \lambda_i ||Y||^2
+				\end{aligned}\]
+	\end{td-sol}
+	\medspace
+	\begin{td-exo}[2]
+		On définit la fonction 
+			\[\begin{aligned}
+				J&\colon&\bb R^2&\to&&\bb R\\
+				&&(x,y)&\mapsto&& y^4-3xy^2+x^2
+			\end{aligned}\]
+			
+		\begin{enumerate}
+			\item Déterminer les points critiques de $J$.
+			
+			\item Soit $d=(d_1, d_2)\in\bb R^2$. En utilisant l'application $t\mapsto J(td_1,td_2)$ pour $t\in\bb R$, montrer que $(0,0)$ est un minimum local le long de toute droite passant par $(0,0)$.
+			
+			\item Le point $(0,0)$ est-il un minimum local de la restriction de $J$ à la parabole d'équation $x=y^2$ ?
+			
+			\item Calculer $f''$. Quelle est la nature du point critique $(0,0)$?
+		\end{enumerate}
+	\end{td-exo}
+	\begin{td-sol}\,
+		\begin{enumerate}
+			\item On a
+				\[\begin{aligned}
+					\nabla J(x,y)=\begin{pmatrix}
+						-3y^2+2x\\
+						-6xy+4y^3
+					\end{pmatrix}
+				\end{aligned}\]
+				Les points critiques sont les $(\ol x,\ol y)$ tels que $\nabla J(\ol x,\ol y)=0$.
+				
+				\[
+				\begin{cases}
+					-3y^2+2x=0\\
+					-6xy+4y^3=0
+				\end{cases}\Longleftrightarrow
+				\begin{cases}
+					x=\frac32y^2\\
+					-9y^3+4y^3=0
+				\end{cases}\Longleftrightarrow
+				\begin{cases}
+					x=0\\
+					y=0
+				\end{cases}
+				\]
+				
+			\item Soit $d=(d_1,d_2)\in\bb R^2$. On pose 
+				\[\begin{aligned}
+					\psi\colon t\mapsto J(td_1,td_2)
+				\end{aligned}\]
+				
+				On a 
+					\[\begin{aligned}
+						\psi(t)&=t^4d_2^4-3t^3d_1d_2^2+t^2d_1^2\\
+						\psi'(t)&=4t^3d_2^4-9t^2d_1d_2^2+2td_1^2\\
+						\psi''(t)&=12t^2d_2^4-18td_1d_2+2d_1^2
+					\end{aligned}\]
+					
+				D'où $\psi''(0)=2d_1^2>0$ si $d_1\ne0$.
+				
+				Donc $\psi$ admet un minimum local en $t=0$.
+				
+				Si $d=0$ alors $x=td_1=0$ et $J(td_1,td_2)=(td_2)^4>0$ si $d_2\ne 0$.
+				
+				On a donc nécessairement
+					\[\begin{aligned}
+						J(td_1,td_2)\ge J(0,0)=0
+					\end{aligned}\]
+					
+			\item  Posons $\varphi\colon y\mapsto J(y^2,y)$. On a alors
+				\[\begin{aligned}
+					\varphi(y)&=y^4-3y^4+y^4\\
+					&=-y^4<0\text{ si }y\ne 0
+				\end{aligned}\]
+				Donc $(0,0)$ est un maximum local pour $\varphi$ et donc aussi pour $y\mapsto J(y^2,y)$, et $(0,0)$ est un maximum local pour la restriction de $J$ à la parabole $x=y^2$.
+				
+			\item On calcule
+			\[\begin{aligned}
+				J''(x,y)=\begin{pmatrix}
+					-2&-6y\\-6y&12y^2-6x
+				\end{pmatrix}
+			\end{aligned}\]
+			ce qui donne
+			\[\begin{aligned}
+				J''(0,0)=\begin{pmatrix}
+					2&0\\0&0
+				\end{pmatrix}
+			\end{aligned}\]
+			On constate que $J''$ a deux valeurs propres : $\lambda_1=2$ et $\lambda_2=0$.
+			
+			Le théorème du cours nous indique que comme $\lambda_2=0$, on ne peut pas conclure sans étude locale (faite précédemment, aux questions 2 et 3).
+			
+			On a donc affaire à un point selle.
+		\end{enumerate}
+		
+	\end{td-sol}
+	\medspace
+	
+	\begin{td-exo}[3]
+		On considère la fonction
+		\[\begin{aligned}
+			f&\colon&\bb R^2&\to&&\bb R\\
+			&&(x,y)&\mapsto&& x^4+y^4-2(x-y)^2
+		\end{aligned}\]
+		
+		\begin{enumerate}
+			\item Montrer qu'il existe $\alpha, \beta\in\bb R$ (et les déterminer) tels que
+				\[\begin{aligned}
+					\forall x,y\in \bb R, f(x,y)\ge \alpha||(x,y)||^2+\beta
+				\end{aligned}\]
+				
+			\item Montrer que $\inf f(x,y)$ existe.
+				
+			\item La fonction $f$ est-elle convexe sur $\bb R^2$?
+			
+			\item Déterminer les points critiques de $f$ et préciser leur nature (minimum local, maximum local, point selle). Résoudre le problème $(2)$.
+		\end{enumerate}
+	\end{td-exo}
+	\medspace
+	
+	\begin{td-sol}
+		\[\begin{aligned}
+			f(x,y)&=x^4+y^4-2(x-y)^2\\
+			&=x^4+y^4-2x^2-2y^2+4xy
+		\end{aligned}\]
+	\end{td-sol}
+	
+	\begin{td-exo}[4]
+		Soit $a\in\bb R$. On définit
+		\[\begin{aligned}
+			f_a&\colon&\bb R^2&\to&&\bb R\\
+			&&(x,y)&\mapsto&& x^2+y^2+axy-2x-2y
+		\end{aligned}\]
+		\begin{enumerate}
+			\item Pour quelles valeurs de $a$ la fonction $f_a$ est-elle convexe ? Et strictement convexe ?
+			
+			\item Discuter en fonction des valeurs du paramètre $a$ de l'existence de solutions à 
+				\[\begin{aligned}
+					\inf f_a(x,y)
+				\end{aligned}\]
+				
+			\item Lorsque $a\in\oo{-2,2}$, résoudre ce problème.
+		\end{enumerate}
+		
+	\end{td-exo}
+	\medspace
+	
+	\begin{td-exo}[5]
+		Soit $A\in S_n^+(\bb R)$. On considère la fonction
+			\[\begin{aligned}
+				f&\colon&\bb R^n\setminus\{0\}&\to&&\bb R\\
+				&&x&\mapsto&& \frac{(Ax,x)}{||x||^2}
+			\end{aligned}\]
+		
+		\begin{enumerate}
+			\item Montrer que $f$ est $\scr C^\infty$ sur son ensemble de définition.
+			
+			\item Montrer que les problèmes d'optimisation
+			\[\begin{aligned}
+				\inf f(x)\qquad\text{et}\qquad\sup f(x)
+			\end{aligned}\]
+			possèdent une solution.
+			
+			\item Déterminer l'ensemble des points critiques de $f$.
+			
+			\item Résoudre les deux problèmes ci-dessus.
+			
+			\item Montrer qu'en un point critique $x^\ast\in\bb R^n\setminus\{0\}$, $f''$ est donnée par
+				\[\begin{aligned}
+					f''(x^\ast)=\frac2{||x^\ast||^2}\left(A-f(x^\ast)I_n\right)
+				\end{aligned}\]
+				
+			\item En déduire que tous les points critiques qui ne sont pas solution d'un des problèmes au dessus sont des points-selles.
+		\end{enumerate}
+			
+	\end{td-exo}
+	
+\end{document}
