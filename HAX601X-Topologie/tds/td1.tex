@@ -193,13 +193,26 @@
 		\end{enumerate}
 	\end{td-sol}
 	\begin{td-exo}
-		On considère 
-			\[\begin{aligned}
-				\varphi(t)=\arctan(t)
-			\end{aligned}\]
+		Soit $\bb R^n$ l'ensemble des suites réelles. Pour un espace métrique $(X,d)$, on définit son diamètre par $\diam(X)=\sup\{d(x,y),x,y\in X\}$.
+			\begin{enumerate}
+				\item Montrer que $\delta (x,y)=\arctan(|x-y|)$ est une distance sur $\bb R$. Quel est le diamètre de $\bb R$ pour cette distance ?
+				
+				\item Pour deux suites $(x_n)=(x_0,\dots,x_n)$ et $(y_n)=(y_0,\dots,y_n)$ réelles, on pose
+					\[\begin{aligned}
+						D(x,y)=\sum_{i=0}^\infty \frac{\delta(x_i,y_i)}{2^i}
+					\end{aligned}\]
+						\begin{enumerate}
+							\item Montrer que $D$ est bien définie et que c'est une distance sur $\bb R^{\bb N}$.
+							\item Quel est le diamètre de $\bb R^{\bb N}$ pour $D$.
+						\end{enumerate}
+			\end{enumerate}
 	\end{td-exo}
 
 	\begin{td-sol}
+		On considère 
+		\[\begin{aligned}
+			\varphi(t)=\arctan(t)
+		\end{aligned}\]
 		On prend 
 			\[\begin{gathered}
 				X=\left(\bb R,\arctan(|x-y|)\right)
