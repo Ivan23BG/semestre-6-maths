@@ -156,7 +156,53 @@
 		Ainsi $\norm_\infty$ est bien une norme.
 		
 		Les boules unités associées sont : \\
-		
+			\begin{center}
+				\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+					\begin{axis}[
+						x=1cm,y=1cm,
+						axis lines=middle,
+						grid style=dashed,
+						ymajorgrids=true,
+						xmajorgrids=true,
+						xmin=-2.5,
+						xmax=2.5,
+						ymin=-2.5,
+						ymax=2.5,
+						xtick={-2,-1,...,2},
+						ytick={-2,-1,...,2},
+						legend style={at={(1.2,1)}, nodes={scale=0.8}},
+						]
+						
+						\addlegendimage{line width=1pt, color=astral};
+						\addlegendentry{$\mathcal N_1 = B_1(0,1[$}
+						
+						\addlegendimage{line width=1pt, color=verdant};
+						\addlegendentry{$\mathcal N_\infty = B_\infty(0,1[$}
+						
+						
+						\fill[line width=2pt,color=astral,fill=verdant,fill opacity=0.1] (-1,-1) -- (-1,1) -- (1,1) -- (1,-1) -- cycle; % fill outer rectangle
+						
+						\fill[line width=2pt,color=algebraic-amber,fill=astral,fill opacity=0.2] (-0,-1) -- (-1,0) -- (0,1) -- (1,0) -- cycle; % fill middle rectangle
+						
+						
+						\draw [line width=1pt] (0,0) circle (10cm);
+						\draw [line width=1pt,color=verdant] (-1,-1) -- (-1,1);
+						\draw [line width=1pt,color=verdant] (-1,1) -- (1,1);
+						\draw [line width=1pt,color=verdant] (1,1) -- (1,-1);
+						\draw [line width=1pt,color=verdant] (1,-1) -- (-1,-1); % draw outer rectangle
+						
+						\draw [line width=1pt,color=astral] (-0,-1) -- (-1,0);
+						\draw [line width=1pt,color=astral] (-1,0) -- (0,1);
+						\draw [line width=1pt,color=astral] (0,1) -- (1,0);
+						\draw [line width=1pt,color=astral] (1,0) -- (-0,-1); % draw middle rectangle
+						
+						\draw[color=astral] (0.6, -0.8) node {$\mathcal N_1$};
+						\draw[color=verdant] (1.1, -1.3) node {$\mathcal N_\infty$};
+						
+					\end{axis}
+					
+				\end{tikzpicture}
+			\end{center}
 		
 	\end{td-sol}
 	\medspace
