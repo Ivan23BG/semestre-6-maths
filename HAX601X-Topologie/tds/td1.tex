@@ -60,6 +60,8 @@
 		Soit $(X, d)$ un espace métrique
 			\begin{enumerate}
 				\item Soit $\varphi$ une fonction croissante de $\bb R^+$ dans $\bb R^+$ telle que $\varphi(0)=0$, $\varphi$ est injective sur un voisinage de $0$ et $\varphi(s+t)\le\varphi(s)+\varphi(t)$ pour tous $s,t\in \bb R^+$. Montrer que $D=\varphi\circ d$ est une métrique sur $X$.
+				
+				\item Montrer que $D(x,y)=\min(1,d(x,y))$ est une distance sur $X$ et que les topologies associées à $d$ et $D$ sont les mêmes.
 			\end{enumerate}
 	\end{td-exo}
 	\begin{td-sol}
@@ -192,7 +194,7 @@
 					\end{aligned}\]
 		\end{enumerate}
 	\end{td-sol}
-	\begin{td-exo}
+	\begin{td-exo}[(Distance sur l'ensemble des suites)]
 		Soit $\bb R^n$ l'ensemble des suites réelles. Pour un espace métrique $(X,d)$, on définit son diamètre par $\diam(X)=\sup\{d(x,y),x,y\in X\}$.
 			\begin{enumerate}
 				\item Montrer que $\delta (x,y)=\arctan(|x-y|)$ est une distance sur $\bb R$. Quel est le diamètre de $\bb R$ pour cette distance ?
@@ -242,6 +244,27 @@
 		Qui converge vers $2\arctan(n)$.
 	\end{td-sol}
 	
+	\begin{td-exo}[(Distance ultramétrique)]
+		Une distance $d$ sur $X$ est dite \defemph{ultramétrique} si elle vérifie
+			\[\begin{aligned}
+				d(x,y)\le \max(d(x,z),d(y,z))
+			\end{aligned}\]
+		pour tous $x,y,z\in X$.
+			\begin{enumerate}
+				\item Montrer que l'inégalité ultramétrique implique l'inégalité triangulaire
+				
+				\item Montrer que dans un espace ultramétrique, 
+				\begin{enumerate}
+					\item tous les triangles sont isocèles,
+					
+					\item tout point d'une boule est centre de cette boule.
+					
+					\item toute boule est à la fois ouverte et fermée,
+					
+					\item deux boules sont soit disjoints, soit l'une est incluse dans l'autre.
+				\end{enumerate}
+			\end{enumerate}
+	\end{td-exo}
 	\begin{td-sol}
 		Il faut commencer par montrer que ultra métrique implique l'inégalité triangulaire.
 		
@@ -330,7 +353,7 @@
 				\end{aligned}\]
 		\end{itemize}
 	\end{td-sol}
-	\begin{td-exo}[6]
+	\begin{td-exo}[(Distance ultramétrique, exemple, pour aller plus loin)]
 		On rappelle $U_p(0)=+\infty$ (par convention) dans le cadre de cet exercice. Indice de résolution :
 			\[\begin{aligned}
 				U_p(xy)=U_p(x)+U_p(y)
