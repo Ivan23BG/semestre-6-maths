@@ -302,7 +302,7 @@
 	\end{oc-remark}
 	
 	\begin{oc-remark}
-		Il existe bien entendu un résultat "symétrique" du \myref{thm:1.2.4}{Théorème 1.2.4}:
+		Il existe bien entendu un résultat "symétrique" du Théorème 1.2.4:
 		\begin{no-num-theorem}
 			Si $x_0$ est un \defemph{maximum local} alors 
 				\[\begin{aligned}
@@ -516,4 +516,243 @@
 		De plus, $f$ est strictement convexe si et seulement si $f$ est strictement monotone.
 		
 	\end{oc-proposition}
+	
+	\begin{myproof}
+		Si $f$ est convexe, alors d'après la proposition $1.3.1$, on a
+			\[\begin{aligned}
+				\forall (x,y)\in U,f(y)\ge f(x)+f'(x)\cdot(y-x)
+			\end{aligned}\]
+		On applique cette inégalité au couple $(u,v)$ puis au couple $(v,u)$ :
+			\[\begin{aligned}
+				f(u)&\ge f(v)+f'(v)\cdot (u-v)\\
+				f(v)&\ge f(u)+f'(u)\cdot (v-u)
+			\end{aligned}\]
+		La somme de ces expressions donne
+			\[\begin{aligned}
+				0\ge f'(v)\cdot(u-v)-f'(u)\cdot(u-v)
+			\end{aligned}\]
+		d'où
+			\[\begin{aligned}
+				0\le (f'(v)-f'(u))\cdot(v-u)
+			\end{aligned}\]
+		Réciproquement, supposant $f'$ monotone, on veut montrer que
+			\[\begin{aligned}
+				\forall (x,y)\in U,f(y)-f(x)-f'(x)\cdot(y-x)\ge 0
+			\end{aligned}\]
+		Le TFA permet de reformuler $f(y)-f(x)$ en
+			\[\begin{aligned}
+				f(y)-f(x)-f'(x)\cdot(y-x)&=\int_0^1 f'(x+t(y-x))\cdot(y-x)dt -f'(x)\cdot(y-x)\\
+				&=\int_0^1 (f'(x+t(y-x))\cdot(y-x) -f'(x)\cdot(y-x))dt
+			\end{aligned}\]
+		Or, par monotonie, $\forall t\in\oo{0,1}$, on a
+			\[\begin{aligned}
+				(f'(x+t(y-x))-f'(x))\cdot(t(y-x))\ge 0
+			\end{aligned}\]
+		d'où
+			\[\begin{aligned}
+				(f'(x+t(y-x))-f'(x))\cdot(y-x)\ge 0
+			\end{aligned}\]
+		et donc
+			\[\begin{aligned}
+				f(y)-f(x)-f'(x)\cdot(y-x)\ge 0
+			\end{aligned}\]
+		$f$ est donc convexe.
+	\end{myproof}
+	
+	\begin{oc-proposition}
+		Soit $U$ ouvert convexe de $\bb R^n$ et $f\colon U\to\bb R$ de classe $\scr C^2$. Alors $f$ est convexe si et seulement si 
+			\[\begin{aligned}
+				\forall u\in U,f''(u)\text{ est positive}
+			\end{aligned}\]
+			
+		De plus, si pour tout $u\in U,f''(u)$ est définie positive, alors $f$ est strictement convexe (la réciproque est fausse)
+	\end{oc-proposition}
+	
+	\begin{myproof}
+		Supposons $f$ convexe. D'après la proposition 1.3.5, $f'$ est monotone donc
+			\[\begin{aligned}
+				\forall (u,v)\in U,(f'(v)-f'(u))\cdot(v-u)\ge0
+			\end{aligned}\]
+		Soient $x\in U,\xi\in\bb R^n$ et $t>0$. On applique la formule de monotonie avec $u=x$ et $v=x+t\xi$ :
+			\[\begin{aligned}
+				(f'(x+t\xi)-f'(x))(t\xi)\ge 0
+			\end{aligned}\]
+		On divise cette inégalité par $t^2$ et on fait tendre $t$ vers 0, on obtient que
+			\[\begin{aligned}
+				f''(x)\cdot(\xi,\xi)\ge 0
+			\end{aligned}\]
+		Réciproquement, si $f''$ est positive sur $U$ alors d'après le TFA, on a:
+			\[\begin{aligned}
+				(f'(u)-f'(v))\cdot(v-u)=\int_0^1 f''(u+t(u-v))\cdot(v-u,v-u)
+			\end{aligned}\]
+		D'où
+			\[\begin{aligned}
+				(f'(u)-f'(v))\cdot(v-u)\ge 0
+			\end{aligned}\]
+		et donc $f$ convexe.
+		
+		Si maintenant $f''$ est définie positive, on obtient de la même manière que $f'$ est strictement monotone et donc $f$ strictement convexe.
+	\end{myproof}
+	
+	\begin{oc-definition}
+		Soit $f\colon\bb R^n\to\bb R$ de classe $\scr C^1$. On dit que $f$ est \defemph{elliptique} s'il existe $\alpha>0$ tel que
+			\[\begin{aligned}
+				\forall(u,v)\in\bb R^n,(f'(v)-f'(u))\cdot(v-u)\ge\alpha\nn{v-u}^2
+			\end{aligned}\]
+	\end{oc-definition}
+	
+	\begin{oc-proposition}
+		Soit $f\colon\bb R^n\to\bb R$ de classe $\scr C^1$ et elliptique. Alors $f$ est strictement convexe et coercive. Elle vérifie la propriété :
+			\[\begin{aligned}
+				\forall (x,y)\in\bb R^n,\quad f(y)-f(x)-f'(x)\cdot(y-x)\ge\frac\alpha2\nn{y-x}^2
+			\end{aligned}\]
+		De plus, si $f$ est $\scr C^2$, alors
+			\[\begin{aligned}
+				\forall u\in \bb R^n,\forall w\in\bb R^n,\quad f''(u)\cdot(w,w)\ge\alpha\nn w^2
+			\end{aligned}\]
+	\end{oc-proposition}
+	
+	\begin{myproof}
+		$f'$ est strictement monotone donc $f$ est strictement convexe.
+		
+		Posons 
+			\[\begin{aligned}
+				A=f(y)-f(x)-f(x)\cdot(y-x)
+			\end{aligned}\]
+		On a
+			\[\begin{aligned}
+				A=\int_0^1 (f'(x+t(y-x))-f'(x))\cdot(y-x)de
+			\end{aligned}\]
+		par application du TFA, et par ellipticité de $f$, on a
+			\[\begin{aligned}
+				(f'(x+t(y-x))-f'(x))\cdot(t(y-x))\ge\alpha t^2\nn{y-x}^2
+			\end{aligned}\]
+		Ainsi, 
+			\[\begin{aligned}
+				A\ge \int_0^1 \alpha t\nn{y-x}^2 dt=\frac\alpha2\nn{y-x}^2
+			\end{aligned}\]
+		Appliquant cette inégalité avec $x=0$, on a
+			\[\begin{aligned}
+				f(y)-f(0)-f'(0)\cdot y\ge\frac\alpha2\nn y^2
+			\end{aligned}\]
+		et donc
+			\[\begin{aligned}
+				\forall y\in\bb R^n,f(y)\ge\underbrace{\frac\alpha2\nn y^2-\nn{f'(0)}\nn y+f(0)}_{\substack{\text{ polynôme de degré }2\text{ en }y\\\text{ de coefficient dominant strictement}\\ \text{positif, noté }p(\nn y)}}
+			\end{aligned}\]
+		On a 
+			\[\begin{aligned}
+				p(\nn y)\underset{\nn y\to+\infty}\to+\infty
+			\end{aligned}\]
+		donc $f$ est convexe.
+		
+		Supposons enfin que $f$ est $\scr C^2$. Soit $u\in\bb R^n,\xi\in\bb R^n,t>0$, on a
+			\[\begin{aligned}
+				(f'(u+t\xi)-f'(u))\cdot(t\xi)\ge\alpha t^2\nn\xi^2
+			\end{aligned}\]
+		par ellipticité de $f$. D'où, en divisant par $t^2$ et faisant tendre $t$ vers 0, on a
+			\[\begin{aligned}
+				f''(u)\cdot(\xi,\xi)\ge\alpha \nn\xi^2
+			\end{aligned}\]
+	\end{myproof}
+	
+	\subsection{Optimisation des fonctions convexes}
+	
+	\begin{oc-theorem}
+		Soit $U$ un ouvert convexe de $\bb R^n$ et $f\colon U\to\bb R$ une fonction convexe, $x_0\in U$, alors
+			\begin{enumerate}[label=$(\roman*)$]
+				\item si $x_0$ est un minimum local de $f$ c'est un minimum global
+				
+				\item si $f$ est strictement convexe, alors elle admet au plus un minimum et c'est un minimum strict
+				
+				\item si en outre $f$ est de classe $\scr C^1$ alors $x_0$ est un minimum de $f$ si et seulement si 
+					\[\begin{aligned}
+						\forall y\in U,f'(x_0)\cdot(y-x_0)\ge 0
+					\end{aligned}\]
+			\end{enumerate}
+	\end{oc-theorem}
+	
+	\begin{myproof}\,
+		\begin{enumerate}[label=$(\roman*)$]
+			\item Supposons que $x_0$ soit un minimum local, alors
+				\[\begin{aligned}
+					\exists\eta >0,\forall z\in B(x_0,\eta),f(z)\ge f(x_0)
+				\end{aligned}\]
+			Soit $y\in U$. On pose $z=tx_0+(1-t)y$, avec $t\in\oo{0,1}$
+			
+			Alors $\nn{z-x_0}=(1-t)\nn{y-x_0}$ et il est possible de choisir $t$ suffisamment proche de 1 pour avoir $\nn{z-x_0}<\eta$ et donc
+				\[\begin{aligned}
+					f(x_0)\le f(z)=f(tx_0+(1-t)y)
+				\end{aligned}\]
+			ou encore
+				\[\begin{aligned}
+					f(x_0)\le tf(x_0)+(1-t)f(y)
+				\end{aligned}\]
+			puisque $f$ est convexe. Cette dernière inégalité donne en divisant par $(1-t)$
+				\[\begin{aligned}
+					\forall y\in U,f(x_0)\le f(y)
+				\end{aligned}\]
+			et donc $x_0$ est un minimum global sur $U$.
+			
+		\item supposons $f$ strictement convexe et que le $\min$ de $f$ soit atteint en $x_0$ et $y_0$. Alors
+			\[\begin{aligned}
+				f\left(\frac{x_0+y_0}2\right)<\frac12f(x_0)+\frac12f(y_0)=\min_U f
+			\end{aligned}\]
+		par stricte convexité, ce qui est absurde.
+		
+		\item Supposons en outre $f$ de classe $\scr C^1$ et notons $f(x_0)=\min_U f$. Soit $y\in U$. On a
+			\[\begin{aligned}
+				\forall t\in\ff{0,1},\quad f(x_0)\le f(x_0+t(y-x_0))
+			\end{aligned}\]
+		et donc
+			\[\begin{aligned}
+				\forall t\in\oo{0,1},\quad 0\le \frac{f(x_0+t(y-x_0))-f(x_0)}t
+			\end{aligned}\]
+		et à la limite en 0
+			\[\begin{aligned}
+				0\le f'(x_0)\cdot (y-x_0)
+			\end{aligned}\]
+		
+		Notez que cette implication est vrai même si $f$ n'est pas convexe. 
+		
+		Supposons maintenant que $\forall y\in U$
+			\[\begin{aligned}
+				f'(x_0)\cdot(y-x_0)\ge 0
+			\end{aligned}\]
+		pour un certain $x_0$ donné. On a
+			\[\begin{aligned}
+				f(y)\ge f(x_0)+f'(x_0)\cdot(y-x_0)
+			\end{aligned}\]
+		par convexité, et donc
+			\[\begin{aligned}
+				f(y)\ge f(x_0)
+			\end{aligned}\]
+		Ainsi $x_0$ réalise le minimum de $f$ sur $U$.
+		\end{enumerate}
+	\end{myproof}
+	
+	\begin{oc-proposition}
+		Soit $f\colon\bb R^n\to\bb R$ une fonction de classe $\scr C^1$ et elliptique (constante d'ellipticité $\alpha$).
+		
+		Alors $f$ est minorée, atteint son minimum en un unique point $x_0$, caractérisé par
+			\[\begin{aligned}
+				f'(x_0)=0
+			\end{aligned}\]
+	\end{oc-proposition}
+	
+	\begin{myproof}
+		La preuve est immédiate en vertu de ce qui précède
+		\begin{itemize}
+			\item $f$ est $\scr C^0$ et coercive (Proposition 1.3.4) donc $f$ est minorée et atteint son min (Théorème 1.1.2)
+			
+			\item $f$ est strictement convexe (Proposition 1.3.4) donc le min est unique (Théorème 1.4.1)
+			
+			\item si $x_0$ est le min de $f$ sur $\bb R^n$, comme $\bb R^n$ est un ouvert, alors $f'(x_0)=0$ (Théorème 1.2.1).
+			
+			Si $f'(x_0)=0$, puisque $f$ est convexe, on a
+				\[\begin{aligned}
+					\forall y\in\bb R^n,f(y)-f(x_0)\ge f'(x_0)\cdot(y-x_0)=0
+				\end{aligned}\]
+			Par la proposition 1.3.1. Et $x_0$ est donc le min de $f$
+		\end{itemize}
+	\end{myproof}
 \end{document}
