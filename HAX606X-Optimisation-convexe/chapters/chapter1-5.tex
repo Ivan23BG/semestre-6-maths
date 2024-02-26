@@ -1,0 +1,155 @@
+% txs:///compile | txs:///view-pdf-internal --embedded | cmd /c move /Y output\%.pdf pdfs\
+% pdflatex -synctex=1 -interaction=nonstopmode -output-directory=output %.tex
+% pdflatex -synctex=1 -output-directory=output chapter1.tex && move /Y output\chapter1.pdf .\
+\documentclass[french,a4paper,10pt]{article}
+\input{../../common/header.tex}
+\usepackage[a4paper,hmargin=30mm,vmargin=30mm]{geometry}
+\title{\color{astral} \sffamily \bfseries Compléments - chapitre 1}
+\author{Ivan Lejeune\thanks{Cours inspiré de M. Marche}}
+\date{\today}
+
+\begin{document}
+	
+	\maketitle
+	\section{Chapitre 1 - Optimisation convexe}
+	\section{Compléments chapitre 1}
+	On considère la fonction :
+		\[\begin{aligned}
+			f\colon &\bb R^n&\to&\bb R\\
+			&x&\mapsto &\frac 12(Ax,x)-(b,x)=0
+		\end{aligned}\]
+	où
+		\[\begin{aligned}
+			A\in S_n(\bb R),b\in\bb R^n,c\in\bb R
+		\end{aligned}\]
+	On considère le problème :
+		\[\begin{aligned}
+			\inf_{x\in\bb R^n}f(x)
+		\end{aligned}\]
+		
+	\begin{oc-proposition}
+		On a 
+		\begin{center}
+			$f'(x)=Ax-b$ et $f''(x)=A$.
+		\end{center}
+	\end{oc-proposition}
+	\begin{myproof}
+		Il suffit de calculer
+			\[\begin{aligned}
+				f(x+h)-f(x)&=\frac12(A(x+h),x+h)-(b,x+h)-\frac12(Ax,x)+(b,x)\\
+				&=\frac12(Ax,h)+\frac12(Ah,x)+\frac12(Ah,h)-(b,h)\\
+				&=(Ax-b,h)+\frac12(Ah,h)
+			\end{aligned}\]
+			
+		et d'identifier ces termes avec le développement de Taylor :
+			\[\begin{aligned}
+				f(x+h)-f(x)=f'(x)\cdot h+\frac12 f''(x)\cdot(h,h)
+			\end{aligned}\] 
+	\end{myproof}
+	
+	\begin{oc-proposition}
+		Coercivité de $f$
+		
+		$f$ est coercive si et seulement si $A$ est définie positive
+	\end{oc-proposition}
+	
+	\begin{myproof}
+		$A$ est symétrique réelle donc $A$ est diagonalisable dans une base $\perp$.
+		
+		Ainsi, il existe $P\in O_n(\bb R)$ telle que
+			\[\begin{aligned}
+				A=~^tPDP
+			\end{aligned}\]
+			
+		Soit $h\in\bb R^n$, et posons $u=Ph$ (changement de base).
+		
+		On a ainsi
+		\[\begin{aligned}
+			(Ah,h)=\sum_{i=1}^n\lambda_iu_i^2
+		\end{aligned}\]
+		où $\lambda_1\le\dots\le \lambda_n$ est le spectre de $A$.
+		
+		Ainsi 
+			\[\begin{aligned}
+				(Ah,h)\ge\lambda_1\sum_{i=1}^n u_i^2&=\lambda_1\nn u^2\\
+				&=\lambda_1\nn h^2
+			\end{aligned}\]
+		car la base est orthonormée.
+		
+		Ainsi $f$ est coercive si et seulement si $A$ est définie positive.
+	\end{myproof}
+	
+	\begin{oc-proposition}
+		$f$ est convexe si et seulement si $A$ est positive
+		
+		$f$ est stricteent convexe si et seulement si $A$ est définie positive
+	\end{oc-proposition}
+	\begin{myproof}
+		C'est une conséquence directe de la proposition 1 et des résultats 
+	\end{myproof}
+	
+	\begin{oc-proposition}
+		On suppose que $A$ est positive. Alors $f$ admet un minimum global si et seulement si il existe $\ul x\in\bb R^n$ tel que 
+			\[\begin{aligned}
+				A\ul x=b
+			\end{aligned}\]
+		ou encore si et seulement si $b\in\im A$.
+	\end{oc-proposition}
+	
+	\begin{myproof}
+		C'est une conséquence de la proposition 1.4.2
+	\end{myproof}
+	
+	\begin{oc-remark}
+		En dimension finie, on a
+			\[\begin{aligned}
+				\im A=\left(\ker~^tA\right)^\perp=\left(\ker A\right)^\perp
+			\end{aligned}\]
+		Soit $x\in\ker~^tA$, on a $~^tAx=0$, donc $\forall y\in\bb R^n, \left(~^tAx,y\right)=0$.
+		
+		D'où $(x,Ay)=0$ c'est à dire $x\in(\im A)^\perp$ ainsi
+			\[\begin{aligned}
+				\ker~^tA\sub (\im A)^\perp
+			\end{aligned}\]
+		De plus, on a
+			\[\begin{aligned}
+				\dim(\ker)\cdots
+			\end{aligned}\]
+	\end{oc-remark}
+	
+	\begin{oc-remark}
+		On peut distinguer plusieurs cas :
+		\begin{itemize}
+			\item si $\lambda_1<0$ alors $f$ n'est pas bornée inférieurement
+				\[\begin{aligned}
+					\forall z\in\bb R,f(ze_i)=\frac{\lambda_1}2z^2-z(b,e_i)+c\underset{z\to+\infty}\to-\infty
+				\end{aligned}\]
+				
+			\item si $\lambda_1=0$ et si $b\notin (\ker A)^\perp$, alors l'équation $f'(x)=0$ n'a pas de solution
+			
+			$f$ est convexe, mais non bornée inférieurement. En effet il existe $e_i\in\ker A$ tel que $(b,e_i)\ne 0$. On en déduit
+				\[\begin{aligned}
+					\forall z\in\bb R,f(z,e_i)=-z(b,e_i)+c\underset{z\to\text{sign}(b,e_i)\times\infty}\to-\infty
+				\end{aligned}\]
+				
+			\item si $\lambda_1=0$ et $b\in(\ker A)^\perp$ alors l'équation $f'(x)=0$ possède une infinité de solutions. En effet, puisque $A$ est positive, $f$ est convexe et tout minimum local est global.
+			
+			Si $x_0$ est une solution particulière de $f'(x)=0$, l'ensemble des solutions est l'espace affine
+				\[\begin{aligned}
+					x_0+\ker A
+				\end{aligned}\]
+				
+			et 
+				\[\begin{aligned}
+					\min_{\bb R^n}f(x)=-\frac12(b,x_0)+c
+				\end{aligned}\]
+			\item Si $\lambda_1>0$, $A$ est définie positive, l'équation $f'(x)=0$ admet une solution donnée par $A^{-1}b$.
+			
+			$f$ est strictement convexe et
+				\[\begin{aligned}
+					\min_{\bb R^n}f(x)=-\frac12(b,A^{-1}b)+c
+				\end{aligned}\]
+		\end{itemize}
+	\end{oc-remark}
+		
+\end{document}

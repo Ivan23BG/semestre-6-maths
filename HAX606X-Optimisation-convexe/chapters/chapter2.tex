@@ -4,152 +4,295 @@
 \documentclass[french,a4paper,10pt]{article}
 \input{../../common/header.tex}
 \usepackage[a4paper,hmargin=30mm,vmargin=30mm]{geometry}
-\title{\color{astral} \sffamily \bfseries Compléments - chapitre 1}
+\title{\color{astral} \sffamily \bfseries Chapitre 2: Premiers algorithmes}
 \author{Ivan Lejeune\thanks{Cours inspiré de M. Marche}}
 \date{\today}
 
 \begin{document}
 	
 	\maketitle
-	\section{Chapitre 1 - Optimisation convexe}
-	\section{Chapitre 2}
-	On considère la fonction :
-		\[\begin{aligned}
-			f\colon &\bb R^n&\to&\bb R\\
-			&x&\mapsto &\frac 12(Ax,x)-(b,x)=0
-		\end{aligned}\]
-	où
-		\[\begin{aligned}
-			A\in S_n(\bb R),b\in\bb R^n,c\in\bb R
-		\end{aligned}\]
-	On considère le problème :
-		\[\begin{aligned}
-			\inf_{x\in\bb R^n}f(x)
-		\end{aligned}\]
-		
-	\begin{oc-proposition}
-		On a 
+	\section{Chapitre 1: Optimisation convexe}
+	\section{Chapitre 2: Premiers algorithmes}
+
+	On considère $U\sub\bb R^n$ ouvert et $f\colon U\to\bb R$.
+	
+	On suppose dans la suite que l'on sait montrer l'existence du minimum
+
+	On cherche un processus de construction d'une suite de points ${(x_k)}_{k\in\bb N}$ 
+	telle que $(x_k)$ converge vers le minimum de $f$.
+
+	\begin{oc-definition}
+		Un algorithme \defemph{converge} si la suite de points converge vers le
+		minimum recherché.
+
+	\end{oc-definition}
+
+	On suppose également qu'on connait des algorithmes qui convergent pour $n=1$
+	$($cas des fonctions $f\colon I\sub \bb R\to\bb R)$.
+
+	\subsection{Méthode de relaxation}
+
+	La principe de la méthode de relaxation consiste à se ramener à la
+	minimisation de fonctions à une variable, de la manière suivante:
+
+	\begin{enumerate}[label=$(\roman*)$]
+		\item On fixe une suite de directions de descente ${(d_k)}_{k\in\bb N}$,
+		\item On fixe un point de départ $u_1$.
+		\item Connaissant $u_k$, on calcule $\rho_{k+1}\in\bb R$ qui réalise le minimum de la fonction
+			\[
+				\phi_k\colon \rho\mapsto f(u_k+\rho\cdot d_{k+1})
+			\]
+		\item On pose $u_{k+1}=u_k+\rho_{k+1}d_{k+1}$.
+	\end{enumerate}
+
+	\begin{oc-theorem}
+		Si $f$ est $\scr C^1$ et elliptique, alors la méthode de relaxation converge.
+	\end{oc-theorem}
+
+	\begin{myproof}[IMPORTANTE A COMPRENDRE]\,\\
+
+		Nous avons vu au chapitre précédent que si $f$ est elliptique, alors
+		\[
+			\forall (x,y)\in\bb R^n, \underbrace{f(y)-f(x)-f'(x)(y-x)\geq \frac{\alpha}{2}{||y-x||}^2}_{(E)}
+		\]
+		et que
 		\begin{center}
-			$f'(x)=Ax-b$ et $f''(x)=A$.
+			$\ul x$ est un minimum de $f$ $\iff$ $f'(\ul x)=0$.
 		\end{center}
-	\end{oc-proposition}
-	\begin{myproof}
-		Il suffit de calculer
-			\[\begin{aligned}
-				f(x+h)-f(x)&=\frac12(A(x+h),x+h)-(b,x+h)-\frac12(Ax,x)+(b,x)\\
-				&=\frac12(Ax,h)+\frac12(Ah,x)+\frac12(Ah,h)-(b,h)\\
-				&=(Ax-b,h)+\frac12(Ah,h)
-			\end{aligned}\]
-			
-		et d'identifier ces termes avec le développement de Taylor :
-			\[\begin{aligned}
-				f(x+h)-f(x)=f'(x)\cdot h+\frac12 f''(x)\cdot(h,h)
-			\end{aligned}\] 
-	\end{myproof}
-	
-	\begin{oc-proposition}
-		Coercivité de $f$
-		
-		$f$ est coercive si et seulement si $A$ est définie positive
-	\end{oc-proposition}
-	
-	\begin{myproof}
-		$A$ est symétrique réelle donc $A$ est diagonalisable dans une base $\perp$.
-		
-		Ainsi, il existe $P\in O_n(\bb R)$ telle que
-			\[\begin{aligned}
-				A=~^tPDP
-			\end{aligned}\]
-			
-		Soit $h\in\bb R^n$, et posons $u=Ph$ (changement de base).
-		
-		On a ainsi
+
+		Considérons la fonction
 		\[\begin{aligned}
-			(Ah,h)=\sum_{i=1}^n\lambda_iu_i^2
+			\phi_k\colon \bb R&\to\bb R\\
+			t&\mapsto f(u_k+t d_{k+1})
 		\end{aligned}\]
-		où $\lambda_1\le\dots\le \lambda_n$ est le spectre de $A$.
-		
-		Ainsi 
-			\[\begin{aligned}
-				(Ah,h)\ge\lambda_1\sum_{i=1}^n u_i^2&=\lambda_1\nn u^2\\
-				&=\lambda_1\nn h^2
-			\end{aligned}\]
-		car la base est orthonormée.
-		
-		Ainsi $f$ est coercive si et seulement si $A$ est définie positive.
+		qui atteint son minimum en $\rho_{k+1}$, donc
+		\[
+			\phi_k'(\rho_{k+1})=f'(x_{k+1})\cdot d_{k+1}=0
+		\]
+
+		et puisque $x_{k+1}-x_k$ est parallèle à $d_{k+1}$, on a
+		\[
+			f'(x_{k+1})\cdot(x_{k+1}-x_k)=0
+		\]
+
+		En outre, puisque $x_{k+1}$ minimise $f$ sur la droite passant par $x_k$
+		et dirigée par $d_{k+1}$, on a
+		\[
+			f(x_{k+1})\leq f(x_k)
+		\]
+
+		Ainsi, la suite des $f(x_k)$ est décroissante, et minorée, donc convergente.
+
+		Considérons maintenant l'inégalité $(E)$ avec $x=x_{k+1}$ et $y=x_k$.
+
+		\[
+			f(x_k)-f(x_{k+1})-f'(x_{k+1})(x_k-x_{k+1})\geq \frac{\alpha}{2}||x_k-x_{k+1}||^2\\
+		\]
+
+		Comme $f'(x_{k+1})\cdot(x_k-x_{k+1})=0$, on a
+		\[
+			f(x_k)-f(x_{k+1})\geq \frac{\alpha}{2}||x_k-x_{k+1}||^2
+		\]
+
+		Puisque la suite $(f(x_k))$ est convergente, on a
+		\[
+			\lim_{k\to\infty}||x_k-x_{k+1}||=0
+		\]
+
+		On a également, pour tout $p\in\{1,\dots,n\}$,
+		\[
+			\lim_{k\to\infty}x_{k+p}-x_k=0
+		\]
+
+		Par ailleurs, on a par ellipticité de $f$:
+		\[
+			\forall (x,y)\in\bb R^n, (f'(y)-f'(x))(y-x)\geq \alpha||y-x||^2
+		\]
+
+		Soit $\ul x$ le minimum de $f$. Puisque $f'(\ul x)=0$, on a, en appliquant l'inégalité précédente à $y=x_k$ et $x=\ul x$:
+		\[
+			\alpha||x_k-\ul x||^2\leq (f'(x_k)\cdot (x_k-\ul x))
+		\]
+
+		d'où
+		\[
+			\alpha||x_k-\ul x||^2\leq || f'(x_k)||\cdot||x_k-\ul x||
+		\]
+
+		et donc
+		\[
+			||x_k-\ul x||\leq \frac{||f'(x_k)||}{\alpha}
+		\]
+
+		Il reste donc à montrer que $f'(x_k)$ tend vers 0.
+
+		Il suffit de montrer que:
+		\[
+			\forall p\in\{1,\dots,n\}, \lim_{k\to\infty}f'(x_k)\cdot e_p=0
+		\]
+
+
+		Soit donc $p\in\{1,\dots,n\}$, on a pour $j\in\bb N$:
+		\[
+			f'(x_{p+j_n})\cdot d_{p+j_n}=0
+		\]
+		or $d_{p+j_n}=e_p$ donc
+		\[
+			f'(x_{p+j_n})\cdot e_p=0
+		\]
+
+		On effectue la division euclidienne de $k$ par $n$:
+		\begin{center}
+			$k=\alpha n + i$ avec $i\in\{1,\dots,n\}$
+		\end{center}
+
+		On a alors
+		\[\begin{aligned}
+			f'(x_k)\cdot e_p&=f'(x_{\alpha n + i})\cdot e_p\\
+			&=(f'(x_{\alpha n+1})-f'(x_{\alpha n+p}))\cdot e_p
+		\end{aligned}\]
+		puisque $f'(x_{\alpha n+p})\cdot e_p=0$.
+
+		Ainsi, 
+		\[
+			|f'(x_k)\cdot e_p|\leq ||f'(x_{\alpha n+i})-f'(x_{\alpha n+p})||\cdot||e_p||
+		\]
+
+		Or, lorsque $k$ tend vers l'infini, $\alpha$ tend vers l'infini, et $i$ est borné par définition.
+
+		Ainsi,
+		\[
+			\lim_{\alpha\to\infty}x_{\alpha n+i}-x_{\alpha n}=0
+		\]
+		et
+		\[
+			\lim_{\alpha\to\infty}x_{\alpha n}- x_{\alpha n+p}=0
+		\]
+
+		Ainsi, pour $\alpha\to\infty$, on a
+		\[
+			||x_{\alpha n+i}-x_{\alpha n+p}||\to 0
+		\]
+
+		Enfin, par uniforme continuité de $f'$ sur une boule $\ol B(0, M)$, on a
+		\[
+			||f'(x_{\alpha n+i})-f'(x_{\alpha n+p})||\to 0
+		\]
+
+		et donc finalement
+		\[
+			\lim_{k\to\infty}f'(x_k)\cdot e_p=0
+		\]
+
+		\begin{oc-remark}[sur le choix de $M$]
+			On veut qu'à partir d'un certain rang, tous les termes
+			de la suite soient dans la boule $\ol B(0,M)$.
+
+			Or, la suite $(f(x_k))$ est bornée et $f$ est coercive, ce qui
+			implique que la suite $(x_k)$ est nécessairement bornée.
+		\end{oc-remark}
+
 	\end{myproof}
-	
-	\begin{oc-proposition}
-		$f$ est convexe si et seulement si $A$ est positive
-		
-		$f$ est stricteent convexe si et seulement si $A$ est définie positive
-	\end{oc-proposition}
+
+	\subsection{Méthode de gradient à pas optimal}
+
+	On considère $f\colon \bb R^n\to\bb R$.
+
+	L'idée de la méthode est de choisir des directions de descente ($\dots$ vers le minimum) privilégiées.
+
+	Connaissant $x_k$, on considère la fonction
+	\[\begin{aligned}
+		\phi_k\colon \bb R&\to\bb R\\
+		t&\mapsto f(x_k-t\underbrace{\nabla f(x_k)}_{d_{k+1}})
+	\end{aligned}\]
+	et $t_{k+1}$ qui minimise $\phi_k$ sur $\bb R$.
+
+	On pose alors $x_{k+1}=x_k-t_{k+1}\nabla f(x_k)$.
+
+	Pourquoi un tel choix de descente selon la direction $-\nabla f(x_k)$?
+
+	Parce que c'est localement le meilleur choix possible:
+	\[
+		f(x+t\xi)=f(x)+t\nabla f(x)\cdot \xi + o(t)
+	\]
+	Ainsi, on observe qu'en négligeant le reste, on `descend' le plus possible
+	en rendant le terme $t\nabla f(x)\cdot \xi$ le plus négatif possible.
+	Il faut donc choisir $\xi$ parallèle à $\nabla f(x)$ et de direction opposée.
+
+	\begin{oc-theorem}
+		Si $f$ est $\scr C^1$ et elliptique, alors la méthode de gradient à pas optimal converge.
+	\end{oc-theorem}
+
 	\begin{myproof}
-		C'est une conséquence directe de la proposition 1 et des résultats 
+		La preuve est similaire à celle de la méthode de relaxation, en utilisant
+		la propriété de coercivité de $f$:
+
+		La suite des $f(x_k)$ est décroissante et minorée, donc convergente.
+
+		Ainsi, la suite $(f(x_k))$ est convergente, et la suite $(x_k)$ est bornée.
+
+		Par ailleurs, on a $\nabla f(x_{k+1})\perp \nabla f(x_k)$ car
+		\[\begin{aligned}
+			\phi_k'(t_{k+1})=0&=f'(x_{k+1}\nabla f(x_k))\\
+			&=(\nabla f(x_{k+1}), \nabla f(x_k))\\
+		\end{aligned}\]
+
+		On a également $(\nabla f(x_{k+1}), x_{k+1}-x_k)= 0$
+
+		En outre, on a
+		\[
+			f(x_k)-f(x_{k+1})\geq \frac{\alpha}{2}||x_k-x_{k+1}||^2
+		\]
+		d'où $||x_k-x_{k+1}||\to 0$.
+
+		On peut de manière similaire à la preuve précédente,
+		montrer que $(\nabla f(x_k))$ tend vers 0.
+
+		Pour conclure, pour $x=\ul x$ et $y=x_k$, on a
+		\[
+			(\nabla f(\ul x)-\nabla f(x_k)),(x_k-\ul x)\geq \alpha||x_k-\ul x||^2
+		\]
+		d'où
+		\[
+			||\ul x-x_k||\leq \frac{||\nabla f(\ul x) - \nabla f(x_k)||}{\alpha}
+		\]
+		Comme $\nabla f(\ul x)=0$, on a
+		\[
+			||\ul x-x_k||\le \frac{||\nabla f(x_k)||}{\alpha}\to 0
+		\]
+		et donc $x_k\to \ul x$.
 	\end{myproof}
-	
-	\begin{oc-proposition}
-		On suppose que $A$ est positive. Alors $f$ admet un minimum global si et seulement si il existe $\ul x\in\bb R^n$ tel que 
-			\[\begin{aligned}
-				A\ul x=b
-			\end{aligned}\]
-		ou encore si et seulement si $b\in\im A$.
-	\end{oc-proposition}
-	
-	\begin{myproof}
-		C'est une conséquence de la proposition 1.4.2
-	\end{myproof}
-	
-	\begin{oc-remark}
-		En dimension finie, on a
-			\[\begin{aligned}
-				\im A=\left(\ker~^tA\right)^\perp=\left(\ker A\right)^\perp
-			\end{aligned}\]
-		Soit $x\in\ker~^tA$, on a $~^tAx=0$, donc $\forall y\in\bb R^n, \left(~^tAx,y\right)=0$.
-		
-		D'où $(x,Ay)=0$ c'est à dire $x\in(\im A)^\perp$ ainsi
-			\[\begin{aligned}
-				\ker~^tA\sub (\im A)^\perp
-			\end{aligned}\]
-		De plus, on a
-			\[\begin{aligned}
-				\dim(\ker)\cdots
-			\end{aligned}\]
-	\end{oc-remark}
-	
-	\begin{oc-remark}
-		On peut distinguer plusieurs cas :
-		\begin{itemize}
-			\item si $\lambda_1<0$ alors $f$ n'est pas bornée inférieurement
-				\[\begin{aligned}
-					\forall z\in\bb R,f(ze_i)=\frac{\lambda_1}2z^2-z(b,e_i)+c\underset{z\to+\infty}\to-\infty
-				\end{aligned}\]
-				
-			\item si $\lambda_1=0$ et si $b\notin (\ker A)^\perp$, alors l'équation $f'(x)=0$ n'a pas de solution
-			
-			$f$ est convexe, mais non bornée inférieurement. En effet il existe $e_i\in\ker A$ tel que $(b,e_i)\ne 0$. On en déduit
-				\[\begin{aligned}
-					\forall z\in\bb R,f(z,e_i)=-z(b,e_i)+c\underset{z\to\text{sign}(b,e_i)\times\infty}\to-\infty
-				\end{aligned}\]
-				
-			\item si $\lambda_1=0$ et $b\in(\ker A)^\perp$ alors l'équation $f'(x)=0$ possède une infinité de solutions. En effet, puisque $A$ est positive, $f$ est convexe et tout minimum local est global.
-			
-			Si $x_0$ est une solution particulière de $f'(x)=0$, l'ensemble des solutions est l'espace affine
-				\[\begin{aligned}
-					x_0+\ker A
-				\end{aligned}\]
-				
-			et 
-				\[\begin{aligned}
-					\min_{\bb R^n}f(x)=-\frac12(b,x_0)+c
-				\end{aligned}\]
-			\item Si $\lambda_1>0$, $A$ est définie positive, l'équation $f'(x)=0$ admet une solution donnée par $A^{-1}b$.
-			
-			$f$ est strictement convexe et
-				\[\begin{aligned}
-					\min_{\bb R^n}f(x)=-\frac12(b,A^{-1}b)+c
-				\end{aligned}\]
-		\end{itemize}
-	\end{oc-remark}
-		
+
+	\subsection{Méthode de gradient à pas fixe ou variable}
+
+	Pour ne pas avoir à résoudre le problème d'optimisation 1d à chaque itération,
+	on peut fixer à priori une suite de réels ${(\rho_k)}_{k\in\bb N}$ et poser
+	\[
+		x_{k+1}=x_k-\rho_{k+1}\nabla f(x_k)
+	\]
+	Il est même possible de choisir $\rho_k=\rho$ constant.
+
+	\begin{oc-definition}
+		Soit $f\colon \bb R^n\to\bb R$ de classe $\scr C^1$. On dit que
+		$\nabla f$ est \defemph{Lipschitzienne} de constante $M>0$ si
+		\[
+			\forall (x,y)\in\bb R^n, ||\nabla f(x)-\nabla f(y)||\leq M||x-y||
+		\]
+	\end{oc-definition}
+
+	\begin{oc-theorem}
+		On suppose que $f$ est $\scr C^1$ elliptique (de constante $\alpha$) et que
+		$\nabla f$ est Lipschitzienne de constante $M$.
+
+		Si il existe deux constantes $a,b\in \bb R$ telles que
+		\[
+			\forall K\in\bb N,0<a\leq \rho_k\leq b<\frac{2\alpha}{M^2}
+		\]
+		alors la méthode de gradient à pas fixe converge et il existe $\beta<1$ tel que
+		tel que
+		\[
+			\forall K\in\bb N,||x_k-\ul x||\leq \beta^k||x_0-\ul x||
+		\]
+	\end{oc-theorem}
+
 \end{document}
