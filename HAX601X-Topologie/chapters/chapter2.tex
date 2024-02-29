@@ -1,0 +1,299 @@
+\documentclass[french,a4paper,10pt]{article}
+\input{../../common/header.tex}
+\usepackage[a4paper,hmargin=30mm,vmargin=30mm]{geometry}
+
+\title{\color{astral} \sffamily \bfseries Espaces métriques, notions de topologie}
+\author{Ivan Lejeune\thanks{Cours inspiré de M. Charlier et M. Akrout}}
+\date{\today}
+% pdflatex -output-directory=output chapter2.tex && move /Y output\chapter2.pdf .\
+
+\begin{document}
+	\maketitle
+	
+	\section{Connexité}
+	
+	\begin{remark}[Idée]
+		Un espace topologique est \defemph{convexe} s'il est ``en un seul morceau''
+	\end{remark}
+	
+	\begin{example}
+		$\bb R$ usuel est connexe,
+
+		$\bb R^\ast$ n'est pas connexe, en ``deux morceaux'': $\bb R^\ast= \bb R^+ \cup \bb R^-$
+
+		$X = \ff{0,1} \cup \ff{2,3}$ n'est pas connexe, en ``deux morceaux''
+
+		$X = \{0\} \cup \of{0,1}$ est connexe, en ``un seul morceau'': $X=\ff{0,1}$
+	\end{example}
+	
+	\medskip
+
+	\subsection{Introduction}
+
+	On a envie de dire que $X$ (espace topologique) est constitué de "deux morceaux" $A$ et $B$
+	si 
+	\[\begin{gathered}
+		X=A\cup B,\\
+		A\neq\emptyset, B\neq\emptyset,\\
+		A\cap B=\emptyset,\\
+		\overline{A}\cap B=\emptyset, A\cap\overline{B}=\emptyset
+	\end{gathered}\]
+	
+	Si c'est la cas, alors nécessairement $A$ et $B$ sont des \defemph{fermés} de $X$ :
+	\[
+		A\sub \ol A\sub X\setminus B=A
+	\]
+	Donc $A=\ol A$ et $A$ est un fermé de $X$.
+
+	De même :
+	\[
+		B\sub \ol B\sub X\setminus A=B
+	\]
+	Donc $B=\ol B$ et $B$ est un fermé de $X$.
+
+	$X=A\sqcup B$ est une union disjointe avec $A$ et $B$ fermés.
+
+	Alors, 
+	\[\begin{cases}
+		A = X\setminus B\\
+		B = X\setminus A
+	\end{cases}\]
+	ouverts de $X$
+
+	\medskip
+
+	Donc une décomposition topologique de $X$ peut se voir comme:
+	\[
+		X = A\sqcup (X\setminus A)
+	\]
+	avec $A\ne\varnothing, A\ne X,A$ ouvert et fermé de $X$.
+
+	\subsection{Espaces topologiques connexes}
+
+	\begin{definition}
+		Un espace topologique $X$ est \defemph{connexe} si $X$ et $\varnothing$ sont les seuls ouverts et fermés de $X$.
+		Une partie de $(X,\cal T)$ est dite \defemph{connexe} si elle est connexe pour la topologie induite par $\cal T$.
+	\end{definition}
+
+	\begin{example}
+		$X$ muni de la topologie grossière est connexe.
+	\end{example}
+
+	\begin{example}
+		$X$ muni de la topologie discrète est connexe si et seulement si $X$ est vide ou à un seul élément.
+	\end{example}
+
+	\begin{example}
+		$\bb N, \bb Z$ muni de la topologie usuelle.
+	\end{example}
+
+	\begin{remark}
+		Les propositions suivantes sont équivalentes:
+		\begin{enumerate}[label=$(\roman*)$]
+			\item $(X,\cal T)$ est connexe
+			\item Il n'existe pas d'ouverts disjoints $A$ et $B$ de $X$ tels que $X=A\cup B$
+			\item Il n'existe pas de fermés disjoints $A$ et $B$ de $X$ tels que $X=A\sqcup B$
+		\end{enumerate}
+	\end{remark}
+
+	\begin{theorem}
+		$\bb R$ usuel ainsi que tous ses intervalles, est connexe.
+	\end{theorem}
+
+	\begin{myproof}
+		Soit $I$ un intervalle de $\bb R$.
+
+		Si $I$ est vide, c'est évident.
+
+		Si $I$ est non vide, on suppose que $I$ est la réunion de deux ouverts disjoints $A$ et $B$ de $I$
+		avec $A\ne\varnothing, B\ne\varnothing$.
+
+		On cherche une contradiction.
+
+		Soit $a\in A, b\in B$.
+
+		Sans perte de généralité, on suppose que $a<b$.
+
+		Comme $I$ est un intervalle, on a $[a,b]\sub I$.
+
+		% draw tikzpicture representing R with a and b and [a, b] in I
+		\begin{center}
+			\begin{tikzpicture}
+				\draw[->] (0,0) -- (4,0) node[right] {$\bb R$};
+				\draw (1,.1) -- (1,-0.1) node[below] {$a\in A$};
+				\draw (3,0.1) -- (3,-0.1) node[below] {$b\in B$};
+				\draw[<->] (1,0.5) -- (3,0.5) node[midway, above] {$[a,b]\sub I$};
+			\end{tikzpicture}
+		\end{center}
+
+		Considérons $\{X\in \ff{a,b}\mid x\in A\}$.
+
+		C'est une partie non vide de $\bb R$ (car $a\in A$) et majorée par $b$.
+
+		Donc elle admet une borne supérieure $m=\sup\{x\in\ff{a,b}\mid x\in A\}$.
+
+		Alors $m\in\ff{a,b}\sub I$ donc $m\in A\cup B$.
+
+		\begin{itemize}
+			\item Si $m\in A$, alors $A$ est voisinage de $m$ donc il existe $\varepsilon>0$ tel que $\oo{m-\varepsilon,m+\varepsilon}\sub A$.
+
+			Ceci contredit la définition de $m$ comme borne supérieure de $\{x\in\ff{a,b}\mid x\in A\}$.
+			\item Si $m\in B$, alors $B$ est voisinage de $m$ donc il existe $\varepsilon>0$ tel que $\oo{m-\varepsilon,m+\varepsilon}\sub B$.
+
+			Ceci contredit la définition de $m$ comme borne supérieure de $\{x\in\ff{a,b}\mid x\in A\}$.
+		\end{itemize}
+
+		% draw same tikzpicture with m and epsilon in the middle
+		\begin{center}
+			\begin{tikzpicture}
+				\draw[->] (0,0) -- (4,0) node[right] {$\bb R$};
+				\draw (1,.1) -- (1,-0.1) node[below] {$a\in A$};
+				\draw (3,0.1) -- (3,-0.1) node[below] {$b\in B$};
+				\draw (2,0.1) -- (2,-0.1) node[below] {$m$};
+				\draw[<->] (1,-0.7) -- (3,-0.7) node[midway, below] {$[a,b]\sub I$};
+				\draw[<->] (1.5,0.2) -- (2.5,0.2) node[midway, above] {\tiny $\oo{m-\varepsilon,m+\varepsilon}$};
+			\end{tikzpicture}
+		\end{center}
+
+		Ceci contredit l'hypothèse que $A$ et $B$ sont disjoints.
+
+		Soit $A$ une partie de $\bb R$ qui n'est pas un intervalle.
+
+		Alors il existe $a,a'\in A$ et $b\in\bb R\setminus A$ tels que $a<b<a'$.
+
+		Mais alors
+		\[
+			A= \underbrace{A\cap\ff{-\infty,b}}_{\text{ouvert}\ne\varnothing} \sqcup \underbrace{A\cap\ff{b,+\infty}}_{\text{ouvert}\ne\varnothing}
+		\]
+
+		Donc $A$ n'est pas connexe.
+
+	\end{myproof}
+
+	% theorem
+	\begin{theorem}
+		Les parties connexes de $\bb R$ sont exactement les intervalles de $\bb R$.
+	\end{theorem}
+
+	\begin{exercise}
+		$\bb Q$ usuel, est-il connexe? Non, ce n'est pas un intervalle de $\bb R$.
+
+		Il suffit de vérifier que $\sqrt{2}\in\bb R\setminus\bb Q$ est un point de séparation.
+	\end{exercise}
+
+	%th
+	\begin{theorem}
+		Soit $(X,\cal T)$ un espace topologique. Alors $X$ est connexe si et seulement si toute application continue de $X$ dans $\{0,1\}$ est constante.
+	\end{theorem}
+
+	%rem
+	\begin{remark}
+		On considère $f\colon X\to\{0,1\}$. A quelle condition $f$ est-elle continue?
+
+		Les ouverts de $\{0,1\}$ discret sont $\varnothing, \{0\}, \{1\}, \{0,1\}$.
+
+		Alors 
+		%gath
+		\[\begin{gathered}
+			f^{-1}(\varnothing) = \varnothing\\
+			f^{-1}(\{0,1\}) = X
+		\end{gathered}\]
+
+		Une telle fonction est continue si et seulement si $f^{-1}(\{0\})$ et $f^{-1}(\{1\})$ sont ouverts de $X$.
+	\end{remark}
+
+	%myproof
+	\begin{myproof}\,
+		\begin{itemize}
+			\item[$(\Rightarrow)$] Supposons que $X$ est connexe.
+
+			Soit $f\colon X\to\{0,1\}$ continue.
+
+			Alors $f^{-1}(\{0\})$ et $f^{-1}(\{1\})$ sont des ouverts de $X$.
+
+			Comme $f^{-1}(\{0\})\sqcup f^{-1}(\{1\})=X$ et $X$ connexe, alors soit:
+			\begin{itemize}
+				\item $f^{-1}(\{0\})=\varnothing$, donc $f$ est constante égale à $1$.
+				\item $f^{-1}(\{1\})=\varnothing$, donc $f$ est constante égale à $0$.
+			\end{itemize}
+
+			Donc $f$ est constante.
+
+			\item[$(\Leftarrow)$] Supposons que toute application continue de $X$ dans $\{0,1\}$ est constante.
+
+			Supposons que $X$ n'est pas connexe.
+
+			Alors il existe $A$ et $B$ ouverts de $X$ tels que $X=A\sqcup B$ avec $A\ne\varnothing, B\ne\varnothing$.
+
+			Considérons l'application caractéristique
+			\[\begin{aligned}
+				\chi\colon X &\to \{0,1\}\\
+				x &\mapsto \begin{cases}
+					0 & \text{si } x\in A\\
+					1 & \text{si } x\in B
+				\end{cases}
+			\end{aligned}\]
+			
+			$\chi$ est continue et non constante, donc contradiction.
+		\end{itemize}
+	\end{myproof}
+
+	%prop
+	\begin{proposition}
+		Soit $(X,\cal T)$ un espace topologique. Alors:
+		\begin{enumerate}[label=\arabic*)]
+			\item Si $A,B$ sont deux parties connexes de $X$ et $A\cap B\ne\varnothing$, alors $A\cup B$ est connexe.
+			\item Si $A,B$ sont deux parties de $X$ telles que
+			%2 line display a\sub b\sub ol a and a connex
+			\[\begin{aligned}
+				A\sub B\sub \ol A\\
+				A\text{ connexe}
+			\end{aligned}\]
+
+			Alors $B$ est connexe.
+
+			\item En particulier:
+
+			$A$ connexe $\Rightarrow \ol A$ connexe pour toute partie $A$ de $X$.
+		\end{enumerate}
+
+	\end{proposition}
+
+	%myproof
+	\begin{myproof}\,
+		\begin{enumerate}[label=\arabic*)]
+			\item On suppose $A, B$ connexes et $A\cap B\ne\varnothing$.
+
+			Soit $f\colon A\cup B\to\{0,1\}$ continue.
+
+			Alors $f_{|A}$ et $f_{|B}$ sont continues.
+
+			Or $A$ et $B$ sont connexes, donc $f_{|A}$ et $f_{|B}$ sont constantes.
+
+			Comme $A\cap B\ne\varnothing$, alors $f_{|A}(A\cap B)=f_{|B}(A\cap B)$.
+
+			Donc $f_{|A\cup B}$ est constante.
+
+			Donc $A\cup B$ est connexe.
+
+		\item On suppose $A\sub B\sub \ol A$ et $A$ connexe.
+
+			Soit $f\colon B\to\{0,1\}$ continue.
+
+			Alors $f_{|A}$ est continue donc constante car $A$ est connexe.
+
+			Donc $f_{|B}$ est constante:
+
+			Soit $x\in B$. Soit ${(x_n)}_n$ une suite de $A$ qui converge vers $x$.
+
+			Alors $\underbrace{f(x_n)}_{\text{constante}}\to f(x)$ par continuité de $f$.
+
+			Donc $f(x)$ est constante.
+		\end{enumerate}
+	\end{myproof}
+
+
+
+
+
+\end{document}
