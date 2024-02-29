@@ -39,7 +39,7 @@
 				1&\text{si }x\ne y
 			\end{cases}
 		\end{aligned}\]
-		C'est une distance, appelée la distance discrète, qu'on verra en TD.
+		C'est une distance, appelée la distance discrète, qu'on verra en TD
 	\end{example}
 	
 	\begin{definition}
@@ -93,7 +93,7 @@
 	\end{rappel}
 	
 	\begin{definition}
-		Pour $x\in X$ et $\varepsilon\ge0$ :
+		Pour $x\in X$ et $\varepsilon\ge0$:
 		\begin{itemize}
 			\item La \defemph{boule ouverte} de centre $x$ et de rayon $\varepsilon$ est
 			\[\begin{aligned}
@@ -115,7 +115,7 @@
 	\end{example}
 	
 	\begin{definition}
-		Soit $X$ un ensemble et $U$ une partie de $X$. Les assertions suivantes sont équivalentes :
+		Soit $X$ un ensemble et $U$ une partie de $X$. Les assertions suivantes sont équivalentes:
 		\begin{enumerate}[label=$(\roman*)$]
 			\item $U$ est un ouvert de $X$
 			\item Pour tout $x\in U$, il existe $\varepsilon>0$ tel que
@@ -155,7 +155,7 @@
 			
 			\item Soient $U_1,\dots,U_n$ ouverts. On pose 
 			\[\begin{aligned}
-				U=\bigcap_{i=1}^nU_i
+				U=\bigcap_{i=1}^{n}{U}_{i}
 			\end{aligned}\]
 			Soit $x\in U$, pour tout $i\in\{1,\dots,n\}$ on a $x\in U_i$ ouvert donc il existe $\varepsilon_i>0$ tel que 
 			\[\begin{aligned}
@@ -677,4 +677,26 @@
 					\end{aligned}\]
 				Qui est stable par intersection.
 			\end{myproof}
+
+			\medskip
+
+			Soient $(X,\mathcal T_X)$ et $(Y,\mathcal T_Y)$ deux espaces topologiques. On considère $f\colon X\to Y$ continue.
+
+			%prop
+			\begin{proposition}
+				Si $x_n\to x$ dans $X$, alors $f(x_n)\to f(x)$ dans $Y$.
+			\end{proposition}
+
+			%myproof
+			\begin{myproof}
+				Supposons que $x_n\to x$ dans $X$. 
+				Montrons que $f(x_n)\to f(x)$ dans $Y$.
+
+				Soit $V$ un ouvert de $Y$ contenant $f(x)$. Alors $f^{-1}(V)$ est un ouvert de $X$ contenant $x$.
+
+				Or $x_n\to x$ dans $X$, donc il existe $n_0$ tel que pour tout $n\ge n_0$, on a $x_n\in f^{-1}(V)$.
+
+				Donc $f(x_n)\to f(x)$ dans $Y$.
+			\end{myproof}
+
 \end{document}
