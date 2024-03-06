@@ -1,0 +1,198 @@
+\documentclass[french,a4paper,10pt]{article}
+\input{../../common/header.tex}
+\usepackage[a4paper,hmargin=30mm,vmargin=30mm]{geometry}
+\title{\color{astral} \sffamily \bfseries Planche TD 2}
+\author{Ivan Lejeune}
+\date{\today}
+
+\begin{document}
+	
+	\maketitle
+
+    % exo 1 à rajouter
+
+    % exo 2 à rajouter
+
+    \begin{td-exo}[2]
+        Soit $X$ un espace topologique et $A,B$ deux parties de $X$.
+        \begin{enumerate}
+            \item Vérifier que $A\sub B$ implique $\ol A\sub\ol B$ et $\adh A\sub \adh B$.
+
+            \item Etablir les égalités
+                \[\begin{gathered}
+                    C_X(\ol A)=\badh{C_X(A)},\\
+                    C_X(\adh A)=\ol{C_X(A)},\\
+                    \ol{A\cup B}=\ol A\cup\ol B,\\
+                    \badh{A\cap B}=\adh A\cap\adh B.
+                \end{gathered}\]
+
+            \item Etablir les inclusions
+                \[\begin{gathered}
+                    \ol{A\cap B}\sub\ol A\cap \ol B,\\
+                    \adh A\cup \adh B\sub\badh{A\cup B}.
+                \end{gathered}\]
+                Puis construire des exemples où ces inclusions sont strictes.
+
+        \end{enumerate}
+    \end{td-exo}
+
+    \begin{td-exo}[3]
+        Dans un espace métrique $X$, notons $B$ la boule ouverte de centre $a$ et de rayon $r$
+        et $B'$ la boule fermée correspondante.
+
+        \begin{enumerate}
+            \item Rappeler pourquoi on a toujours $\adh B=B$ et $\ol{B'}=B'$.
+
+            \item Montrer que $B\sub \adh{B'}$ et $\ol B\sub B'$. Trouver
+            un espace métrique où ces inclusions sont strictes.
+
+            \item Montrer que si $X$ est un espace normé, les inclusions ci-dessus
+            sont toujours des égalités.
+
+        \end{enumerate}
+
+
+    \end{td-exo}
+
+    \begin{td-sol}\,
+        \begin{enumerate}
+            \item La première égalité est vraie car les boules ouvertes sont des ouverts.
+
+            La deuxieme est vraie care les boules fermées sont fermées
+            
+            \item La première égalité est vraie car $B$ est un ouvert contenu dans $B'$ donc par définition de 
+            $\adh{B'}$ on a $B\sub\adh{B'}$
+
+            La deuxième est vraie car $\ol B\sub B'$, $B'$ est un fermé et $B\sub B'$
+            donc par définition de $\ol B$, on a $\ol B\sub B'$.
+
+            Un espace topologique où les inclusions sont strictes serait le suivant:
+
+            Soit $X=\{a,b\}$ et $d$ la distance discrète. Alors
+            \[\begin{aligned}
+                B(a,1[&=\{a\}\\
+                \ol{B(a,1[}&=\ol{\{a\}}=\{a\}\\
+                B(a,1]&=X=\{a,b\}\\
+                \badh{B(a,1]}&=X=\{a,b\}
+            \end{aligned}\]
+
+            \item Soit $x\in B(a,r]$.
+
+            Soit $V$ un voisinage de $x$ et $\rho >0$ tel que 
+                \[
+                    x\in B(x,\rho[\sub V
+                \]
+                On peut supposer $p<r$. Alors en posant
+                \[
+                    \lambda\coloneq 1-\frac\rho{2r}
+                    \]
+                    on a
+                    \[
+                        a+\lambda(x-a)\in B(a,r[\cap B(x,\rho[\]
+                Donc $V\cap B(a,r[\ne \varnothing$.
+
+            % insertion schema
+            
+            \definecolor{zzttqq}{rgb}{0.6,0.2,0}
+            \definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1}
+            \definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1}
+            \definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+            \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+            \begin{axis}[
+            x=1cm,y=1cm,
+            axis lines=middle,
+            ymajorgrids=true,
+            xmajorgrids=true,
+            xmin=-5.5,
+            xmax=5.5,
+            ymin=-5.5,
+            ymax=5.5,
+            xtick={-5,-4,...,5},
+            ytick={-5,-4,...,5},]
+            \fill[line width=2pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (0.8,2.18) -- (0.96,3.36) -- (1.78,4.02) -- (2.5,3.94) -- (3.68,2.42) -- (4.16,1.86) -- (3.9,1.42) -- (4,1) -- (2.739026131847485,1.223820186570153) -- (1.78,0.98) -- (1.06,1.42) -- cycle;
+            \draw [line width=2pt] (0,0) circle (3cm);
+            \draw [line width=2pt] (2.121320343559643,2.1213203435596424) circle (0.8595503872414193cm);
+            \draw [line width=2pt,color=zzttqq] (0.8,2.18)-- (0.96,3.36);
+            \draw [line width=2pt,color=zzttqq] (0.96,3.36)-- (1.78,4.02);
+            \draw [line width=2pt,color=zzttqq] (1.78,4.02)-- (2.5,3.94);
+            \draw [line width=2pt,color=zzttqq] (2.5,3.94)-- (3.68,2.42);
+            \draw [line width=2pt,color=zzttqq] (3.68,2.42)-- (4.16,1.86);
+            \draw [line width=2pt,color=zzttqq] (4.16,1.86)-- (3.9,1.42);
+            \draw [line width=2pt,color=zzttqq] (3.9,1.42)-- (4,1);
+            \draw [line width=2pt,color=zzttqq] (4,1)-- (2.739026131847485,1.223820186570153);
+            \draw [line width=2pt,color=zzttqq] (2.739026131847485,1.223820186570153)-- (1.78,0.98);
+            \draw [line width=2pt,color=zzttqq] (1.78,0.98)-- (1.06,1.42);
+            \draw [line width=2pt,color=zzttqq] (1.06,1.42)-- (0.8,2.18);
+            \draw [<->,line width=1pt] (0,0) -- (-2.1213203435596424,2.121320343559643);
+            \draw [<->,line width=1pt] (2.121320343559643,2.1213203435596424) -- (1.3881139400798583,1.6727278357052275);
+            \draw [<->,line width=1pt] (2.121320343559643,2.1213203435596424) -- (1.06,1.42);
+            \end{axis}
+            \end{tikzpicture}
+            % unites a conserver :
+            % a droite, r
+            % fleche petite rho
+            % fleche grande a+\lambda(x-a)
+            % \lambda = 1-(r-p)/2
+            % petit cercle = B(x,\rho[
+            % gros polygone = V
+            % centre petit cercle = x
+
+
+            On veut choisir $\lambda<1$ tel que 
+                \[
+                    \frac{||x-(a+\lambda(x-a))||}{(1-\lambda)(x-a)}<\rho
+                \]
+
+            Alors $x\in \ol{B(a,r[}$ car
+            \[
+                x=\lim_{n\to+\infty}\left(a+\left(1-\frac1n\right)(x-a)\right)
+            \]
+
+            et cet element appartient à $B(a,r]$ puisque il est $<r$.
+        \end{enumerate}
+    \end{td-sol}
+
+    \begin{td-sol}[4]
+        Il faut montrer que 
+        \[
+            |d_A(x)-d_A(y)|\le k\cdot d(x,y)
+        \]
+        Cela ressemble fort à la seconde inégalité triangulaire qui nous dit:
+        \[
+            |d(x,a)-d(a,y)|\le d(x,y)
+        \]
+
+        Si $A=\{a\}$, ceci dit que $d_A$ est $1$-lipschitzienne. 
+        Aurait-on dans le cas général
+        \[
+            |d_A(x)-d_A(y)|\le d(x,y)\quad\text ?
+        \]
+
+        Cela revient à prouver
+        \[
+            -d(x,y)\le d_A(x)-d_A(y)\le d(x,y)
+        \]
+
+        Soit $a\in A$, alors
+        \[
+            d(x,a)-d(y,a)\le d(x,y)
+        \]
+        et donc
+        \[
+            d(x,a)\le d(x,y)+d(y,a)
+        \]
+        d'où
+        \[
+            d_A(x)-d(x,y)\le d(y,a)
+        \]
+        pour tout $a\in A$ et donc la fonction est $1$-lipschitzienne.
+
+        Dans des espaces métriques, $f$ est continue en $x\in X$ si et seulement si
+        pour toute suite $(x_n)$ de points de $X$ qui convergent vers $x\in X$,
+        on a $f(x_n)\to f(x)$.
+
+    \end{td-sol}
+\end{document}
+
+
+
