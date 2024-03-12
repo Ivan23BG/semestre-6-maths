@@ -61,9 +61,9 @@ Z = f_test(X, Y)
 surf = ax.plot_surface(X, Y, Z, cmap=cm.coolwarm, linewidth=0, antialiased=False)
 fig.colorbar(surf, shrink=0.5, aspect=5)
 ax.set_title("Fonction de test")
-ax.set_xlabel("x")
-ax.set_ylabel("y")
-ax.set_zlabel("f(x, y)")
+ax.set_xlabel(r"$x$")
+ax.set_ylabel(r"$y$")
+ax.set_zlabel(r"$f(x, y)$")
 plt.show()
 
 # -----
@@ -94,8 +94,34 @@ print(f"Résultat de l'algorithme : {x_k[-1]}")
 # -----
 #%%
 # ----- Question 2.1 - Evolution graphique des (x_k) de l'algorithme
-x_list = np.array(x_k)
-f_quad_list = f_quad(x_list.T)
-plt.plot(f_quad_list)
+# ----- avec a = b = 10, 50, 100
+vals = [1, 10, 50, 100]
+for val in vals:
+    A = val
+    B = val
+    x_k = algo1(grad_f_quad, x_init, gamma, maxiter, epsilon)
+    x_list = np.array(x_k)
+    f_quad_list = f_quad(x_list.T)
+    # plot with title legend and axis labels
+    plt.title(r"Evolution de $f(x_k)$ pour $a = b = 1, 10, 50, 100$")
+    plt.xlabel("itération")
+    plt.ylabel(r"$f(x_k)$")
+    plt.plot(f_quad_list, label=f"a = b = {val}")
+    plt.legend()
+plt.show()
 
-# ----- Meme chose avec a = b = 10, 50, 100
+# ----- Meme chose en echelle logarithmique
+for val in vals:
+    A = val
+    B = val
+    x_k = algo1(grad_f_quad, x_init, gamma, maxiter, epsilon)
+    x_list = np.array(x_k)
+    f_quad_list = f_quad(x_list.T)
+    # plot with title legend and axis labels
+    plt.yscale("log")
+    plt.title(r"Evolution de $f(x_k)$ en echelle log pour $a = b = 1, 10, 50, 100$")
+    plt.xlabel("itération")
+    plt.ylabel(r"$f(x_k)$")
+    plt.plot(f_quad_list, label=f"a = b = {val}")
+    plt.legend()
+plt.show()
