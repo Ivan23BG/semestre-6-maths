@@ -2,7 +2,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import cm
-
+import time
+import copy
 #%% Constantes
 # on utilisera sauf mention contraire les constantes suivantes
 gamma = 0.01
@@ -17,18 +18,34 @@ epsilon = 1e-5
 #%%
 # Algorithme de la descente de gradient
 def algo1(grad_f, x_init, gamma, maxiter, epsilon):
+    """
+    Implements the gradient descent algorithm for optimization.
+
+    Parameters:
+    grad_f (function): The gradient of the objective function.
+    x_init (np.array): The initial point.
+    gamma (float): The learning rate.
+    maxiter (int): The maximum number of iterations.
+    epsilon (float): The convergence threshold.
+
+    Returns:
+    list: List of x values at each iteration.
+    """
+
     x = x_init
     x_k = [x]
-    for i in range(maxiter):
-        x = x - gamma * grad_f(x)
-        x_k.append(x)
-        if np.linalg.norm(grad_f(x)) < epsilon:
+    for i in range(1, maxiter + 1):
+        g = grad_f(x)
+        if np.linalg.norm(g) < epsilon ** 2:
             break
+        else:
+            x = x - gamma * g
+            x_k.append(x)
     return x_k
 #%%
 # Fonction de test
 def f_test(x_1, x_2):
-    return (x_1-1)**2 + 3*(x_2+1)**2
+    return np.square(x_1 - 1) + 3 * np.square(x_2 + 1)
 
 #%%
 # gradient de f_test
@@ -153,7 +170,7 @@ X = np.arange(-5, 5, 0.25)
 Y = np.arange(-5, 5, 0.25)
 X, Y = np.meshgrid(X, Y)
 for a in a_list:
-    b=a
+    b= a
     Z = f_ab(X, Y)
     plt.contour(X, Y, Z, 20)
     plt.colorbar()
@@ -246,11 +263,12 @@ def algo2(grad, x_init, gamma, n_iter, epsilon):
     x_k = [x]
     for i in range(1, n_iter+1):
         for j in range(len(x)):
-            x[j] = x[j] - gamma * grad(x)[j]
-            if np.linalg.norm(grad(x)[j]) < epsilon:
+            g = grad(x)[j]
+            if np.linalg.norm(grad(x)[j]) < epsilon ** 2:
                 break
-        x_k.append(x)
-        
+            else:
+                x[j] = x[j] - gamma * g
+                x_k.append(x)
     return x_k
 
 
@@ -266,11 +284,12 @@ x_init = np.array([1, 1])
 x_min_1 = algo1(grad_f_ab, x_init, gamma, maxiter, epsilon)
 x_list_1 = np.array(x_min_1)
 f_ab_list_1 = f_ab(x_list_1[:,0], x_list_1[:,1])
+
 x_min_2 = algo2(grad_f_ab, x_init, gamma, maxiter, epsilon)
 x_list_2 = np.array(x_min_2)
 f_ab_list_2 = f_ab(x_list_2[:,0], x_list_2[:,1])
 # plot
-plt.yscale("log")
+# plt.yscale("log")
 plt.plot(f_ab_list_1, label="classique")
 plt.plot(f_ab_list_2, label="par coordonnee")
 
@@ -279,4 +298,5 @@ plt.title("Evolution des x_k en echelle log pour a=1, b=1")
 # plot with legend
 plt.legend()
 print(f"pour a = {a}:\t",x_min_1[-1],"\n", x_min_1)
+print(f"pour a = {a}:\t",x_min_2[-1],"\n", x_min_2)
 
