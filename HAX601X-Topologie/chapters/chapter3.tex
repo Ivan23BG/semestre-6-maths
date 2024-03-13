@@ -1,0 +1,29 @@
+\documentclass[french,a4paper,10pt]{article}
+\input{../../common/header.tex}
+\usepackage[a4paper,hmargin=30mm,vmargin=30mm]{geometry}
+
+\title{\color{astral} \sffamily \bfseries Compacité}
+\author{Ivan Lejeune\thanks{Cours inspiré de M. Charlier et M. Akrout}}
+\date{\today}
+% pdflatex -output-directory=output chapter3.tex && move /Y output\chapter3.pdf .\
+% pdflatex -output-directory=output chapter3.tex && mv output/chapter3.pdf ./
+
+\begin{document}
+	\maketitle
+	
+	\section{Introduction}
+
+    Soit $(X, \cal T)$ un espace topologique.
+
+    %def
+    \section{Définition et caractérisation}
+    \begin{definition}
+        $X$ est dit \defemph{compact} si toute recouvrement ouvert de $X$ admet un sous-recouvrement fini.
+
+        Soit:
+        Si $X = \bigcup_{i\in I} U_i$ avec $U_i\in\cal T$ pour tout $i\in I$, alors il existe un sous-ensemble fini $J\sub I$ tel que $X = \bigcup_{j\in J} U_j$.
+    \end{definition}
+
+    
+	
+\end{document}
