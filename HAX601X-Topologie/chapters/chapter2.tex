@@ -6,6 +6,7 @@
 \author{Ivan Lejeune\thanks{Cours inspiré de M. Charlier et M. Akrout}}
 \date{\today}
 % pdflatex -output-directory=output chapter2.tex && move /Y output\chapter2.pdf .\
+% pdflatex -output-directory=output chapter2.tex && mv output/chapter2.pdf ./
 
 \begin{document}
 	\maketitle
@@ -30,7 +31,7 @@
 
 	\subsection{Introduction}
 
-	On a envie de dire que $X$ (espace topologique) est constitué de "deux morceaux" $A$ et $B$
+	On a envie de dire que $X$ (espace topologique) est constitué de ``deux morceaux'' $A$ et $B$
 	si 
 	\[\begin{gathered}
 		X=A\cup B,\\
@@ -39,13 +40,13 @@
 		\overline{A}\cap B=\emptyset, A\cap\overline{B}=\emptyset
 	\end{gathered}\]
 	
-	Si c'est la cas, alors nécessairement $A$ et $B$ sont des \defemph{fermés} de $X$ :
+	Si c'est la cas, alors nécessairement $A$ et $B$ sont des \defemph{fermés} de $X$:
 	\[
 		A\sub \ol A\sub X\setminus B=A
 	\]
 	Donc $A=\ol A$ et $A$ est un fermé de $X$.
 
-	De même :
+	De même:
 	\[
 		B\sub \ol B\sub X\setminus A=B
 	\]
@@ -66,13 +67,13 @@
 	\[
 		X = A\sqcup (X\setminus A)
 	\]
-	avec $A\ne\varnothing, A\ne X,A$ ouvert et fermé de $X$.
+	avec $ A\ne\varnothing, A\ne{} X, A$ ouvert et fermé de $X$.
 
 	\subsection{Espaces topologiques connexes}
 
 	\begin{definition}
 		Un espace topologique $X$ est \defemph{connexe} si $X$ et $\varnothing$ sont les seuls ouverts et fermés de $X$.
-		Une partie de $(X,\cal T)$ est dite \defemph{connexe} si elle est connexe pour la topologie induite par $\cal T$.
+		Une partie de $ (X,\cal{T} )$ est dite \defemph{connexe} si elle est connexe pour la topologie induite par $\cal T$.
 	\end{definition}
 
 	\begin{example}
@@ -241,7 +242,7 @@
 	%prop
 	\begin{proposition}
 		Soit $(X,\cal T)$ un espace topologique. Alors:
-		\begin{enumerate}[label=\arabic*)]
+		\begin{enumerate}[label= (\arabic*)]
 			\item Si $A,B$ sont deux parties connexes de $X$ et $A\cap B\ne\varnothing$, alors $A\cup B$ est connexe.
 			\item Si $A,B$ sont deux parties de $X$ telles que
 			%2 line display a\sub b\sub ol a and a connex
@@ -261,7 +262,7 @@
 
 	%myproof
 	\begin{myproof}\,
-		\begin{enumerate}[label=\arabic*)]
+		\begin{enumerate}[label= (\arabic*)]
 			\item On suppose $A, B$ connexes et $A\cap B\ne\varnothing$.
 
 			Soit $f\colon A\cup B\to\{0,1\}$ continue.
@@ -290,7 +291,9 @@
 
 			Donc $f(x)$ est constante.
 
-		\item On applique 2) à $A$ et $\ol A$.
+		\item On applique $(2)$ à $A$ et $\ol{A}$.
 		\end{enumerate}
 	\end{myproof}
+
+
 \end{document}
