@@ -4,6 +4,8 @@
 \title{\color{astral} \sffamily \bfseries Planche TD 2}
 \author{Ivan Lejeune}
 \date{\today}
+% pdflatex td2.tex -output-directory=output && mv output/td2.pdf ./
+
 
 \begin{document}
 	
@@ -192,6 +194,25 @@
         on a $f(x_n)\to f(x)$.
 
     \end{td-sol}
+
+    \begin{td-exo}[5]
+        Un espace topologique est dit \defemph{séparable} s'il possède une partie au-plus dénombrable
+        partout dense. Montrer qu'un espace métrique est séparable si et seulement si il possède
+        une base d'ouverts au plus dénombrable. Etablir que $\bb R^n$ est séparable et exhiber une base
+        d'ouverts dénombrables.
+    \end{td-exo}
+
+    % deja fait
+
+    \begin{td-exo}[6]
+        Deux espaces métriques $(X,d)$ et $(Y,\delta)$ étant donnés, définissons:
+        \[
+            D_1((x,y),(x',y'))\coloneqq d(x,x')+\delta(y,y')\quad;\quad D_\infty((x,y),(x',y'))\coloneqq \max\{d(x,x'),\delta(y,y')\}
+        \]
+
+        Montrer que $D_1$ et $D_\infty$ définissent deux distances équivalentes sur $X\times Y$,
+        puis que la topologie associée à $D_1$ n'est autre que la topologie produit.
+    \end{td-exo}
 \end{document}
 
 
