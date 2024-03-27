@@ -1,0 +1,363 @@
+\documentclass[french,a4paper,10pt]{article}
+\input{../../../common/header.tex}
+\usepackage[a4paper,hmargin=30mm,vmargin=30mm]{geometry}
+
+\title{\color{astral} \sffamily \bfseries Chapitre 1: Espaces Métriques}
+\author{Ivan Lejeune\thanks{Cours inspiré de M. Charlier et M. Gieu}}
+\date{\today}
+% pdflatex -output-directory=output chapter1.tex && move /Y output\chapter1.pdf .\
+
+\begin{document}
+	\maketitle
+
+	\section{Espaces métriques}
+	
+    %def
+	\begin{definition}
+        Soit $(X,d)$ un espace métrique.
+        Une suite $(x_n)\subset X$ sera dite de Cauchy si:
+        \[
+            \forall \varepsilon>0,\ \exists N\in\bb N,\ \forall n,m\geq N,\ d(x_n,x_m)<\varepsilon.
+        \]
+    \end{definition}
+
+    %rem
+    \begin{remark}\,
+        \begin{itemize}
+            \item C'est une notion purement métrique.
+            \item intuitivement: ``$x_n$ et $x_m$ se rapprochent de plus en plus
+            à mesure que $n$ et $m$ deviennent grands''.
+        \end{itemize}
+    \end{remark}
+
+    %sec
+    \section{Un premier lot de résultats utiles}
+
+    %prop
+    \begin{proposition}\,
+        \begin{enumerate}
+            \item Si $d$ et $\delta$ sont deux distances fortement équivalentes sur le même ensemble $X$,
+            alors $(X,d)$ et $(X,\delta)$ ont les \defemph{mêmes} suites de Cauchy.
+            \item Si $f\colon (X,d)\to (Y,\delta)$ est une application uniformément continue, alors
+            $f$ envoie les suites de Cauchy de $X$ sur les suites de Cauchy de $Y$.
+            \item Toute suite de Cauchy est bornée.
+            \item Toute suite convergente est de Cauchy.
+            \item Si une suite de Cauchy admet une valeur d'adhérence, alors elle converge.
+        \end{enumerate}
+    \end{proposition}
+
+    %proof
+    \begin{myproof}\,
+        \begin{enumerate}
+            \item Il existe $\alpha,\beta>0$ tels que $\alpha d(x,y)\leq \delta(x,y)\leq \beta d(x,y)$.
+
+            Soit $(x_n)$ une suite de Cauchy dans $(X,d)$.
+            \[
+                \delta(x_n,x_m)\leq \beta d(x_n,x_m)
+            \]
+
+            Soit $\varepsilon>0$. Il existe $N\in\bb N$ tel que pour $n,m\geq N$, $d(x_n,x_m)<\frac{\varepsilon}{\beta}$.
+
+            Donc $\forall n,m\geq N$, $\delta(x_n,x_m)\leq \beta d(x_n,x_m)<\varepsilon$.
+
+            La réciproque est analogue.
+
+            \item Soit $(x_n)$ une suite de Cauchy dans $(X,d)$ et $f\colon (X,d)\to (Y,\delta)$ uniformément continue.
+
+            On pose $y_n\coloneqq f(x_n)$ et on veut montrer que $(y_n)$ est de Cauchy dans $(Y,\delta)$.
+
+            Comme $f$ est uniformément continue, on a:
+            \[
+                \forall \varepsilon>0,\ \exists \alpha>0,\ \forall x,x'\in X,\ d(x,x')<\alpha\Rightarrow \delta(f(x),f(x'))<\varepsilon.
+            \]
+
+            Comme $(x_n)$ est de Cauchy, on a:
+            \[
+                \forall \alpha>0,\ \exists N\in\bb N,\ \forall n,m\geq N,\ d(x_n,x_m)<\alpha.
+            \]
+
+            Soit $\varepsilon>0$. On veut montrer
+            \[
+                \delta(y_n,y_m)=\delta(f(x_n),f(x_m))<\varepsilon.
+            \]
+
+            Or $\delta(f(x_n),f(x_m))<\varepsilon$ vrai dès que $d(x_n,x_m)<\alpha$ et donc dès que $n,m\geq N$.
+
+            \item Soit $(x_n)$ une suite de Cauchy dans $(X,d)$.
+            Prenons $\varepsilon=1$. 
+            Alors, il existe $N\in\bb N$ tel que pour $n,m\geq N$, $d(x_n,x_m)<1$.
+
+            En particulier, pour $n\geq N$, $d(x_n,\underset{a}{x_N})<1$.
+
+            Prenons $R\coloneqq \max\{d(x_0,a),\ldots,d(x_{N-1},a),1\}$.
+
+            Alors, pour tout $n\in\bb N$, $d(x_n,a)\leq R$.
+
+            Donc $(x_n)\subset B(a,R)$, ce qui montre que $(x_n)$ est bornée.
+
+            \item Soit $(x_n)$ une suite convergente dans $(X,d)$.
+            Alors
+            \[
+                d(x_n,a)\xrightarrow[n\to+\infty]{}0.
+            \]
+
+            Montrons que $(x_n)$ est de Cauchy:
+
+            Soit $\varepsilon>0$, alors
+            \[
+            d(x_n,x_m)\leq \underset{<\frac\varepsilon2}{d(x_n,a)}+\underset{<\frac\varepsilon2}{d(a,x_m)}<\varepsilon
+            \]
+            pour $n,m$ assez grands.
+
+            \item %lem
+            \begin{lemme}[cf prochain TD]
+                Soit $(x_n)$ une suite dans $(X,d)$. Les assertions suivantes sont équivalentes:
+                \begin{enumerate}[label=$(\roman*)$]
+                    \item $(x_n)$ admet une sous-suite convergente vers $a\in X$.
+                    \item $a$ est valeur d'adhérence de $(x_n)$.
+                    \item $\forall V\in \mathcal V_a,\ \forall m\in\bb N,\ \exists n\geq m,\ x_n\in V$.
+                    \item $\forall \varepsilon>0,\ \forall m\in\bb N,\ \exists n\geq m,\ d(a, x_n)<\varepsilon$.
+                \end{enumerate}
+            \end{lemme}
+            
+            % retour à la preuve
+            Soit $(x_n)$ une suite de Cauchy dans $(X,d)$ qui admet une valeur d'adhérence $a\in X$.
+            Alors, 
+            \[
+                \forall \varepsilon>0,\ \forall m,p\in\bb N,\ d(x_m,x_p)<\varepsilon.
+            \]
+
+            Soit $\varepsilon>0$, on a les assertions suivantes:
+            \begin{itemize}
+                \item $(x_n)$ de Cauchy donc $\forall m,p\ge N,\ d(x_m,x_p)<\frac\varepsilon2$.
+                \item $a$ est une valeur d'adhérence donc si on fixe $m\in\bb N,\ \exists n\geq m,\ d(a,x_n)<\frac\varepsilon2$.
+            \end{itemize}
+
+            Donc, pour $m\in\bb N$, on a
+            \[
+                d(a,x_m)\leq d(a, x_n) d(x_n,x_m)<\varepsilon
+            \]
+
+            Donc $\lim_{n\to+\infty}x_n=a$.
+        \end{enumerate}
+    \end{myproof}
+
+    %rem
+    \begin{remark}
+        Il existe des suites de Cauchy qui ne convergent pas:
+
+        On considère Héron d'Alexandrie qui a donné une suite de Cauchy qui ne converge pas:
+        \[\begin{cases}
+            x_0=2\\
+            x_{n+1}=\frac{x_n}2+\frac1{x_n}
+        \end{cases}\]
+
+        Suite dans $\bb Q$. 
+
+        $(x_n)$ est de Cauchy dans $\bb Q$ mais ne converge pas.
+
+        $(x_n)$ est de Cauchy dans $\bb R$ et converge vers $\sqrt 2$.
+    \end{remark}
+
+    %def
+    \begin{definition}
+        Un espace métrique $(X,d)$ sera dit complet si chacune de ses suites de Cauchy converge (dans $X$).
+    \end{definition}
+
+    %ex
+    \begin{example}
+        $\bb Q$ n'est pas complet.
+    \end{example}
+
+    %prop
+    \begin{proposition}
+        $(\bb R,|\cdot|)$ est complet.
+    \end{proposition}
+
+    %proof
+    \begin{myproof}
+        Soit $(x_n)$ une suite de Cauchy dans $\bb R$.
+
+        Elle est donc bornée.
+
+        Par le théorème de Bolzano-Weierstrass, elle admet une valeur d'adhérence $a\in\bb R$.
+
+        Donc, $(x_n)$ admet une sous-suite convergente vers $a$.
+
+        Alors $(x_n) \subset \ff{\alpha, \beta}$ compact.
+    \end{myproof}
+
+    %sec
+    \section{Complétude et Produit}
+
+    Soient $(X,d)$ et $(Y,\delta)$ deux espaces métriques.
+    On considère
+    \[\begin{aligned}
+        z &= (x,y)\in Z = X\times Y\\
+        z' &= (x',y')\in Z
+    \end{aligned}\]
+
+    %not
+    \begin{notation}
+        On notera
+        \[
+            \mathcal D_\infty(z,z')\coloneqq \max\{d(x,x'),\delta(y,y')\}
+        \]
+
+        %exo
+        \begin{exercise}
+            Montrer que $\mathcal D_\infty$ est une distance sur $Z$.
+        \end{exercise}
+
+        ``la'' distance produit. 
+        On note aussi $(Z, \mathcal D_\infty)$ ``l'' espace métrique produit.
+
+        \defemph{Pourquoi les ``$\cdot$''?} On aurait pu prendre
+        \[
+            \mathcal D_p(z,z')\coloneqq {\left({d(x,x')}^p+{\delta(y,y')}^p\right)}^{\frac1p}
+        \]
+        pour $p\geq 1$. $\mathcal D_p$ est une distance équivalente à $\mathcal D_\infty$.
+
+        Elles donnent la \defemph{même} topologie: la topologie produit.
+    \end{notation}
+
+    %prop
+    \begin{proposition}
+        Si $(x_n)$ une suite dans $X$,  $(y_n)$ une suite dans $Y$ et $(z_n) = (x_n,y_n)$ une suite dans $Z$.
+
+        Alors, $(z_n)$ est de Cauchy dans $Z$ si et seulement si $(x_n)$ et $(y_n)$ sont de Cauchy dans $X$ et $Y$ respectivement.
+    \end{proposition}
+
+    %proof
+    \begin{myproof}
+        \begin{itemize}
+            \item[$\Rightarrow$] $\mathcal D_\infty(z_n,z_m) \le \max\{d(x_n,x_m)+\delta(y_n,y_m)\}$.
+
+            \item[$\Leftarrow$] 
+            \[\begin{cases}
+                \d(x_n,x_m)<\mathcal D_\infty(z_n,z_m)\\
+                \delta(y_n,y_m)<\mathcal D_\infty(z_n,z_m)
+            \end{cases}\]
+        \end{itemize}
+    \end{myproof}
+
+    %cor
+    \begin{corollaire}
+        $(Z, \mathcal D_\infty)$ est complet si et seulement si $(X,d)$ et $(Y,\delta)$ sont complets.
+    \end{corollaire}
+
+    %cor
+    \begin{corollaire}
+        $(\bb R^n, ||\cdot||_\infty)$ est complet, et
+        \[
+            \left(\bb R^n,||\cdot||_\infty\right) = {\left(\bb R,|\cdot|\right)}^n
+        \]
+    \end{corollaire}
+
+    %sec
+    \section{Complétude et Sous-espaces}
+
+    %not
+    \begin{notation}
+        On notera $(A,d_A)$ un sous-espace de $(X,d)$.
+    \end{notation}
+
+    %rem
+    \begin{remark}
+        $(a_n)\subset A$ est une suite de Cauchy dans $(A,d_A)$ si et seulement si $(a_n)$ est de Cauchy dans $(X,d)$.
+    \end{remark}
+
+    %prop
+    \begin{proposition}
+        Soit $A\subset (X,d)$ muni de la distance induite $d_A$. Alors:
+        \begin{enumerate}
+            \item $(A,d_A)$ complet $\Rightarrow A$ fermé dans $(X,d)$.
+            \item Si $A$ est fermé dans $(X,d)$ et $(X,d)$ complet, alors $(A,d_A)$ est complet.
+            \item Si $A$ est compact dans $(X,d)$, alors $(A,d_A)$ est complet.
+        \end{enumerate}
+    \end{proposition}
+
+    %proof
+    \begin{myproof}\,
+        \begin{enumerate}
+            \item Soit $x\in \overline A$. Il existe $(a_n)\subset A$ telle que $a_n\xrightarrow[n\to+\infty]{}x$.
+
+            Comme $(a_n)$ est convergente dans $(A,d_A)$, elle est de Cauchy dans $(A,d_A)$.
+
+            Donc, $(a_n)$ converge dans $(A,d_A)$.
+
+            \item On suppose que $A$ est fermé dans $(X,d)$ et $(X,d)$ complet.
+
+            Soit $(a_n)$ une suite de Cauchy dans $(A,d_A)$. Comme $(a_n)$ est de Cauchy dans $(X,d)$, elle converge dans $(X,d)$.
+
+            $X$ complet $\Rightarrow (a_n)$ converge vers $x\in X$.
+
+            Comme $A$ est fermé, $x\in A$.
+
+            $(a_n)$ converge dans $(A,d_A)$. $(A,d_A)$ complet.
+
+            \item On suppose que $A$ est compact dans $(X,d)$.
+
+            Soit $(a_n)$ une suite de Cauchy dans $(A,d_A)$.
+
+            Comme $A$ est compact, $(a_n)$ admet une valeur d'adhérence $x\in A$.
+
+            Comme $A$ compact dans un séparé, $A$ est fermé. Donc $x\in A$.
+
+            Donc $(a_n)$ converge dans $(A,d_A)$. $(A,d_A)$ complet.
+        \end{enumerate}
+    \end{myproof}
+
+    %sec
+    \section{Exemples fondamentaux}
+
+    \subsection{$f^\infty(X)$}
+
+    On considère $X$ un ensemble et $f^\infty(X)\subset \mathcal F(X,\bb R)$ l'ensemble des fonctions bornées de $X$ dans $\bb R$.
+
+    On a $||f||_\infty = \sup_{x\in X}|f(x)|$.
+
+    %prop
+    \begin{proposition}
+        $(f^\infty(X), ||\cdot||_\infty)$ est complet.
+    \end{proposition}
+
+    %rem
+    \begin{remark}
+        Si $X=\bb N$, alors $f^\infty(X)$ est l'ensemble des suites bornées.
+
+        Alors $|| x ||_\infty = \sup_{n\in\bb N}|x_n|$.
+    \end{remark}
+
+    Maintenant je prends $X$ un espace topologique compact.
+
+    Si $C^0(X)=\{f\colon X\to\bb R\text{ continue}\}$, alors $C^0(X)\subset f^\infty(X)$.
+
+    %prop
+    \begin{proposition}
+        $(C^0(X), ||\cdot||_\infty)$ est fermé.
+    \end{proposition}
+
+    %cor
+    \begin{corollaire}
+        $(C^0(X), ||\cdot||_\infty)$ est complet.
+    \end{corollaire}
+
+    Prenons maintenant $X$=$I$=$\ff{0, 2}$ compact.
+
+    Alors $C^0(I)$ est complet.
+
+    Prenons maintenant $||f||_1 = \int_I |f(t)|\dd t$.
+
+    C'est une norme.
+
+    %prop
+    \begin{proposition}
+        $(C^0(I), ||\cdot||_1)$ n'est \defemph{pas} complet.
+    \end{proposition}
+
+
+
+
+
+\end{document}
