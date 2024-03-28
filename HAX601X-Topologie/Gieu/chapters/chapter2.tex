@@ -1,0 +1,113 @@
+\documentclass[french,a4paper,10pt]{article}
+\input{../../../common/header.tex}
+\usepackage[a4paper,hmargin=30mm,vmargin=30mm]{geometry}
+
+\title{\color{astral} \sffamily \bfseries Chapitre 2: Espaces vectoriels normés}
+\author{Ivan Lejeune\thanks{Cours inspiré de M. Charlier et M. Gieu}}
+\date{\today}
+% pdflatex -output-directory=output chapter2.tex && move /Y output\chapter2.pdf .\
+
+\begin{document}
+	\maketitle
+
+	\section{Généralités}
+    
+    On considère $E$ un $\bb K$-espace vectoriel. $\bb K$ sera $\bb R$ ou $\bb C$.
+
+    La dimension de $E$ sera quelconque, finie ou infinie.
+
+    %def
+    \begin{definition}
+        Soit $E$ un espace vectoriel et $||\cdot ||$ de $E$ dans $\bb R$ une fonction.
+
+        \begin{enumerate}\item ava \end{enumerate}
+
+        On dit que $||\cdot ||$ est une \defemph{norme} sur $E$ si:
+
+        \begin{enumerate}[label=$(\roman*)$]
+            \item[(P)] $\forall x \in E, ||x|| \geq 0$
+            \item[(H)] $\forall x \in E, \forall \lambda \in \bb K, ||\lambda x|| = |\lambda| \cdot ||x||$
+            \item[(S)] $\forall x\in E, ||x|| = 0 \Leftrightarrow x = 0$
+            \item[(T)] $\forall x, y \in E, ||x + y|| \leq ||x|| + ||y||$
+        \end{enumerate}
+    \end{definition}
+
+    %prop
+    \begin{proposition}[Immédiate] % seconde inég. triangulaire
+        Soit $E$ un espace vectoriel normé. Alors:
+        \[
+            \forall x, y \in E, ||x - y|| \geq | ||x|| - ||y|| |
+        \]
+    \end{proposition}
+
+    %proof
+    \begin{myproof}
+        \begin{align*}
+            ||x|| &= ||(x - y) + y|| \\
+            &\leq ||x - y|| + ||y|| \\
+            \Rightarrow ||x|| - ||y|| &\leq ||x - y||
+        \end{align*}
+        En échangeant $x$ et $y$, on obtient l'autre inégalité:
+        \[
+            ||y|| - ||x|| \leq ||x - y||
+        \]
+    \end{myproof}
+    
+    Si on enlève $(S)$, on obtient une \defemph{semi-norme}.
+
+    Cette proposition implique que $(S)$ est en fait une équivalence grâce à $(H)$:
+
+    \[
+        x=0 \Rightarrow ||x|| = ||\overrightarrow{0}|| = ||\overrightarrow{0} - \overrightarrow{0}|| \leq ||\overrightarrow{0}|| + ||\overrightarrow{0}|| = 0
+    \]
+
+    %not
+    \begin{notation}
+        On note $d(x,y)=||x-y||$ la \defemph{distance} sur $E$ associée à la norme $||\cdot||$.
+
+        $(E, d)$ est un \defemph{espace métrique} et $\mathcal T_d$ est la topologie associée.
+
+        Si $(E, d)$ est complet, on dit que $E$ est un \defemph{espace de Banach}.
+    \end{notation}
+
+    %def
+    \begin{definition}
+        Soit $n,n'$ deux normes sur le même espace vectoriel $E$. Elles sont dites
+        \defemph{équivalentes} si:
+        \[
+            \exists\alpha, \beta > 0, \forall x \in E, \alpha n(x) \leq n'(x) \leq \beta n(x)
+        \]
+
+        On note alors $n \sim n'$, $n\sim n' \Rightarrow d \sim d'$ et $\mathcal T_d = \mathcal T_{d'}$.
+    \end{definition}
+
+    %ex
+    \begin{example}
+        \begin{enumerate}
+            \item $(\bb R^n,||\cdot||)$ est un espace de Banach, de même pour $(\bb C^n,||\cdot||)$.
+            \item $\left(\ell^\infty(X), ||\cdot||_\infty\right)$ est un espace de Banach.
+            \item $\left(C^0(X), ||\cdot||_\infty\right)$ est un espace topologique compact, de Banach.
+            \item $\left(C^0([a,b]), ||\cdot||_1\right)$ espace vectoriel normé, mais pas de Banach.
+            \item $\ell^1=\{x\colon;\bb N\to\bb R \mid \sum x(n)\}$ est absolument convergent de Banach.
+        \end{enumerate}
+    \end{example}
+
+    % insert reste julien
+
+    % reste insert julien
+
+    %proof
+    \begin{myproof}
+        \begin{enumerate}
+            \item Cela est clair, $|\norm{x} - \norm{y}| \leq \norm{x-y}$.
+            \item On a $z=(x,y)\in E\times E$, $z'=(x',y')\in E\times E$. Alors
+            \[\begin{aligned}
+                \norm{\sigma(z)+\sigma(z')}&=\norm{x+y-(x'+y')}\\
+                &= \norm{x-x'+y-y'}\\
+                &\leq \norm{x-x'}+\norm{y-y'}\\
+                &\le 2 \norm{z-z'}_\infty
+            \end{aligned}\]
+            \item On a $z=(x,y)\in E\times E$, $z'=(x',y')\in E\times E$. Alors
+            \item $t_x-t_0x_0=(t-t_0)(x-x_0)+(t-t_0)x_0+t_0(x-x_0)$.
+
+\end{document}

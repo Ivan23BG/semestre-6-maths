@@ -311,7 +311,7 @@
     %sec
     \section{Exemples fondamentaux}
 
-    \subsection{$f^\infty(X)$}
+    \subsection{f puissance infinie de X}
 
     On considère $X$ un ensemble et $f^\infty(X)\subset \mathcal F(X,\bb R)$ l'ensemble des fonctions bornées de $X$ dans $\bb R$.
 
@@ -347,7 +347,7 @@
 
     Alors $C^0(I)$ est complet.
 
-    Prenons maintenant $||f||_1 = \int_I |f(t)|\dd t$.
+    Prenons maintenant $||f||_1 = \int_I |f(t)| dt$.
 
     C'est une norme.
 
@@ -356,7 +356,107 @@
         $(C^0(I), ||\cdot||_1)$ n'est \defemph{pas} complet.
     \end{proposition}
 
+    On considère $C^0(I)$ avec $I=\ff{0,2}$ muni de $||\cdot||_1$.
 
+    On considère la suite $(f_n)$ définie par
+    \[
+        f_n\colon\ I\to\bb R,\ t\mapsto \begin{cases}
+            1&\text{si }t\in\ff{0,1}\\
+            -nt+n+1 &\text{si }t\in\ff{1,1+\frac1n}\\
+            0&\text{si }t\in\ff{1+\frac1n,2}
+        \end{cases}
+    \]
+
+    $(f_n)$ est de Cauchy.
+
+    \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+        \centering
+        \begin{axis}[
+        x=1cm,y=1cm,
+        axis lines=middle,
+        ymajorgrids=true,
+        xmajorgrids=true,
+        xmin=-0.5,
+        xmax=3.,
+        ymin=-0.5,
+        ymax=1.5,
+        xtick={0, 1, 2, 3},
+        ytick={-1, 0, 1, 2},
+        ]
+        \fill[line width=1pt,color=red,fill=yellow,fill opacity=0.4] (1,1) -- (1.4,0) -- (1.6,0) -- cycle;
+        \draw [line width=1pt] (0,1)-- (1,1);
+        \draw [line width=1pt] (1,0)-- (2.5,0);
+        \draw [line width=1pt, dashed] (1,1)-- (1,0);
+        \draw [line width=1pt] (1,1)-- (1.4,0);
+        \draw [line width=1pt] (1,1)-- (1.6,0);
+        \draw [line width=1pt,color=red] (1,1)-- (1.4,0);
+        \draw [line width=1pt,color=red] (1.4,0)-- (1.6,0);
+        \draw [line width=1pt,color=blue] (1.6,0)-- (1,1);
+        
+        \end{axis}
+    \end{tikzpicture}
+
+    \[\begin{aligned}
+        || f_n - f_m ||_1 &= \int_0^2 |f_n(t)-f_m(t)|dt\\
+        &= \int_0^1 |1-1|dt + \int_1^{1+\frac1n} |nt-n+1|dt + \int_{1+\frac1n}^2 |0-0|dt\\
+        &= \text{ Aire sous le graphe bleu - Aire sous le graphe rouge}
+        &= \text{ Aire de }T\\
+        &=\frac12\left(\frac1n-\frac1m\right)
+    \end{aligned}\]
+
+    On considère $u_n = \frac1n$ de Cauchy. Alors
+    \[
+        ||f_n - f_m||_1 = \frac12\left(\frac1n-\frac1m\right)=\frac12|u_n-u_m|
+    \]
+
+    $(f_n)$ n'admet pas de limite dans $(C^0(I), ||\cdot||_1)$.
+
+    Supposons le contraire : $f_n\xrightarrow[||\cdot||_1]{}f$ avec $f$ continue.
+
+    Si $f_n\to f$ alors $d_1(f_n,f)\to 0$. Alors
+
+    \[\begin{aligned}
+        d_1(f_n,f) &= \int_0^2 |f_n(t)-f(t)|dt\\
+        &= \int_0^1 |f_n(t)-f(t)|dt + \int_1^{1+\frac1n} |f_n(t)-f(t)|dt + \int_{1+\frac1n}^2 |f_n(t)-f(t)|dt\\
+        &= \underbrace{\int_0^1 |1 - f(t)|dt}_{\alpha} + \beta_n + \gamma_n
+    \end{aligned}\]
+
+    Avec 
+    \[
+        0\le \beta_n \le \left(1+\frac1n-1\right)\left(\sup_I|f_n|+\sup_I|f|\right)\\
+        0\le \beta_n \le \frac{1+\sigma}{n}\to 0
+    \]
+    et
+    \[
+        \gamma_n= F(2)-F(1+\frac1n)\to \int_1^2 |f(t)|dt
+    \]
+
+    En revenant au calcul, on a:
+    \[\begin{aligned}
+        d_1(f_n,f)&=\alpha+\beta_n+\gamma_n\to 0\\
+        0&=\alpha+0+\int_1^2 |f(t)|dt\to 0
+    \end{aligned}\]
+
+    % insert here when merging with the other file <--- ref voir poly ivan raf ---> "ligne 440"
+
+    % end insert
+
+    Donc $(x_n)$ converge (puisque $X$ est complet).
+
+    On a donc $\exists l\in X$ tel que $x_n\xrightarrow[n\to+\infty]{}l$.	
+
+    Comme de plus, $f$ est continue (puisque contractante) alors on peut passer à la limite
+    dans $x_{n+1}=f(x_n)$ et on obtient $l=f(l)$.
+
+    Donc $l$ est un point fixe de $f$.
+
+    Vérifions maintenant l'unicité de $l$.
+
+    Soit $l'$ un autre point fixe de $X$. On a
+    \[
+        d(l,l')=d(f(l),f(l'))\leq k d(l,l')
+    \]
+    Alors $\underbrace{(1-k)}_{>0}d(l,l')\leq 0$ et donc $d(l,l')=0$.
 
 
 
